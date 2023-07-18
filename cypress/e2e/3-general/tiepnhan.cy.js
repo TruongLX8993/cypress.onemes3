@@ -1,6 +1,7 @@
 const common = require('../common.cy');
 const insuaranceNumber = require('../rd');
 
+
 describe("Tiếp nhận", () => {
 
     beforeEach(() => {
