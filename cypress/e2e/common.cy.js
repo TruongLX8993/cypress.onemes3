@@ -22,9 +22,16 @@ function enterSelectBoxElas(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
+function enterSelectBoxFocus(selectTagId, value) {
+    cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').focus();
+    cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
+    cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
+}
+
 module.exports = {
     login: login,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectBoxNormal,
-    enterSelectBoxElas: enterSelectBoxElas
+    enterSelectBoxElas: enterSelectBoxElas,
+    enterSelectBoxFocus: enterSelectBoxFocus,
 }
