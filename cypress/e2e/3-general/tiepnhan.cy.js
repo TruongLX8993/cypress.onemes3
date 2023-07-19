@@ -226,4 +226,11 @@ describe("Tiếp nhận", () => {
 
     });
 
+    // it('Tiếp nhận lại bệnh nhân cũ ',  () => {
+    //     cy.get('#drpSelectTimKiem').parent().find('span.selection span.select2-selection ul.select2-selection__rendered').click();
+    //     cy.get('li.select2-search').find('input.select2-search__field').type('LINH TEST 051504').wait(10000);
+    //     cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
+    //
+    // });
+
 });
