@@ -171,7 +171,6 @@ describe("Tiếp nhận", () => {
         cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
         cy.get('.select2-results tr:first').click();
 
-
         cy.get('#cbbDanToc').parent().find('span.selection span.select2-selection').focus();
         cy.get('input.select2-search__field').eq(1).type('25{downArrow}{enter}');
         cy.get('.select2-results tr:first').click();
@@ -189,7 +188,6 @@ describe("Tiếp nhận", () => {
         common.enterSelectBoxElas('cbbHangDoi','tttk.1');
         // cy.get('cbbDichVu').type('01010014{enter}');
         cy.get('#btnCHUYENTH').click();
-
 
         cy.contains('Danh sách tiếp nhận').click();
         cy.get('#divTiepNhanDanhSachContent tbody tr:first  td a').eq(4).click();
@@ -222,15 +220,47 @@ describe("Tiếp nhận", () => {
                     cy.log('Lỗi hủy');
                 }
             });
+    });
 
+    it('Tiếp nhận lại bệnh nhân cũ đã HTTT',  () => {
+        cy.get('#drpSelectTimKiem').parent().find('span.selection span.select2-selection ul.select2-selection__rendered').click();
+        cy.get('li.select2-search').find('input.select2-search__field').type('LINH TEST 051504').wait(10000);
+        cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
 
     });
 
-    // it('Tiếp nhận lại bệnh nhân cũ ',  () => {
-    //     cy.get('#drpSelectTimKiem').parent().find('span.selection span.select2-selection ul.select2-selection__rendered').click();
-    //     cy.get('li.select2-search').find('input.select2-search__field').type('LINH TEST 051504').wait(10000);
-    //     cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
-    //
-    // });
+    it('Tiếp nhận lại bệnh nhân cũ chưa HTTT',  () => {
+        cy.get('#drpSelectTimKiem').parent().find('span.selection span.select2-selection ul.select2-selection__rendered').click();
+        cy.get('li.select2-search').find('input.select2-search__field').type('LINH TEST').wait(10000);
+        cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
+        cy.get('.confirm').click().wait(3000);
+
+    });
+
+    it('bệnh nhân khám nhiều đợt nhưng chung mã BN',  () => {
+        cy.get('#drpSelectTimKiem').parent().find('span.selection span.select2-selection ul.select2-selection__rendered').click();
+        cy.get('li.select2-search').find('input.select2-search__field').type('LINH TEST 051504').wait(7000);
+        cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
+
+        cy.get('#txtDiaChiSoNha').type("Số nhà test");
+        common.enterSelectBoxElas('cbbKhoaPhong','ls03');
+
+        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
+        cy.get('span.select2-search').find('input.select2-search__field').type('khám bệnh{downArrow}{enter}');
+        cy.get('#select2-cbbDichVu-results').find('tr:last').click();
+
+        common.enterSelectBoxElas('cbbHangDoi','tttk.1');
+        cy.get('#btnCHUYENTH').click();
+        cy.get('#txtMaBenhNhan').invoke('val').then((value) => {
+            if (value === '2300520705') {
+                cy.log('Chung mã khi bệnh nhân khám nhiều đợt');
+            } else {
+                cy.log('Không Chung mã khi bệnh nhân khám nhiều đợt');
+            }
+        });
+
+    });
+
+
 
 });
