@@ -10,100 +10,47 @@ describe("Tiếp nhận", () => {
 
     });
 
-    it('Tiếp nhận đối tượng không bảo hiểu', () => {
-
-        cy.get('#txtTenBenhNhan').type("CYPRESS TEST");
-        cy.get('#txtNgaySinh').type("26/11/2020");
-
-        cy.get('#cbbDonViHanhChinh').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('BK{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        cy.get('#txtDienThoai').type("0123456789");
-        cy.get('#txtSoCMND').type("038092256");
-
-        cy.get('#cboQuocGia').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
+    it('should ', function () {
+        console.log('abc');
+    cy.get ('#txtTenBenhNhan').type ('Hann01') ;
+    cy.get ('#txtNgaySinh').type ('11/01/2011') ;
+    cy.get ('#txtDiaChiSoNha').type ('75') ;
+    common.enterSelectBoxElas('cbbDonViHanhChinh','HG');
+    cy.get ('#txtDienThoai').type ('0123462781') ;
+    cy.get ('#txtSoCMND').type ('0022993849') ;
+    common.enterSelectBoxElas('cboQuocGia','VN');
+    common.enterSelectBoxElas('cbbDanToc','35');
+    common.enterSelectBoxElas('cbbNgheNghiep','09');
+    common.enterSelectBoxElas('cbbKhoaPhong','LS03');
+    common.enterSelectBoxNormal('cbbHangDoi','tttk.1');
+    cy.get ('#btnCHUYENTH').click() ;
 
 
-        cy.get('#cbbDanToc').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('25{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
 
-        cy.get('#cbbNgheNghiep').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('07{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
 
-        cy.get('#cbbKhoaPhong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('1C{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
 
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('10017{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
 
-        cy.get('#cbbHangDoi').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('khám bệnh{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
 
-        cy.get('#btnCHUYENTH').click();
+
+
+    });
+    it('should ', function () {
+        console.log('abc');
+        cy.get ('#txtTenBenhNhan').type ('Hann02') ;
+        cy.get ('#txtNgaySinh').type ('11/01/2012') ;
+        cy.get ('#txtDiaChiSoNha').type ('33') ;
+        common.enterSelectBoxElas('cbbDonViHanhChinh','HG');
+        cy.get ('#txtDienThoai').type ('0123462781') ;
+        cy.get ('#txtSoCMND').type ('0022993849') ;
+        common.enterSelectBoxElas('cboQuocGia','VN');
+        common.enterSelectBoxElas('cbbDanToc','35');
+        common.enterSelectBoxElas('cbbNgheNghiep','09');
+        common.enterSelectBoxElas('cbbDoiTuong','Bao hiem');
+        cy.get ('#txtBaoHiemMst').type ('DN4019283736473') ;
+        common.enterSelectBoxElas('cbbKhoaPhong','LS03');
+        common.enterSelectBoxNormal('cbbHangDoi','tttk.1');
+
+
     });
 
-    it('Tiếp nhận đối tượng bảo hiểm', () => {
-        cy.get('#txtTenBenhNhan').type("CYPRESS TEST");
-        cy.get('#txtNgaySinh').type("26/11/2020");
-
-        cy.get('#cbbDonViHanhChinh').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('BK{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-
-        cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        cy.get('#txtDienThoai').type("0123456789");
-        cy.get('#txtSoCMND').type("038092256");
-
-
-        cy.get('#cboQuocGia').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbDoiTuong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('Bảo hiểm{downArrow}{enter}');
-        cy.get('#txtBaoHiemMst').type(insuaranceNumber.generate());
-        cy.get('#txtBaoHiemGiaTriTu').type('01/02/2023');
-
-        cy.get('#cbbDiaChiBvDkBd').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('01009{downArrow}{enter}', {force: true});
-        cy.get('#select2-cbbDiaChiBvDkBd-results').find('tr:first').click();
-
-
-        cy.get('#txtBaoHiemDct').type("Hà nội");
-        cy.get('#btnChapNhanNhapTheBhyt').click();
-
-        cy.get('#cbbDanToc').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('25');
-        cy.get('#select2-cbbDanToc-results').find('tr:first').click();
-
-        cy.get('#cbbNgheNghiep').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('07');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbKhoaPhong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('1C{downArrow}{enter}');
-        cy.get('#select2-cbbKhoaPhong-results').find('tr:first').click();
-
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('khám bệnh{downArrow}{enter}');
-        cy.get('#select2-cbbDichVu-results').find('tr:last').click();
-
-
-        cy.get('#cbbHangDoi').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('kham');
-        cy.get('#select2-cbbHangDoi-results').find('tr:last').click();
-        cy.get('#btnKiemTraThe').click();
-        cy.get('#btnHopLeKiemTraThe').click();
-        cy.get('#btnCHUYENTH').click();
-    });
 });
