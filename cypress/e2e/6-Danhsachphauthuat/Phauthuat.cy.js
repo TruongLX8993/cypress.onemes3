@@ -10,18 +10,18 @@ describe("Phẫu thuật", () => {
 
     });
 
-    // it('Check các bộ lọc trong DS PT ', function () {
-    //     common.enterSelectBoxElas('cboCfHangDoi', 'LS12.22');
-    //     cy.get('.btn-danger').click();
-    //     cy.get('#txtTimKiem').type('test');
-    //     //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
-    //     common.enterSelectBoxNormal('drpSelectTrangThai', 'HOAN TAT');
-    //     common.enterSelectBoxNormal('cbbLoai', '3 THANG');
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(2) td:nth-child(3)').click();
-    // });
+    it('Check các bộ lọc trong DS PT ', function () {
+        common.enterSelectBoxElas('cboCfHangDoi', 'LS12.22');
+        cy.get('.btn-danger').click();
+        cy.get('#txtTimKiem').type('test');
+        //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'HOAN TAT');
+        common.enterSelectBoxNormal('cbbLoai', '3 THANG');
+        cy.get('#btnTimKiem').click();
+        cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+        cy.get('#btnTimKiem').click();
+        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(2) td:nth-child(3)').click();
+    });
 
 
 
@@ -112,20 +112,20 @@ describe("Phẫu thuật", () => {
 
 
 
-    it('Check tác vụ "Vào thực hiện"', function () {
-        cy.get('.btn-danger').click();
-        cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'CHO THUC HIEN');
-        // cy.get('#txtTimKiem').type('2200113775');
-        common.enterSelectBoxNormal('cbbLoai', '3');
-        // cy.get('#dtTuNgay').type('25/07/2022{enter}');
-        // cy.get('#dtTuNgay').type(insuaranceNumber.generate());
-        cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(1) td:nth-child(3) a').click();
-        cy.wait(20000);
-        cy.get('#btnVAOTH').click();
-        // common.goToFunctionFromMenu('phauthuatdraw');
-        //cy.get('.confirm').click();
+    // it('Check tác vụ "Vào thực hiện"', function () {
+    //     cy.get('.btn-danger').click();
+    //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+    //     common.enterSelectBoxNormal('drpSelectTrangThai', 'CHO THUC HIEN');
+    //     // cy.get('#txtTimKiem').type('2200113775');
+    //     common.enterSelectBoxNormal('cbbLoai', '3');
+    //     // cy.get('#dtTuNgay').type('25/07/2022{enter}');
+    //     // cy.get('#dtTuNgay').type(insuaranceNumber.generate());
+    //     cy.get('#btnTimKiem').click();
+    //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(1) td:nth-child(3) a').click();
+    //     cy.wait(20000);
+    //     cy.get('#btnVAOTH').click();
+    //     // common.goToFunctionFromMenu('phauthuatdraw');
+    //     //cy.get('.confirm').click();
 
 
 
@@ -134,6 +134,6 @@ describe("Phẫu thuật", () => {
 
 
 
-    });
+
 
     });
