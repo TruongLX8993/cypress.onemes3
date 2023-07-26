@@ -28,10 +28,15 @@ function enterSelectBoxFocus(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
+function  btnID(selectTagId){
+    cy.get(`#${selectTagId}`).click();
+}
+
 module.exports = {
     login: login,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectBoxNormal,
     enterSelectBoxElas: enterSelectBoxElas,
     enterSelectBoxFocus: enterSelectBoxFocus,
+    btnID: btnID,
 }
