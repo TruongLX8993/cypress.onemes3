@@ -10,100 +10,24 @@ describe("Tiếp nhận", () => {
 
     });
 
-    it('Tiếp nhận đối tượng không bảo hiểu', () => {
-
-        cy.get('#txtTenBenhNhan').type("CYPRESS TEST");
-        cy.get('#txtNgaySinh').type("26/11/2020");
-
-        cy.get('#cbbDonViHanhChinh').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('BK{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        cy.get('#txtDienThoai').type("0123456789");
-        cy.get('#txtSoCMND').type("038092256");
-
-        cy.get('#cboQuocGia').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-
-        cy.get('#cbbDanToc').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('25{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbNgheNghiep').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('07{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbKhoaPhong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('1C{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('10017{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbHangDoi').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('khám bệnh{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
+    it('should ', function () {
+        console.log('abc');
+        cy.get('#txtTenBenhNhan').type("MAI TESTT");
+        cy.get('#txtTuoi').type("20");
+        common.enterSelectBoxElas('cbbDonViHanhChinh', "HG");
+        cy.get('#txtDiaChiSoNha').type("So 26");
+        cy.get('#txtDienThoai').type("0332");
+        cy.get('#txtSoCMND').type("00130102");
+        common.enterSelectBoxElas('cboQuocGia', 'AIA');
+        common.enterSelectBoxNormal('cbbDanToc', 'Tay');
+        common.enterSelectBoxElas('cbbNgheNghiep', '07');
+        //common.enterSelectBoxElas('cbbDoiTuong', 'Không BH');
+        common.enterSelectBoxElas('cbbKhoaPhong', 'LS03');
+        common.enterSelectBoxNormal('cbbNoiGioiThieu', 'Tự đến');
+         common.enterSelectBoxNormal('cbbDichVu', '01010003');
+         common.enterSelectBoxElas('cbbHangDoi', 'LS16.6');
         cy.get('#btnCHUYENTH').click();
     });
 
-    it('Tiếp nhận đối tượng bảo hiểm', () => {
-        cy.get('#txtTenBenhNhan').type("CYPRESS TEST");
-        cy.get('#txtNgaySinh').type("26/11/2020");
-
-        cy.get('#cbbDonViHanhChinh').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('BK{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-
-        cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        cy.get('#txtDienThoai').type("0123456789");
-        cy.get('#txtSoCMND').type("038092256");
-
-
-        cy.get('#cboQuocGia').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbDoiTuong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('Bảo hiểm{downArrow}{enter}');
-        cy.get('#txtBaoHiemMst').type(insuaranceNumber.generate());
-        cy.get('#txtBaoHiemGiaTriTu').type('01/02/2023');
-
-        cy.get('#cbbDiaChiBvDkBd').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('01009{downArrow}{enter}', {force: true});
-        cy.get('#select2-cbbDiaChiBvDkBd-results').find('tr:first').click();
-
-
-        cy.get('#txtBaoHiemDct').type("Hà nội");
-        cy.get('#btnChapNhanNhapTheBhyt').click();
-
-        cy.get('#cbbDanToc').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('25');
-        cy.get('#select2-cbbDanToc-results').find('tr:first').click();
-
-        cy.get('#cbbNgheNghiep').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('07');
-        cy.get('.select2-results tr:first').click();
-
-        cy.get('#cbbKhoaPhong').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('1C{downArrow}{enter}');
-        cy.get('#select2-cbbKhoaPhong-results').find('tr:first').click();
-
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('khám bệnh{downArrow}{enter}');
-        cy.get('#select2-cbbDichVu-results').find('tr:last').click();
-
-
-        cy.get('#cbbHangDoi').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('kham');
-        cy.get('#select2-cbbHangDoi-results').find('tr:last').click();
-        cy.get('#btnKiemTraThe').click();
-        cy.get('#btnHopLeKiemTraThe').click();
-        cy.get('#btnCHUYENTH').click();
-    });
+    it
 });
