@@ -22,9 +22,23 @@ function enterSelectBoxElas(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
+function compareValue(str1, str2){
+    cy.get(str1).invoke('text').then((text1) => {
+        cy.get(str2).invoke('text').then((text2) => {
+          if(text1>=text2){
+            return true;
+          }
+        });
+      });
+    return false;
+}
+
+
+
 module.exports = {
     login: login,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectBoxNormal,
-    enterSelectBoxElas: enterSelectBoxElas
+    enterSelectBoxElas: enterSelectBoxElas,
+    compareValue : compareValue
 }
