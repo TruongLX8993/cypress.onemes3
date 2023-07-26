@@ -1,10 +1,16 @@
 const common = require('../common.cy');
 
-describe("Tiếp nhận", () => {
+describe("Thu hồi", () => {
 
     beforeEach(() => {
-        common.login();
-        common.goToFunctionFromMenu('xetnghiemdanhsachdraw');
+        // common.login();
+        // common.goToFunctionFromMenu('xetnghiemdanhsachdraw');
+
+        cy.visit('http://192.168.1.11:2026/login.aspx')
+        cy.get('#txtLoginName').type("sys.admin.hieutt")
+        cy.get("#txtPassword").type("1")
+        cy.get("#btnLogin").click();
+        cy.get(`#side-menu a[href*='xetnghiemdanhsachdraw']:first`).click({force: true});
 
     });
 

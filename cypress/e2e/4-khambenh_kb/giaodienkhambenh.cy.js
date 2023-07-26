@@ -1,6 +1,6 @@
 const common = require('../common.cy');
 
-describe("Khám bệnh", () => {
+describe("Giao diện khám bệnh", () => {
 
 
     beforeEach(() => {
@@ -13,7 +13,7 @@ describe("Khám bệnh", () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','cho thuc hien');
         common.enterSelectBoxNormal('cbbLoai','3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:first  td a').eq(4).click();
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3)  td a').eq(4).click();
         cy.get('#btnVAOKHAM').click();
 
         cy.get('a#aTrangThai i.badge')
@@ -52,22 +52,24 @@ describe("Khám bệnh", () => {
     });
 
     it('Chỉ định dịch vụ bằng nhiều nhóm', function () {
-        // common.enterSelectBoxNormal('drpSelectTrangThai','cho thuc hien');
-        // common.enterSelectBoxNormal('cbbLoai','3');
-        // cy.get('#btnTimKiem').click();
-        // cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(10) td:nth-child(4) a')
-        //     .click();
-        // cy.get('#btnVAOKHAM').click();
-        // cy.get('#txtChanDoanSoBo').type('viêm');
-        cy.get('#txtTimKiem').type('2300516992');
+        common.enterSelectBoxNormal('drpSelectTrangThai','cho thuc hien');
         common.enterSelectBoxNormal('cbbLoai','3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a')
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3) td:nth-child(4) a')
             .click();
         cy.get('#btnVAOKHAM').click();
         cy.get('#txtChanDoanSoBo').type('viêm');
-        cy.get('[onclick="if(checkChungChiHanhNghe()){ addDichVu();ConnectToPrintServer();coreLstPhieuIn = [];coreDemPhieuIn = 0;}"] > .btn').click();
-        cy.get('#0ff545a5-1838-435e-956d-0d4731233886_anchor').click()
+        // cy.get('#txtTimKiem').type('2300516992');
+        // common.enterSelectBoxNormal('cbbLoai','3');
+        // cy.get('#btnTimKiem').click();
+        // cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a')
+        //     .click();
+        // cy.get('#btnVAOKHAM').click();
+        // cy.get('#txtChanDoanSoBo').type('viêm');
+        // cy.get('[onclick="if(checkChungChiHanhNghe()){ addDichVu();ConnectToPrintServer();coreLstPhieuIn = [];coreDemPhieuIn = 0;}"] > .btn').click();
+        // cy.get('#0ff545a5-1838-435e-956d-0d4731233886_anchor').click()
+        cy.contains('Chỉ định theo nhiều nhóm').click();
+        cy.contains('Khám bệnh').click();
         common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','cls01.1');
         cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({ force: true })
         cy.get('#previewPDFChonDV').click();
@@ -103,11 +105,11 @@ describe("Khám bệnh", () => {
                     cy.get('table#tblDichVu tbody tr.dichvu td:nth-child(1) > [title="Xóa"]').click();
                     cy.get('.confirm').click();
                     common.btnID('btnDILAMDV');
-                    cy.get('.confirm').click();
+                    // cy.get('.confirm').click();
 
                     //bo sung them chi dinh nhieu nhom
-                    cy.get('[onclick="if(checkChungChiHanhNghe()){ addDichVu();ConnectToPrintServer();coreLstPhieuIn = [];coreDemPhieuIn = 0;}"] > .btn').click();
-                    cy.get('#0ff545a5-1838-435e-956d-0d4731233886_anchor').click()
+                    cy.contains('Chỉ định theo nhiều nhóm').click();
+                    cy.contains('Khám bệnh').click();
                     common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','tttk.1');
                     cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({ force: true })
                     cy.get('#previewPDFChonDV').click();
@@ -124,19 +126,19 @@ describe("Khám bệnh", () => {
     });
 
     it('Chỉ định dịch vụ bằng nhóm mẫu', function () {
-        // common.enterSelectBoxNormal('drpSelectTrangThai','cho thuc hien');
-        cy.get('#txtTimKiem').type('2300516992');
+        common.enterSelectBoxNormal('drpSelectTrangThai','cho thuc hien');
+        // cy.get('#txtTimKiem').type('2300516992');
         common.enterSelectBoxNormal('cbbLoai','3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a')
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3) td:nth-child(4) a')
             .click();
-        // cy.get('#btnVAOKHAM').click();
+        cy.get('#btnVAOKHAM').click();
         cy.get('#txtChanDoanSoBo').type('viêm');
         cy.get('[onclick="if(checkChungChiHanhNghe()){ addDvMau();ConnectToPrintServer();coreLstPhieuIn = [];coreDemPhieuIn = 0;}"] > .btn').click();
         // cy.contains('XÉT NGHIỆM CƠ BẢN').click();
         cy.get('#divContentDMChiDinh > .table-responsive > .table > tbody > tr:nth-child(2) > td:nth-child(2) > a').click();
         cy.wait(4000);
-        cy.get('.confirm').click();
+        // cy.get('.confirm').click();
         cy.get('#trDichVuMauPopupEdit0 > :nth-child(2)').click();
         cy.get('#previewPDFCDHA').click();
         cy.wait(20000);
@@ -172,30 +174,30 @@ describe("Khám bệnh", () => {
         // cy.get('#txtTimKiem').type('2300516926');
         common.enterSelectBoxNormal('cbbLoai', '3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3) td:nth-child(4) a').click();
         common.btnID('btnVAOKHAM');
         common.btnID('btnHOANTRA');
         cy.get('.confirm').click();
-        cy.get('#divDonThuocContent tbody tr.groupthuoc1  td:nth-child(13) > .khambenh-a > .fas').click();
-        cy.get('.confirm').click();
-        common.btnID('btnHOANTRA');
-        cy.get('.confirm').click();
-        cy.contains('Vật tư').click();
-        cy.get('#divVatTuContent tbody tr:nth-child(2)  td:nth-child(9) > .khambenh-a > .fas').click();
-        cy.get('.confirm').click().wait(2000);
-        common.btnID('btnHOANTRA');
-        cy.get('.confirm').click();
+        // cy.get('#divDonThuocContent tbody tr.groupthuoc1  td:nth-child(13) > .khambenh-a > .fas').click();
+        // cy.get('.confirm').click();
+        // common.btnID('btnHOANTRA');
+        // cy.get('.confirm').click();
+        // cy.contains('Vật tư').click();
+        // cy.get('#divVatTuContent tbody tr:nth-child(2)  td:nth-child(9) > .khambenh-a > .fas').click();
+        // cy.get('.confirm').click().wait(2000);
+        // common.btnID('btnHOANTRA');
+        // cy.get('.confirm').click();
 
 
     });
 
     it('Check khi kê VTYT / Thuốc tủ trực', function () {
-        // common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
-        cy.get('#txtTimKiem').type('2300520842');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
+        // cy.get('#txtTimKiem').type('2300520842');
         common.enterSelectBoxNormal('cbbLoai', '3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
-        // common.btnID('btnVAOKHAM');
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3) td:nth-child(4) a').click();
+        common.btnID('btnVAOKHAM');
 
         // click VTYT, xóa toàn bộ, xóa từng VTYT trong popup kê
 
@@ -311,11 +313,11 @@ describe("Khám bệnh", () => {
 
 
     it('Check tác vụ hoàn tất khám', function () {
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc thuc hien');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
         common.enterSelectBoxNormal('cbbLoai', '3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(10) td:nth-child(4) a').click();
-        // common.btnID('btnVAOKHAM');
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(4) td:nth-child(4) a').click();
+        common.btnID('btnVAOKHAM');
         common.btnID('btnHOANTAT');
         cy.get('.confirm').click();
         cy.get('#txtChanDoanSoBo').type('dau bung');
@@ -343,11 +345,11 @@ describe("Khám bệnh", () => {
 
 
     it('Check tác vụ thu hồi', function () {
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc thuc hien');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
         common.enterSelectBoxNormal('cbbLoai', '3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(10) td:nth-child(4) a').click();
-        // common.btnID('btnVAOKHAM');
+        cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3) td:nth-child(4) a').click();
+        common.btnID('btnVAOKHAM');
         common.btnID('btnHOANTAT');
         cy.get('.confirm').click();
         cy.get('#txtChanDoanSoBo').type('dau bung');

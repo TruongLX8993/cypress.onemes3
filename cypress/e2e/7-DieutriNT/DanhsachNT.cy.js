@@ -1,7 +1,7 @@
 const common = require('../common.cy');
 const insuaranceNumber = require('../rd');
 
-describe("Phẫu thuật", () => {
+describe("Điều trị nội trú", () => {
 
     beforeEach(() => {
         common.login();
