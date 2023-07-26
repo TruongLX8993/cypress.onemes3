@@ -10,12 +10,12 @@ describe("Giao diện hóa đơn", () => {
     });
 
     
-    // it('Check tác vụ lập biên lai', () => {
-    //     common.enterSelectBoxNormal('drpSelectTrangThai','Chờ thanh toán');
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#divVienPhiDanhSachContent tbody tr:first  td a').eq(4).click();
-    //     cy.get('#btnBienLai1').click();
-    // });
+    it('Check tác vụ lập biên lai', () => {
+        common.enterSelectBoxNormal('drpSelectTrangThai','Chờ thanh toán');
+        cy.get('#btnTimKiem').click();
+        cy.get('#divVienPhiDanhSachContent tbody tr:first  td a').eq(4).click();
+        cy.get('#btnBienLai1').click();
+    });
     
 
 

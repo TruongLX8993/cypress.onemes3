@@ -9,12 +9,11 @@ describe("Cận lâm sàng chung", () => {
         common.goToFunctionFromMenu('canlamsangdanhsachdraw');
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
     });
-/*
+
     it('Tác vụ vào thực hiện', () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','Chờ thực hiện');
         cy.get('#btnTimKiem').click();
         cy.get('#divCanLamSangChungDanhSachContent tbody tr:first  td a').eq(3).click();
-
         cy.get('#btnVAOTH').click();
         cy.get('#aTrangThai i')
             .should('have.text', 'Đang thực hiện')
@@ -28,8 +27,7 @@ describe("Cận lâm sàng chung", () => {
          });   
         
     });
-*/
-/*
+
     it('Tác vụ hoàn tất', () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
         cy.get('#btnTimKiem').click();
@@ -50,8 +48,7 @@ describe("Cận lâm sàng chung", () => {
                   }
                 });   
     });
-*/
-/*
+
     it('Tác vụ thu hồi', () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','Hoàn tất');
         cy.get('#btnTimKiem').click();
@@ -69,27 +66,41 @@ describe("Cận lâm sàng chung", () => {
                   }
                 });   
     });
-   */ 
+   
     
     it('Tác vụ hủy', () => {
-        common.enterSelectBoxNormal('drpSelectTrangThai','Chờ thực hiện');
+        common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
         cy.get('#btnTimKiem').click();
         cy.get('#divCanLamSangChungDanhSachContent tbody tr:first  td a').eq(3).click();
 
-        cy.get('#btnHUY').click();
-        cy.wait(5000);
-        cy.get('.confirm').click();
+        //kiem tra vtyt,dv, thuốc
+        let statusHuy = true;
+        cy.get("#btnShowVatTuTieuHao").click();
+        cy.get('#divVTYT')
+            .then(($tbody) => {
+                if ($tbody.find('tr').length > 0) {
+                  statusHuy =false;
+                } 
+         });
 
-        cy.get('#aTrangThai i')
-                .should('have.text', 'Hủy')
-                .then(($i) => {
-                  const text = $i.text().trim();
-                  if (text === 'Hủy') {
-                    cy.log('Hủy thành công');
-                  } else {
-                    cy.fail('Hủy thất bại');
-                  }
-                });   
+        cy.get("#btnDangThucHienHuy").click();
+        cy.wait(5000);
+        cy.get(".confirm").click();
+        cy.wait(5000);
+        cy.get('#aTrangThai')
+        .then(($i) => {
+          cy.wrap(null).then(() => {
+              if(statusHuy){
+                if ($i.text() === 'Hủy') {
+                  cy.log('Hủy thành công');
+                } else {
+                  cy.fail('Hủy thất bại');
+                }
+              }
+          });
+        });   
+
+    
     });
     
  
