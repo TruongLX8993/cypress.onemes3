@@ -1,4 +1,4 @@
-const common = require('../common.cy');
+const common = require('../../common.cy');
 
 describe("Giao diện khám bệnh", () => {
 
@@ -178,12 +178,12 @@ describe("Giao diện khám bệnh", () => {
         common.btnID('btnVAOKHAM');
         common.btnID('btnHOANTRA');
         cy.get('.confirm').click();
-        // cy.get('#divDonThuocContent tbody tr.groupthuoc1  td:nth-child(13) > .khambenh-a > .fas').click();
+        // cy.get('#divDonThuocContent tbody tr.groupthuoc1  td:nth-child(13) > .2_khambenh-a > .fas').click();
         // cy.get('.confirm').click();
         // common.btnID('btnHOANTRA');
         // cy.get('.confirm').click();
         // cy.contains('Vật tư').click();
-        // cy.get('#divVatTuContent tbody tr:nth-child(2)  td:nth-child(9) > .khambenh-a > .fas').click();
+        // cy.get('#divVatTuContent tbody tr:nth-child(2)  td:nth-child(9) > .2_khambenh-a > .fas').click();
         // cy.get('.confirm').click().wait(2000);
         // common.btnID('btnHOANTRA');
         // cy.get('.confirm').click();
@@ -210,14 +210,14 @@ describe("Giao diện khám bệnh", () => {
         cy.get('#txtSlVTYT').type('0.5');
         cy.contains('Thêm').click();
         cy.wait(2000);
-        cy.get('#divDonVTYTContent > .table-responsive > #tblVatTu > thead > tr:nth-child(1) > th:nth-child(8) > .khambenh-a > .fa').click();
+        cy.get('#divDonVTYTContent > .table-responsive > #tblVatTu > thead > tr:nth-child(1) > th:nth-child(8) > .2_khambenh-a > .fa').click();
         cy.wait(2000);
         cy.get('.confirm').click();
         cy.contains('Thêm').click();
         cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(3)').click();
         cy.get('#txtSlVTYT').type('2');
         cy.contains('Thêm').click();
-        cy.get('#divDonVTYTContent > .table-responsive > #tblVatTu > tbody > tr:nth-child(1) > td:nth-child(9) > .khambenh-a > .fas').click();
+        cy.get('#divDonVTYTContent > .table-responsive > #tblVatTu > tbody > tr:nth-child(1) > td:nth-child(9) > .2_khambenh-a > .fas').click();
         cy.wait(2000);
         cy.get('.confirm').click();
         common.btnID('btnChuyenTh_TKXN');
@@ -234,7 +234,7 @@ describe("Giao diện khám bệnh", () => {
         cy.get('#txtSlN').type('1');
         cy.get('#txtSlL').type('1');
         cy.contains('Thêm').click();
-        cy.get('#divDonThuocDonTuTrucContent > .table-responsive > table#tblThuoc >  thead > tr:nth-child(1) > th:nth-child(12) > .khambenh-a > .fa').click();
+        cy.get('#divDonThuocDonTuTrucContent > .table-responsive > table#tblThuoc >  thead > tr:nth-child(1) > th:nth-child(12) > .2_khambenh-a > .fa').click();
         cy.wait(2000);
         cy.get('.confirm').click();
         cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
@@ -252,7 +252,7 @@ describe("Giao diện khám bệnh", () => {
         cy.get('#txtSlN').type('1');
         cy.get('#txtSlL').type('1');
         cy.contains('Thêm').click();
-        cy.get('#divDonThuocDonTuTrucContent > .table-responsive > table#tblThuoc > tbody > tr:nth-child(1) > td:nth-child(13) > .khambenh-a > .fas').click();
+        cy.get('#divDonThuocDonTuTrucContent > .table-responsive > table#tblThuoc > tbody > tr:nth-child(1) > td:nth-child(13) > .2_khambenh-a > .fas').click();
         cy.get('.confirm').click();
         common.btnID('btnChuyenTh_TKXN');
 

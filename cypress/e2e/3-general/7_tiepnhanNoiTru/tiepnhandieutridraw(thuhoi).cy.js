@@ -1,6 +1,6 @@
 
 
-const common = require('../common.cy');
+const common = require('../../common.cy');
 
 describe("Tiep Nhan NT", () => {
 

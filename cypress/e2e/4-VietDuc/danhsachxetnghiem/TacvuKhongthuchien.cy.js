@@ -1,4 +1,4 @@
-const common = require('../common.cy');
+const common = require('../../common.cy');
 
 describe("Xét nghiệm chi tiết", () => {
 
@@ -6,7 +6,7 @@ describe("Xét nghiệm chi tiết", () => {
         // common.login();
         // common.goToFunctionFromMenu('xetnghiemdanhsachdraw');
 
-        cy.visit('http://192.168.1.11:2026/login.aspx')
+        cy.visit('http://192.168.1.11:2025/login.aspx')
         cy.get('#txtLoginName').type("sys.admin.hieutt")
         cy.get("#txtPassword").type("1")
         cy.get("#btnLogin").click();

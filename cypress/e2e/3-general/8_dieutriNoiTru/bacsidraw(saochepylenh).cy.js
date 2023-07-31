@@ -1,7 +1,7 @@
 
 
-const common = require('../common.cy');
-const insuaranceNumber = require('../rd');
+const common = require('../../common.cy');
+const insuaranceNumber = require('../../rd');
 
 
 describe("Dieu tri NT", () => {
@@ -12,19 +12,16 @@ describe("Dieu tri NT", () => {
 
     });
 
-//Test sao chep y lenh nhieu ngay
+// Test sao chep y lenh
     it('Sao chep y lenh', function () {
         console.log('abc');
-        cy.get('#txtTimKiem').type('2300520912{enter}');
         common.enterSelectBoxNormal('drpSelectTrangThai',"Đang thực hiện");
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
         cy.get('#showThamKham').click();
         common.enterSelectBoxElas('cbbDienBienBenhThamKham','Bình thường');
         cy.get('#txtChanDoanSoBoThamKham').type('AAA');
-        common.enterSelectBoxElas('cboCapDoChamSocThamKham', 'C2');
-        cy.get('#cboSaoYLenh').select('2');
-        cy.get('#cboHinhThucSao').select('Sao dịch vụ');
+        common.enterSelectBoxElas('cboCapDoChamSocThamKham', 'C3');
         cy.contains('Chỉ định nhiều nhóm').click();
         cy.get('#using_json ul li:nth-child(1) a').click();
         common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','LS29.3');
@@ -37,7 +34,7 @@ describe("Dieu tri NT", () => {
         cy.get('#btnChapNhan').click();
         cy.get('#btnPopupHOANTAT').click();
         cy.get('#btnSaoChep').click();
-        //cy.get('.confirm').click();
+        cy.get('.confirm').click();
 
     });
 

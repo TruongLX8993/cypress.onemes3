@@ -1,4 +1,4 @@
-const common = require('../common.cy');
+const common = require('../../common.cy');
 const testCases = require('./khambenh.testcase.json');
 
 describe("Khám bệnh", () => {

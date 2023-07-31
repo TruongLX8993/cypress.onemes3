@@ -1,7 +1,7 @@
 
 
-const common = require('../common.cy');
-const insuaranceNumber = require('../rd');
+const common = require('../../common.cy');
+const insuaranceNumber = require('../../rd');
 
 
 describe("Dieu tri NT", () => {
