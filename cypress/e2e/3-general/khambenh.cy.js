@@ -5,7 +5,7 @@ describe("Khám bệnh", () => {
 
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('khambenhdanhsachdraw');
 
     });
@@ -31,16 +31,14 @@ describe("Khám bệnh", () => {
             // common.enterSelectBoxNormal('cbbXuTri','bỏ về');
 
             cy.get('#txtTimKiem').type('2300520635');
-            common.enterSelectBoxElas('drpSelectHangDoi','ls29.3');
-            common.enterSelectBoxElas('drpSelectDoiTuong','tp');
-            common.enterSelectBoxNormal('drpSelectQuocGia','vie');
-            common.enterSelectBoxNormal('drpSelectTrangThai','dang thuc hien');
-            common.enterSelectBoxNormal('cbbLoai','Trong thang');
+            common.enterSelectBoxElas('drpSelectHangDoi', 'ls29.3');
+            common.enterSelectBoxElas('drpSelectDoiTuong', 'tp');
+            common.enterSelectBoxNormal('drpSelectQuocGia', 'vie');
+            common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc hien');
+            common.enterSelectBoxNormal('cbbLoai', 'Trong thang');
             cy.get('#btnTimKiem').click();
             cy.get('#divKhamBenhDanhSachContent tbody tr').its('length').should('be.greaterThan', 5);
             cy.get('#divKhamBenhDanhSachContent tbody tr:first  td a').eq(4).click()
-
-
         });
 
     }

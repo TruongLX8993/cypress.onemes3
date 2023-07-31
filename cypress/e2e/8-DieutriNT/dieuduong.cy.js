@@ -2,7 +2,7 @@ const common = require('../common.cy');
 describe("Điều trị nội trú", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
 

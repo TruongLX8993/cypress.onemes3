@@ -7,7 +7,7 @@ const insuaranceNumber = require('../rd');
 describe("Tiep Nhan NT", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachttvaorakhoadraw');
 
     });

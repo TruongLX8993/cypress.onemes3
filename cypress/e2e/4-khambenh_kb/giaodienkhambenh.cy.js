@@ -1,10 +1,11 @@
 const common = require('../common.cy');
+const enviroment = require('../../../enviroment.json');
 
 describe("Giao diện khám bệnh", () => {
 
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin(enviroment.kcb);
         common.goToFunctionFromMenu('khambenhdanhsachdraw');
 
     });

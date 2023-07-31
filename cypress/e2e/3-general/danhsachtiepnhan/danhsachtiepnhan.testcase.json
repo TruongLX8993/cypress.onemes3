@@ -1,0 +1,15 @@
+
+[
+    {
+      "name": "2300520705",
+      "drpSelectKhoaPhong": "tttk.1",
+      "drpSelectQuocGia" : "Việt Nam",
+      "drpSelectGioiTinh" : "Nam",
+      "drpSelectTu" : "Tự đến",
+      "drpSelectUuTien" : "Thường",
+      "drpSelectTrangThai" : "Mới",
+      "cbbNguoiTiepNhan" : "sys.admin.hieutt",
+      "cbbLoai": "3 tháng" 
+    }
+  ]
+  

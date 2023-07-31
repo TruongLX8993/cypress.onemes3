@@ -4,7 +4,7 @@ const insuaranceNumber = require('../rd');
 describe("Phẫu thuật", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachphauthuatdraw');
 
 

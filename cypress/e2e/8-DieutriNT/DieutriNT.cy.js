@@ -4,7 +4,7 @@ const insuaranceNumber = require('../rd');
 describe("Nội trú", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
 
