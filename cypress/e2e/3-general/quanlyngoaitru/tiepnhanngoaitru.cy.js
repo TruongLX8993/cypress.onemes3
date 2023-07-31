@@ -9,6 +9,8 @@ describe("Quản lý ngoại trú", () => {
         common.enterSelectBoxNormal('cbbLoai','3 tháng');
     });
 
+
+    // fail
     it('Tiếp nhận ngoại trú tác vụ nhập khoa', () => {
         cy.get('#drpSelectTrangThai').select('1');
         cy.get('#btnTimKiem').click();

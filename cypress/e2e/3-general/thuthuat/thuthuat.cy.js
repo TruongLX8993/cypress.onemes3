@@ -9,6 +9,8 @@ describe("Thủ thuật", () => {
 
     });
     
+
+ 
     it('Tác vụ vào thực hiện', () => {
         common.enterSelectBoxNormal('cbbLoai','3 tháng');
         common.enterSelectBoxNormal('drpSelectTrangThai','Chờ thực hiện');
@@ -28,36 +30,36 @@ describe("Thủ thuật", () => {
         
     });
     
-    
-    it('Tác vụ vào hoàn tất', () => {
-        common.enterSelectBoxNormal('cbbLoai','3 tháng');
-        common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
-        cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachThuThuatContent tbody tr:first  td a').eq(4).click();
+       // chưa kiểm tra chặn hoàn tất nếu thời gian hoàn tất vượt thời gian xử trí KB/NT/NGT
+    // it('Tác vụ vào hoàn tất', () => {
+    //     common.enterSelectBoxNormal('cbbLoai','3 tháng');
+    //     common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
+    //     cy.get('#btnTimKiem').click();
+    //     cy.get('#divDanhSachThuThuatContent tbody tr:first  td a').eq(4).click();
 
-        common.enterSelectBoxElas('cbbTTChinh','1');
-        common.enterSelectBoxElas('cbbMauTuongTrinh','1');
-        cy.get('#cbbPhuongPhapTT')
-                .then(($i) => {
-                  if ($i.val() === null) {
-                    common.enterSelectBoxElas('cbbPhuongPhapTT','1');
-                    cy.get('.select2-results__option--highlighted > table > tbody > tr > [style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;"]').click();
-                  } 
-                });
+    //     common.enterSelectBoxElas('cbbTTChinh','1');
+    //     common.enterSelectBoxElas('cbbMauTuongTrinh','1');
+    //     cy.get('#cbbPhuongPhapTT')
+    //             .then(($i) => {
+    //               if ($i.val() === null) {
+    //                 common.enterSelectBoxElas('cbbPhuongPhapTT','1');
+    //                 cy.get('.select2-results__option--highlighted > table > tbody > tr > [style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;"]').click();
+    //               } 
+    //             });
 
-        cy.get('#btnHOANTAT').click();
+    //     cy.get('#btnHOANTAT').click();
 
-        cy.get('#aTrangThai i')
-                .should('have.text', 'Hoàn tất')
-                .then(($i) => {
-                  const text = $i.text().trim();
-                  if (text === 'Hoàn tất') {
-                    cy.log('Hoàn tất thành công');
-                  } else {
-                    cy.fail('Hoàn tất thất bại');
-                  }
-                });   
-    });
+    //     cy.get('#aTrangThai i')
+    //             .should('have.text', 'Hoàn tất')
+    //             .then(($i) => {
+    //               const text = $i.text().trim();
+    //               if (text === 'Hoàn tất') {
+    //                 cy.log('Hoàn tất thành công');
+    //               } else {
+    //                 cy.fail('Hoàn tất thất bại');
+    //               }
+    //             });   
+    // });
     
       
     

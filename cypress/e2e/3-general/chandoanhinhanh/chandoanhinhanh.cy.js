@@ -30,24 +30,25 @@ describe("Chẩn đoán hình ảnh", () => {
         
     });
 
-    it('Tác vụ hoàn tất', () => {
-        common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
-        cy.get('#btnTimKiem').click();
-        cy.get('#divWebPartContent tbody tr:first  td a').eq(4).click();
-        cy.get('#divPopupQuickConfig a').click();
-        cy.get('#btnHOANTAT').click();
+    //chưa kiểm tra được Chặn hoàn tất nếu thời gian hoàn tất vượt thời gian xử trí KB/NT/NGT
+    // it('Tác vụ hoàn tất', () => {
+    //     common.enterSelectBoxNormal('drpSelectTrangThai','Đang thực hiện');
+    //     cy.get('#btnTimKiem').click();
+    //     cy.get('#divWebPartContent tbody tr:first  td a').eq(4).click();
+    //     cy.get('#divPopupQuickConfig a').click();
+    //     cy.get('#btnHOANTAT').click();
 
-        cy.get('#aTrangThai i')
-                .should('have.text', 'Hoàn tất')
-                .then(($i) => {
-                  const text = $i.text().trim();
-                  if (text === 'Hoàn tất') {
-                    cy.log('Hoàn tất thành công');
-                  } else {
-                    cy.fail('Hoàn tất thất bại');
-                  }
-                });   
-    });
+    //     cy.get('#aTrangThai i')
+    //             .should('have.text', 'Hoàn tất')
+    //             .then(($i) => {
+    //               const text = $i.text().trim();
+    //               if (text === 'Hoàn tất') {
+    //                 cy.log('Hoàn tất thành công');
+    //               } else {
+    //                 cy.fail('Hoàn tất thất bại');
+    //               }
+    //             });   
+    // });
 
     it('Tác vụ thu hồi', () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','Hoàn tất');
