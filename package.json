@@ -13,8 +13,12 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^12.17.0",
+    "cypress-iframe": "^1.0.1",
     "start-server-and-test": "^2.0.0",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "cypress-wait-until": "^2.0.0"
   }
 }
