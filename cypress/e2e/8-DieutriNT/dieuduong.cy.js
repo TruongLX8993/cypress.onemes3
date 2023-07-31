@@ -98,28 +98,28 @@ describe("Điều trị nội trú", () => {
     //
     // });
 
-    // it('Check chức năng nhập thuốc/VT', function () {
-    //     cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
-    //     cy.contains(' Nhập thuốc, VTYT').click();
-    //     common.btnID('DD_KeNhapThuocSuDung');
-    //     // common.enterSelectBoxElas('cbbGoiVTYT','bang')
-    //     cy.get('#cbbGoiVTYT').parent().find('span.selection span.select2-selection').click();
-    //     cy.get('span.select2-search').find('input.select2-search__field').type('bang');
-    //     cy.get(`#select2-cbbGoiVTYT-results`).find('tr:first').click({force: true});
-    //
-    //     common.btnConfirm();
-    //     cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
-    //     // common.enterSelectBoxElas('txtHang','0203600001');
-    //
-    //    common.enterSelectBoxUlLi('txtHang','0203600001');
-    //     cy.get('#txtSoLuong').type('1');
-    //     common.btnID('btnThemVatTuThuong');
-    //     cy.get('body').type('{esc}');
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
-    //     cy.get('.form-group > .table-responsive > table > thead > tr:first > th > button:nth-child(2)').click();
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(2)').click();
-    //     cy.get('#divDSVTYTThuong > tr:nth-child(3) > td:nth-child(4)> input.updatethuocvt').clear().type('3');
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
-    //
-    // });
+    it('Check chức năng nhập thuốc/VT', function () {
+        cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
+        cy.contains(' Nhập thuốc, VTYT').click();
+        common.btnID('DD_KeNhapThuocSuDung');
+        // common.enterSelectBoxElas('cbbGoiVTYT','bang')
+        cy.get('#cbbGoiVTYT').parent().find('span.selection span.select2-selection').click();
+        cy.get('span.select2-search').find('input.select2-search__field').type('bang');
+        cy.get(`#select2-cbbGoiVTYT-results`).find('tr:first').click({force: true});
+
+        common.btnConfirm();
+        cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
+        // common.enterSelectBoxElas('txtHang','0203600001');
+
+       common.enterSelectBoxUlLi('txtHang','0203600001');
+        cy.get('#txtSoLuong').type('1');
+        common.btnID('btnThemVatTuThuong');
+        cy.get('body').type('{esc}');
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
+        cy.get('.form-group > .table-responsive > table > thead > tr:first > th > button:nth-child(2)').click();
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(2)').click();
+        cy.get('#divDSVTYTThuong > tr:nth-child(3) > td:nth-child(4)> input.updatethuocvt').clear().type('3');
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
+
+    });
 });
