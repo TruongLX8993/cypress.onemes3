@@ -6,7 +6,7 @@ const common = require('../../common.cy');
 describe("Dieu tri NT", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
     });
@@ -18,12 +18,12 @@ describe("Dieu tri NT", () => {
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
         cy.get('#showThamKham').click();
-        common.enterSelectBoxElas('cbbDienBienBenhThamKham','Bình thường');
+        common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham','Bình thường');
         cy.get('#txtChanDoanSoBoThamKham').type('AAA');
-        common.enterSelectBoxElas('cboCapDoChamSocThamKham', 'C3');
+        common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
         cy.contains('Chỉ định nhiều nhóm').click();
         cy.get('#using_json ul li:nth-child(1) a').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','LS29.3');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','LS29.3');
         //Cach 1:
         cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
             .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)

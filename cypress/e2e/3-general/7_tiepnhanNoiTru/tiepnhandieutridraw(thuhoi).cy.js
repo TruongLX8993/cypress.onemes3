@@ -5,7 +5,7 @@ const common = require('../../common.cy');
 describe("Tiep Nhan NT", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachttvaorakhoadraw');
 
     });
@@ -18,7 +18,7 @@ describe("Tiep Nhan NT", () => {
         cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
         cy.get('#txtThoiGianVaoKhoa').type('09:45 26/07/2023{enter}');
         //common.enterSelectBoxElas('cboBacSi',"Trần Trung Hiếu");
-        common.enterSelectBoxElas('cboBenhChinh',"A01.1");
+        common.enterSelectBoxElasticSearch('cboBenhChinh',"A01.1");
         cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();
     });

@@ -7,7 +7,7 @@ const insuaranceNumber = require('../../rd');
 describe("Tiếp nhận", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('tiepnhandraw');
 
     });
@@ -185,7 +185,7 @@ describe("Tiếp nhận", () => {
 
         cy.get('#btnCHUYENTH').click();
         cy.get('.confirm').click();
-        common.enterSelectBoxElas('cbbHangDoi','tttk.1');
+        common.enterSelectBoxElasticSearch('cbbHangDoi','tttk.1');
         // cy.get('cbbDichVu').type('01010014{enter}');
         cy.get('#btnCHUYENTH').click();
 
@@ -243,13 +243,13 @@ describe("Tiếp nhận", () => {
         cy.get('#select2-drpSelectTimKiem-results').find('tr:first').click();
 
         cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        common.enterSelectBoxElas('cbbKhoaPhong','ls03');
+        common.enterSelectBoxElasticSearch('cbbKhoaPhong','ls03');
 
         cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
         cy.get('span.select2-search').find('input.select2-search__field').type('khám bệnh{downArrow}{enter}');
         cy.get('#select2-cbbDichVu-results').find('tr:last').click();
 
-        common.enterSelectBoxElas('cbbHangDoi','tttk.1');
+        common.enterSelectBoxElasticSearch('cbbHangDoi','tttk.1');
         cy.get('#btnCHUYENTH').click();
         cy.get('#txtMaBenhNhan').invoke('val').then((value) => {
             if (value === '2300520705') {

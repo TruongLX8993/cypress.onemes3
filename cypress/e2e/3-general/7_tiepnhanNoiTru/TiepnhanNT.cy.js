@@ -4,7 +4,7 @@ const insuaranceNumber = require('../../rd');
 describe("Nội trú", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachttvaorakhoadraw');
 
 
@@ -41,7 +41,7 @@ describe("Nội trú", () => {
                     cy.fail('Đổi trạng thái thất bại');
                 }
             });
-        common.enterSelectBoxElas('cboBenhChinh','A00');s
+        common.enterSelectBoxElasticSearch('cboBenhChinh','A00');s
 
         cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();

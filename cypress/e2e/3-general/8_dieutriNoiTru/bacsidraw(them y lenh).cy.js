@@ -7,7 +7,7 @@ const insuaranceNumber = require('../../rd');
 describe("Dieu tri NT", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
     });

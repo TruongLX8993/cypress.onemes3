@@ -1,10 +1,11 @@
-const common = require('../../common.cy');
+const common = require('../common.cy');
+const enviroment = require('../../../enviroment.json');
 
 describe("Giao diện khám bệnh", () => {
 
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin(enviroment.kcb);
         common.goToFunctionFromMenu('khambenhdanhsachdraw');
 
     });
@@ -23,7 +24,7 @@ describe("Giao diện khám bệnh", () => {
                 if (hasBadgeClass) {
                     cy.log('Đổi trạng thái thực hiện thành công');
                     cy.get('#btnDoiPhongKham').click();
-                    common.enterSelectBoxElas('cboHangDoiKhamBenh','ls');
+                    common.enterSelectBoxElasticSearch('cboHangDoiKhamBenh','ls');
                     cy.get('#btnAddBienlai').click();
                     cy.get('body').type('{esc}');
 
@@ -70,7 +71,7 @@ describe("Giao diện khám bệnh", () => {
         // cy.get('#0ff545a5-1838-435e-956d-0d4731233886_anchor').click()
         cy.contains('Chỉ định theo nhiều nhóm').click();
         cy.contains('Khám bệnh').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','cls01.1');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','cls01.1');
         cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({ force: true })
         cy.get('#previewPDFChonDV').click();
         cy.wait(7000);
@@ -99,7 +100,7 @@ describe("Giao diện khám bệnh", () => {
                     common.btnID('btnTHUHOIDV');
                     cy.get('table#tblDichVu tbody tr.dichvu td:nth-child(1) > [title="Sửa"]').click();
                     cy.get('#cboDoiTuongUpdate').select('Không BH');
-                    common.enterSelectBoxElas('cboHangdoiUpdate','LS01.2');
+                    common.enterSelectBoxElasticSearch('cboHangdoiUpdate','LS01.2');
 
                     cy.contains('Cập nhập').click();
                     cy.get('table#tblDichVu tbody tr.dichvu td:nth-child(1) > [title="Xóa"]').click();
@@ -110,7 +111,7 @@ describe("Giao diện khám bệnh", () => {
                     //bo sung them chi dinh nhieu nhom
                     cy.contains('Chỉ định theo nhiều nhóm').click();
                     cy.contains('Khám bệnh').click();
-                    common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','tttk.1');
+                    common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','tttk.1');
                     cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({ force: true })
                     cy.get('#previewPDFChonDV').click();
                     cy.wait(7000);
@@ -155,7 +156,7 @@ describe("Giao diện khám bệnh", () => {
                     cy.wait(10000);
                     cy.get('#divDichVuXNContent > .table-responsive > #tblDichVuXN > tbody > tr:nth-child(3) > td > [title="Sửa"] > .fa').click();
                     cy.get('#cboDoiTuongUpdate').select('Không BH');
-                    common.enterSelectBoxElas('cboHangdoiUpdate','CLS04.1');
+                    common.enterSelectBoxElasticSearch('cboHangdoiUpdate','CLS04.1');
 
                     cy.contains('Cập nhập').click();
                     cy.get('#divDichVuXNContent > .table-responsive > #tblDichVuXN > tbody > tr:nth-child(3) > td > [title="Xóa"] > .fas').click();
@@ -203,7 +204,7 @@ describe("Giao diện khám bệnh", () => {
 
         cy.get('#fromdonthuoc span#divMenuThuoc a:nth-child(5)').click();
         cy.get(':nth-child(1) > label > .icheckbox_square-green > .iCheck-helper').click();
-        common.enterSelectBoxElas('cboKhoVTYT', 'ls02.14.01');
+        common.enterSelectBoxElasticSearch('cboKhoVTYT', 'ls02.14.01');
         cy.get('#cboThuocVTYT').parent().find('span.selection span.select2-selection').click();
         cy.get('span.select2-search').find('input.select2-search__field').type('32062b.201');
         cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(2)').click();
@@ -225,7 +226,7 @@ describe("Giao diện khám bệnh", () => {
         // Click Đơn tủ trực , xóa toàn bộ, xóa từng VTYT trong popup kê
         cy.get('#fromdonthuoc span#divMenuThuoc a:nth-child(7)').click();
         cy.get(':nth-child(1) > label > .icheckbox_square-green > .iCheck-helper').click();
-        common.enterSelectBoxElas('cboKhoTuTruc','ls02.14.01');
+        common.enterSelectBoxElasticSearch('cboKhoTuTruc','ls02.14.01');
         cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
         cy.get('span.select2-search').find('input.select2-search__field').type('20K61021');
         cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(2)').click();
@@ -283,10 +284,10 @@ describe("Giao diện khám bệnh", () => {
         cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(4) td:nth-child(4) a').click();
         common.btnID('btnVAOKHAM');
         cy.get('#txtChanDoanSoBo').type('dau bung');
-        common.enterSelectBoxElas('cbbBacSi', 'bm006');
-        common.enterSelectBoxElas('cbbCDBChinh', 'm07');
+        common.enterSelectBoxElasticSearch('cbbBacSi', 'bm006');
+        common.enterSelectBoxElasticSearch('cbbCDBChinh', 'm07');
         cy.get('#fromchidinh > .ibox-title > .ibox-tools > a:nth-child(6)').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupTDCN', 'cls01.1');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupTDCN', 'cls01.1');
         cy.get('div#divContentTDCN_ChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({force: true})
         common.btnID('previewPDFXN');
         cy.wait(3000);
@@ -300,8 +301,8 @@ describe("Giao diện khám bệnh", () => {
             cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
             common.btnID('btnVAOKHAM');
             cy.get('#txtChanDoanSoBo').type('dau bung');
-            common.enterSelectBoxElas('cbbBacSi', 'bm006');
-            common.enterSelectBoxElas('cbbCDBChinh', 'm07');
+            common.enterSelectBoxElasticSearch('cbbBacSi', 'bm006');
+            common.enterSelectBoxElasticSearch('cbbCDBChinh', 'm07');
             cy.get(':nth-child(5) > .col-md-12 > .select2-container > .selection > .select2-selection > ul > li > .select2-search__field').type('bệnh tả');
             cy.get('#select2-cbbCDBKemTheo-results').find('tr:first').click();
             common.btnID('btnHOANTAT');
@@ -321,8 +322,8 @@ describe("Giao diện khám bệnh", () => {
         common.btnID('btnHOANTAT');
         cy.get('.confirm').click();
         cy.get('#txtChanDoanSoBo').type('dau bung');
-        common.enterSelectBoxElas('cbbBacSi','bm006');
-        common.enterSelectBoxElas('cbbCDBChinh','m07');
+        common.enterSelectBoxElasticSearch('cbbBacSi','bm006');
+        common.enterSelectBoxElasticSearch('cbbCDBChinh','m07');
         common.enterSelectBoxNormal(
             'cbbXuTri','cho ve');
         cy.get('#txtSoNgayDungThuoc').type('10');
@@ -353,9 +354,9 @@ describe("Giao diện khám bệnh", () => {
         common.btnID('btnHOANTAT');
         cy.get('.confirm').click();
         cy.get('#txtChanDoanSoBo').type('dau bung');
-        common.enterSelectBoxElas('cbbBacSi', 'bm006');
-        common.enterSelectBoxElas('cbbChuyenKhoa', '10.3');
-        common.enterSelectBoxElas('cbbCDBChinh', 'm07');
+        common.enterSelectBoxElasticSearch('cbbBacSi', 'bm006');
+        common.enterSelectBoxElasticSearch('cbbChuyenKhoa', '10.3');
+        common.enterSelectBoxElasticSearch('cbbCDBChinh', 'm07');
         common.enterSelectBoxNormal(
             'cbbXuTri', 'cho ve');
         cy.get('#txtSoNgayDungThuoc').type('10');
@@ -376,7 +377,7 @@ describe("Giao diện khám bệnh", () => {
                             const hasBadgeClass = $badge.hasClass('badge');
                             if (hasBadgeClass) {
                                 cy.log('Đổi trạng thái thực hiện thành công');
-                                common.enterSelectBoxElas('cbbCDBChinh', 'm14');
+                                common.enterSelectBoxElasticSearch('cbbCDBChinh', 'm14');
                                 common.btnID('btnHOANTAT');
 
                             } else {

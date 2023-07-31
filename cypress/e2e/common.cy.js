@@ -1,5 +1,7 @@
-function login() {
-    cy.visit("/login.aspx");
+function visitAndLogin(baseUrl) {
+
+    if (baseUrl === undefined) baseUrl = '';
+    cy.visit(`${baseUrl}/login.aspx`);
     cy.get('#txtLoginName').type("sys.admin.hieutt")
     cy.get("#txtPassword").type("1")
     cy.get("#btnLogin").click();
@@ -11,16 +13,28 @@ function goToFunctionFromMenu(wpid) {
 }
 
 
-function enterSelectBoxNormal(selectTagId, value) {
+function enterSelectNormalBox(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}{downArrow}{enter}`);
 }
 
-function enterSelectBoxElas(selectTagId, value) {
+function enterSelectBoxElasticSearch(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
+
+function compareValueOfInputElement(sourceElementSelector, detinationSelector) {
+    cy.get(sourceElementSelector).invoke('text').then((text1) => {
+        cy.get(detinationSelector).invoke('text').then((text2) => {
+            if (text1 >= text2) {
+                return true;
+            }
+        });
+    });
+    return false;
+}
+
 
 function enterSelectBoxFocus(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').focus();
@@ -28,27 +42,25 @@ function enterSelectBoxFocus(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
-function enterSelectBoxUlLi(selectTagId, value){
+function enterSelectBoxUlLi(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
     cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
 
 }
 
-function  btnID(selectTagId){
+function btnID(selectTagId) {
     cy.get(`#${selectTagId}`).click();
 }
 
-function  btnConfirm(){
+function clickConfirmBtn() {
     cy.get('.confirm').click();
 }
 
-function inputDateTime(selectTagId){
+function setTomorrowToInput(selectTagId) {
     const today = new Date();
-    // Thêm 1 ngày
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    // Định dạng ngày tháng năm thành chuỗi 'YYYY-MM-DD'
     const formattedDate = `${String(tomorrow.getDate()).padStart(2, '0')}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${tomorrow.getFullYear()}`;
     cy.get(`#${selectTagId}`).clear();
     cy.get(`#${selectTagId}`).type(`${formattedDate}`);
@@ -57,14 +69,14 @@ function inputDateTime(selectTagId){
 
 
 module.exports = {
-    login: login,
+    visitAndLogin: visitAndLogin,
     goToFunctionFromMenu: goToFunctionFromMenu,
-    enterSelectBoxNormal: enterSelectBoxNormal,
-    enterSelectBoxElas: enterSelectBoxElas,
+    enterSelectBoxNormal: enterSelectNormalBox,
+    enterSelectBoxElasticSearch: enterSelectBoxElasticSearch,
+    compareValue: compareValueOfInputElement,
     enterSelectBoxFocus: enterSelectBoxFocus,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
-    btnConfirm: btnConfirm,
-    inputDateTime: inputDateTime,
-
+    clickConfirmBtn: clickConfirmBtn,
+    setTomorrowToInput: setTomorrowToInput
 }

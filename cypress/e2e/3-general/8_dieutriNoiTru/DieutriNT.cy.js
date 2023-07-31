@@ -4,7 +4,7 @@ const insuaranceNumber = require('../../rd');
 describe("Nội trú", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
 
@@ -14,7 +14,7 @@ describe("Nội trú", () => {
         //common.enterSelectBoxNormal('drpSelectKhoaPhong','LS22');
         //common.enterSelectBoxNormal('cboBuongGiuong','116');
         //common.enterSelectBoxNormal('cboBacSi','1712');
-        common.enterSelectBoxElas('drpSelectDoiTuong','Bảo hiểm');
+        common.enterSelectBoxElasticSearch('drpSelectDoiTuong','Bảo hiểm');
         //common.enterSelectBoxNormal('drpSelectTrangThai','Đi mổ');
         cy.get('#select2-drpSelectTrangThai-container > .select2-selection__clear').click();
         common.enterSelectBoxNormal('cbbLoai','Tuần trước');
@@ -38,7 +38,7 @@ describe("Nội trú", () => {
         cy.get('#tblNoiTru tbody tr:nth-child(6) td:nth-child(5) a').click();
         cy.get('#showThamKham').click();
         common.enterSelectBoxNormal('cboBenhChinhThamKham','A02.0');
-        common.enterSelectBoxElas('cboCapDoChamSocThamKham','C2');
+        common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham','C2');
         cy.get('#txtDienBienYLenhThamKham').type('Mới bị');
         cy.contains('Chỉ định nhiều nhóm').click();
         //cy.get('#7b1a3430-7ab7-4dd3-8acc-dd4e7f70089b_anchor').click();
@@ -49,7 +49,7 @@ describe("Nội trú", () => {
         // common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','12.9');
         // cy.get('#divContentChiDinh ul li:nth-child(12) a');
         // cy.contains('Khám bệnh').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','ls11.7');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','ls11.7');
         //cy.get('#txtChiDinhFilter').type('Khám bệnh');
         //cy.get('.input-group-btn').click();
         // cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
@@ -73,10 +73,10 @@ describe("Nội trú", () => {
         // cy.get('#tblDichVu tbody tr:nth-child(3) td:nth-child(1) a').eq(1).click();
         cy.get('#btnHoiChan').click();
         //cy.get('div.col-sm-12 div.iradio_square-green ins.iCheck-helper').eq(0).click({ force: true });
-       common.enterSelectBoxElas('cboHangDoiPT','Ls13');
+       common.enterSelectBoxElasticSearch('cboHangDoiPT','Ls13');
        // cy.get('#txtNgayMo').clear();('')
        // cy.get('#txtNgayMo').type(`${inputDateTime}`);
-        common.inputDateTime('txtNgayMo');
+        common.setTomorrowToInput('txtNgayMo');
        // common.enterSelectBoxElas('cboDichVuPT','08111793');
        //  cy.get('#cboDichVuPT')
        //  cy.get('#cboDichVuPT').parent().find('span.selection span.select2-selection').click();
@@ -124,11 +124,11 @@ describe("Nội trú", () => {
         cy.get('#tblNoiTru tbody tr:nth-child(6) td:nth-child(5) a').click();
         cy.get('#showThamKham').click();
         common.enterSelectBoxNormal('cboBenhChinhThamKham','A02.0');
-        common.enterSelectBoxElas('cboCapDoChamSocThamKham','C2');
+        common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham','C2');
         cy.get('#txtDienBienYLenhThamKham').type('Mới bị');
         cy.contains('Chỉ định nhiều nhóm').click();
         cy.get('#using_json  ul li:nth-child(6) a').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','ls11.7');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','ls11.7');
         cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').eq(0).click({ force: true })
         cy.get('#btnDongYChon').click();
         cy.get('#btnChapNhan').click();

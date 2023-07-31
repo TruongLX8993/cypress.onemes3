@@ -5,7 +5,7 @@ const insuaranceNumber = require('../../rd');
 describe("Tiếp nhận", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin();
         common.goToFunctionFromMenu('chandoanhinhanhdanhsachdraw');
 
     });
