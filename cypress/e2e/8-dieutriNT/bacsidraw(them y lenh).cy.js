@@ -12,13 +12,22 @@ describe("Dieu tri NT", () => {
 
     });
 //Test chan them y lenh moi khi dang co y lenh o trang thai "Moi"
+    it('Chan them moi y lenh', function () {
+        console.log('abc');
+        cy.get('#btnTimKiem').click();
+        cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
+        cy.get('#showThamKham').click();
+    });
+
+//Test them moi y lenh
     it('Them moi y lenh', function () {
         console.log('abc');
-        cy.get('#txtTimKiem').type('2300519392{enter}');
+        common.enterSelectBoxNormal('drpSelectTrangThai',"Đang thực hiện");
         cy.get('#btnTimKiem').click();
-        cy.get('#divToaThuocDanhSachContent tbody tr:nth-child(1) td:nth-child(3) a').click();
-        //cy.get('#tblBenhAn tbody tr:nth-child(1) td:nth-child(1) > input.chkYeuCau').click();
+        cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
+        cy.get('#showThamKham').click();
     });
+
 
 
 });

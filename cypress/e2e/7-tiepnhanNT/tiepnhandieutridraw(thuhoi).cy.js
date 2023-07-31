@@ -1,8 +1,6 @@
 
 
 const common = require('../common.cy');
-const insuaranceNumber = require('../rd');
-
 
 describe("Tiep Nhan NT", () => {
 
@@ -26,9 +24,8 @@ describe("Tiep Nhan NT", () => {
     });
 
 //Test Bn them y lenh moi => Khong the thu hoi
-    it('Thu hoi ', function () {
+    it('Thu hoi chan them y lenh', function () {
         console.log('abc');
-        cy.get('#txtTimKiem').type('2300519392{enter}');
         cy.get('#drpSelectTrangThai').select('Đã nhập khoa');
         common.enterSelectBoxNormal('cbbLoai',"Trong ngày");
         cy.get('#btnTimKiem').click();
