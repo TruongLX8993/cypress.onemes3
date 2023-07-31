@@ -31,8 +31,8 @@ describe("Khám bệnh", () => {
             // common.enterSelectBoxNormal('cbbXuTri','bỏ về');
 
             cy.get('#txtTimKiem').type('2300520635');
-            common.enterSelectBoxElas('drpSelectHangDoi', 'ls29.3');
-            common.enterSelectBoxElas('drpSelectDoiTuong', 'tp');
+            common.enterSelectBoxElasticSearch('drpSelectHangDoi', 'ls29.3');
+            common.enterSelectBoxElasticSearch('drpSelectDoiTuong', 'tp');
             common.enterSelectBoxNormal('drpSelectQuocGia', 'vie');
             common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc hien');
             common.enterSelectBoxNormal('cbbLoai', 'Trong thang');

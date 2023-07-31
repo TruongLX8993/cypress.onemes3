@@ -11,7 +11,7 @@ describe("Phẫu thuật", () => {
     });
 
     it('Check các bộ lọc trong DS PT ', function () {
-        common.enterSelectBoxElas('cboCfHangDoi', 'LS12.22');
+        common.enterSelectBoxElasticSearch('cboCfHangDoi', 'LS12.22');
         cy.get('.btn-danger').click();
         cy.get('#txtTimKiem').type('test');
         //common.enterSelectBoxElas('drpSelectHangDoi','LS013');

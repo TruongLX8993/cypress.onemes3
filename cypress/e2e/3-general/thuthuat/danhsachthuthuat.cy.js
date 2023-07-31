@@ -12,7 +12,7 @@ describe("Thủ thuật", () => {
     it('Danh sách thủ thuật', () => {
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
         cy.get('#txtTimKiem').type(testCases[0].name);
-        common.enterSelectBoxElas('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
+        common.enterSelectBoxElasticSearch('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
         common.enterSelectBoxNormal('drpSelectDichVu',testCases[0].drpSelectDichVu);
         cy.get('.select2-results__option--highlighted > table > tbody > tr > [style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;"]').click();
         //common.enterSelectBoxNormal('drpSelectLoaiDichVu','');

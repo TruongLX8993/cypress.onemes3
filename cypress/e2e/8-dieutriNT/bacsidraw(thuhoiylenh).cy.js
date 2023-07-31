@@ -19,13 +19,13 @@ describe("Dieu tri NT", () => {
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
         cy.get('#showThamKham').click();
-        common.enterSelectBoxElas('cbbDienBienBenhThamKham','Bình thường');
+        common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham','Bình thường');
         cy.get('#txtChanDoanSoBoThamKham').clear();
         cy.get('#txtChanDoanSoBoThamKham').type('BBB');
-        common.enterSelectBoxElas('cboCapDoChamSocThamKham', 'C3');
+        common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
         cy.contains('Chỉ định nhiều nhóm').click();
         cy.get('#using_json ul li:nth-child(1) a').click();
-        common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','LS29.3');
+        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','LS29.3');
         cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
             .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
             .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper

@@ -10,12 +10,12 @@ describe("Viện phí", () => {
     });
     it('Danh sách viện phí', () => {
         cy.get('#txtTimKiem').type(testCases[0].name);
-        common.enterSelectBoxElas('drpSelectKhoaPhong',testCases[0].drpSelectKhoaPhong);
-        common.enterSelectBoxElas('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
+        common.enterSelectBoxElasticSearch('drpSelectKhoaPhong',testCases[0].drpSelectKhoaPhong);
+        common.enterSelectBoxElasticSearch('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
-        common.enterSelectBoxElas('drpSelectNguoiLap',testCases[0].drpSelectNguoiLap);
-        common.enterSelectBoxElas('drpSelectDoiTuong',testCases[0].drpSelectDoiTuong);
-        common.enterSelectBoxElas('drpSelectHopDong',testCases[0].drpSelectHopDong);
+        common.enterSelectBoxElasticSearch('drpSelectNguoiLap',testCases[0].drpSelectNguoiLap);
+        common.enterSelectBoxElasticSearch('drpSelectDoiTuong',testCases[0].drpSelectDoiTuong);
+        common.enterSelectBoxElasticSearch('drpSelectHopDong',testCases[0].drpSelectHopDong);
         common.enterSelectBoxNormal('drpSelectLoaiDieuTri',testCases[0].drpSelectLoaiDieuTri);
         common.enterSelectBoxNormal('drpSelectTrangThai',testCases[0].drpSelectTrangThai);
         cy.get('#btnTimKiem').click();

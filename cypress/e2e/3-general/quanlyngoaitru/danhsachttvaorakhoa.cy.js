@@ -12,7 +12,7 @@ describe("Quản lý ngoại trú", () => {
     it('Danh sách tiếp nhận ngoại chú', () => {
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
         cy.get('#txtTimKiem').type(testCases[0].name);
-        common.enterSelectBoxElas('drpSelectKhoaPhong',testCases[0].drpSelectKhoaPhong);
+        common.enterSelectBoxElasticSearch('drpSelectKhoaPhong',testCases[0].drpSelectKhoaPhong);
         cy.get('#drpSelectTrangThai').select(testCases[0].drpSelectTrangThai);
         common.enterSelectBoxNormal('drpSelectHinhThuc',testCases[0].drpSelectHinhThuc);
         cy.get('#btnTimKiem').click();

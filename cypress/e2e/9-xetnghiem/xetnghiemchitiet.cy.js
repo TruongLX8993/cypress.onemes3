@@ -32,10 +32,10 @@ describe("Tiếp nhận", () => {
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(4) a').click();
 
-        common.enterSelectBoxElas('cbbNoiThucHien', 'CLS08.1');
-        common.enterSelectBoxElas('cbbNguoiThucHien', '4721');
-        common.enterSelectBoxElas('cbbBacSiDocKetQua', '4324');
-        common.enterSelectBoxElas('cbbThietBiXetNghiem', 'Thu Cong');
+        common.enterSelectBoxElasticSearch('cbbNoiThucHien', 'CLS08.1');
+        common.enterSelectBoxElasticSearch('cbbNguoiThucHien', '4721');
+        common.enterSelectBoxElasticSearch('cbbBacSiDocKetQua', '4324');
+        common.enterSelectBoxElasticSearch('cbbThietBiXetNghiem', 'Thu Cong');
         cy.get('#btnHOANTAT').click();
         cy.get('#aTrangThai i')
                     .should('have.text', 'Hoàn tất')

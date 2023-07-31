@@ -21,9 +21,9 @@ describe("Thu hồi", () => {
         cy.get('#divXetNghiemDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
         cy.get ('#btnVAOTH').click();
         cy.get ('#txtThoiGianTraKetQua').type('16:29 24/07/2023');
-        common.enterSelectBoxElas('cbbNoiThucHien','CLS08.1');
-        common.enterSelectBoxElas('cbbNguoiThucHien','4721');
-        common.enterSelectBoxElas('cbbBacSiDocKetQua','1893');
+        common.enterSelectBoxElasticSearch('cbbNoiThucHien','CLS08.1');
+        common.enterSelectBoxElasticSearch('cbbNguoiThucHien','4721');
+        common.enterSelectBoxElasticSearch('cbbBacSiDocKetQua','1893');
         cy.get ('#btnHOANTAT').click();
         cy.get ('#btnTHUHOI').click();
         cy.get('#aTrangThai i')
@@ -36,7 +36,7 @@ describe("Thu hồi", () => {
                     cy.fail('Đổi trạng thái thất bại');
                 }
                 cy.get('#txtThoiGianTraKetQua').type('16:41 24/07/2023');
-                common.enterSelectBoxElas('cbbBacSiDocKetQua', '4324');
+                common.enterSelectBoxElasticSearch('cbbBacSiDocKetQua', '4324');
                 cy.get('#btnHOANTAT').click();
             });
     it('Check tác vụ "thu hồi" ', function () {

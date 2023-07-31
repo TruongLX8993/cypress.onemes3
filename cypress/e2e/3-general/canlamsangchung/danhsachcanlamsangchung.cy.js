@@ -13,8 +13,8 @@ describe("Cận lâm sàng chung", () => {
     it('Danh sách cận lâm sàng chung', () => {
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
         cy.get('#txtTimKiem').type(testCases[0].name);
-        common.enterSelectBoxElas('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
-        common.enterSelectBoxElas('drpSelectHangDoiChiDinh',testCases[0].drpSelectHangDoiChiDinh);
+        common.enterSelectBoxElasticSearch('drpSelectHangDoi',testCases[0].drpSelectHangDoi);
+        common.enterSelectBoxElasticSearch('drpSelectHangDoiChiDinh',testCases[0].drpSelectHangDoiChiDinh);
         common.enterSelectBoxNormal('drpSelectTrangThai',testCases[0].drpSelectTrangThai);
         cy.get('#btnTimKiem').click();
         cy.get('#divCanLamSangChungDanhSachContent tbody')

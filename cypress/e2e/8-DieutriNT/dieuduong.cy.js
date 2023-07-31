@@ -18,7 +18,7 @@ describe("Điều trị nội trú", () => {
             cy.log("Dữ liệu trong thuộc tính title là: ", title);
             cy.get('#cboGiuongPG').parent().find('span.selection span.select2-selection').click();
             cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(2)').click();
-            common.btnConfirm();
+            common.clickConfirmBtn();
             cy.get('#txtSoNgayNamPBG').type('5');
             cy.contains('Chấp nhận').click();
 
@@ -31,9 +31,9 @@ describe("Điều trị nội trú", () => {
 
                     cy.log(numberOnly);
                     common.goToFunctionFromMenu('sodobuonggiuongdraw');
-                    common.btnConfirm();
-                    common.enterSelectBoxElas('drpSelectKhoaPhong',Khoaphong);
-                    common.enterSelectBoxElas('drpSelectBuong',title);
+                    common.clickConfirmBtn();
+                    common.enterSelectBoxElasticSearch('drpSelectKhoaPhong',Khoaphong);
+                    common.enterSelectBoxElasticSearch('drpSelectBuong',title);
                     common.btnID('btnTimKiem');
 
                     // quay tro lai va ket thuc buong giuong
@@ -44,9 +44,9 @@ describe("Điều trị nội trú", () => {
                     cy.contains('Buồng giường').click();
                     cy.get('#thongTinBuongGiuongBtns > a:nth-child(3) > span').click();
                     common.goToFunctionFromMenu('sodobuonggiuongdraw');
-                    common.btnConfirm();
-                    common.enterSelectBoxElas('drpSelectKhoaPhong',Khoaphong);
-                    common.enterSelectBoxElas('drpSelectBuong',title);
+                    common.clickConfirmBtn();
+                    common.enterSelectBoxElasticSearch('drpSelectKhoaPhong',Khoaphong);
+                    common.enterSelectBoxElasticSearch('drpSelectBuong',title);
                     common.btnID('btnTimKiem');
 
                 });
@@ -107,7 +107,7 @@ describe("Điều trị nội trú", () => {
         cy.get('span.select2-search').find('input.select2-search__field').type('bang');
         cy.get(`#select2-cbbGoiVTYT-results`).find('tr:first').click({force: true});
 
-        common.btnConfirm();
+        common.clickConfirmBtn();
         cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
         // common.enterSelectBoxElas('txtHang','0203600001');
 

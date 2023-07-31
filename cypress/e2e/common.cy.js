@@ -1,7 +1,6 @@
 function visitAndLogin(baseUrl) {
 
-    if (baseUrl === undefined)
-        baseUrl = '';
+    if (baseUrl === undefined) baseUrl = '';
     cy.visit(`${baseUrl}/login.aspx`);
     cy.get('#txtLoginName').type("sys.admin.hieutt")
     cy.get("#txtPassword").type("1")
@@ -14,20 +13,20 @@ function goToFunctionFromMenu(wpid) {
 }
 
 
-function enterSelectBoxNormal(selectTagId, value) {
+function enterSelectNormalBox(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}{downArrow}{enter}`);
 }
 
-function enterSelectBoxElas(selectTagId, value) {
+function enterSelectBoxElasticSearch(selectTagId, value) {
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
-function compareValue(str1, str2) {
-    cy.get(str1).invoke('text').then((text1) => {
-        cy.get(str2).invoke('text').then((text2) => {
+function compareValueOfInputElement(sourceElementSelector, detinationSelector) {
+    cy.get(sourceElementSelector).invoke('text').then((text1) => {
+        cy.get(detinationSelector).invoke('text').then((text2) => {
             if (text1 >= text2) {
                 return true;
             }
@@ -54,16 +53,14 @@ function btnID(selectTagId) {
     cy.get(`#${selectTagId}`).click();
 }
 
-function btnConfirm() {
+function clickConfirmBtn() {
     cy.get('.confirm').click();
 }
 
-function inputDateTime(selectTagId) {
+function setTomorrowToInput(selectTagId) {
     const today = new Date();
-    // Th�m 1 ng�y
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    // �?nh d?ng ng�y th�ng nam th�nh chu?i 'YYYY-MM-DD'
     const formattedDate = `${String(tomorrow.getDate()).padStart(2, '0')}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${tomorrow.getFullYear()}`;
     cy.get(`#${selectTagId}`).clear();
     cy.get(`#${selectTagId}`).type(`${formattedDate}`);
@@ -74,13 +71,12 @@ function inputDateTime(selectTagId) {
 module.exports = {
     visitAndLogin: visitAndLogin,
     goToFunctionFromMenu: goToFunctionFromMenu,
-    enterSelectBoxNormal: enterSelectBoxNormal,
-    enterSelectBoxElas: enterSelectBoxElas,
-    compareValue: compareValue,
-    enterSelectBoxElas: enterSelectBoxElas,
+    enterSelectBoxNormal: enterSelectNormalBox,
+    enterSelectBoxElasticSearch: enterSelectBoxElasticSearch,
+    compareValue: compareValueOfInputElement,
     enterSelectBoxFocus: enterSelectBoxFocus,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
-    btnConfirm: btnConfirm,
-    inputDateTime: inputDateTime
+    clickConfirmBtn: clickConfirmBtn,
+    setTomorrowToInput: setTomorrowToInput
 }
