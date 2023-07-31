@@ -10,16 +10,16 @@ describe("Điều trị nội trú", () => {
 
     });
 
-    // it('Check các bộ lọc trong DS nhập khoa NT ', function () {
-    //     // cy.get('#txtTimKiem').type('test');
-    //     //common.enterSelectBoxElas('drpSelectKhoaPhong','LS14');
-    //     cy.get('#drpSelectTrangThai').select('Mới');
-    //     common.enterSelectBoxNormal('cbbLoai','3');
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#divDanhSachContent tbody tr:nth-child(1) td:nth-child(3) a').click();
-    //
-    //
-    // });
+    it('Check các bộ lọc trong DS nhập khoa NT ', function () {
+        // cy.get('#txtTimKiem').type('test');
+        //common.enterSelectBoxElas('drpSelectKhoaPhong','LS14');
+        cy.get('#drpSelectTrangThai').select('Mới');
+        common.enterSelectBoxNormal('cbbLoai','3');
+        cy.get('#btnTimKiem').click();
+        cy.get('#divDanhSachContent tbody tr:nth-child(1) td:nth-child(3) a').click();
+
+
+    });
 
 
 

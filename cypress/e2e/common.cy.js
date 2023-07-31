@@ -28,8 +28,19 @@ function enterSelectBoxFocus(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
+function enterSelectBoxUlLi(selectTagId, value){
+    cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
+    cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
+    cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force: true});
+
+}
+
 function  btnID(selectTagId){
     cy.get(`#${selectTagId}`).click();
+}
+
+function  btnConfirm(){
+    cy.get('.confirm').click();
 }
 
 module.exports = {
@@ -38,5 +49,7 @@ module.exports = {
     enterSelectBoxNormal: enterSelectBoxNormal,
     enterSelectBoxElas: enterSelectBoxElas,
     enterSelectBoxFocus: enterSelectBoxFocus,
+    enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
+    btnConfirm: btnConfirm,
 }
