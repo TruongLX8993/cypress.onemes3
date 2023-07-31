@@ -31,7 +31,7 @@ function enterSelectBoxFocus(selectTagId, value) {
 function enterSelectBoxUlLi(selectTagId, value){
     cy.get(`#${selectTagId}`).parent().find('span.selection span.select2-selection').click();
     cy.get('span.select2-search').find('input.select2-search__field').type(`${value}`);
-    cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force: true});
+    cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
 
 }
 
@@ -43,6 +43,19 @@ function  btnConfirm(){
     cy.get('.confirm').click();
 }
 
+function inputDateTime(selectTagId){
+    const today = new Date();
+    // Thêm 1 ngày
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    // Định dạng ngày tháng năm thành chuỗi 'YYYY-MM-DD'
+    const formattedDate = `${String(tomorrow.getDate()).padStart(2, '0')}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${tomorrow.getFullYear()}`;
+    cy.get(`#${selectTagId}`).clear();
+    cy.get(`#${selectTagId}`).type(`${formattedDate}`);
+
+}
+
+
 module.exports = {
     login: login,
     goToFunctionFromMenu: goToFunctionFromMenu,
@@ -52,4 +65,6 @@ module.exports = {
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
     btnConfirm: btnConfirm,
+    inputDateTime: inputDateTime,
+
 }
