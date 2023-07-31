@@ -95,7 +95,7 @@ describe("Tiếp nhận", () => {
 
     it('should ', function () {
         console.log('abc');
-        cy.get ('#txtTenBenhNhan').type ('Hann Test 6') ;
+        cy.get ('#txtTenBenhNhan').type ('Tu Test 9') ;
         cy.get ('#txtNgaySinh').type ('22/01/2015') ;
         cy.get ('#txtDiaChiSoNha').type ('44') ;
         common.enterSelectBoxElas('cbbDonViHanhChinh','HG');
