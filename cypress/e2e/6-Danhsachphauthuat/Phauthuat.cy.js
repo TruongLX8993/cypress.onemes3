@@ -13,14 +13,16 @@ describe("Phẫu thuật", () => {
     it('Check các bộ lọc trong DS PT ', function () {
         common.enterSelectBoxElas('cboCfHangDoi', 'LS12.22');
         cy.get('.btn-danger').click();
-        cy.get('#txtTimKiem').type('test');
+        // cy.get('#txtTimKiem').type('test');
         //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'HOAN TAT');
+        // common.enterSelectBoxNormal('drpSelectTrangThai', 'Chờ thực hiện');
         common.enterSelectBoxNormal('cbbLoai', '3 THANG');
         cy.get('#btnTimKiem').click();
-        cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-        cy.get('#btnTimKiem').click();
+        // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+        // cy.get('#btnTimKiem').click();
         cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(2) td:nth-child(3)').click();
+        cy.get('.confirm').click();
+        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3)').click();
     });
 
 

@@ -30,6 +30,8 @@ describe("Nội trú", () => {
 
 
 
+
+
     it('Check khi chỉ định các DV bằng nhiều nhóm/Gói mẫu', function () {
         // cy.get('#txtTimKiem').type('300520882');
         // cy.get('#select2-drpSelectTrangThai-container > .select2-selection__clear').click();
@@ -116,6 +118,7 @@ describe("Nội trú", () => {
 
 
 
+
     it('Check chỉnh sửa DV ở lưới Dv sau khi kê', function () {
         // cy.get('#txtTimKiem').type('300520882');
         // cy.get('#select2-drpSelectTrangThai-container > .select2-selection__clear').click();
@@ -161,86 +164,83 @@ describe("Nội trú", () => {
 
 
 
+    it('Check khi kê VTYT/thuốc', function () {
+        // cy.get('#txtTimKiem').type('300520882');
+        // cy.get('#select2-drpSelectTrangThai-container > .select2-selection__clear').click();
+        common.enterSelectBoxNormal('cbbLoai','Tuần trước');
+        cy.get('#btnTimKiem').click();
+        cy.get('#tblNoiTru tbody tr:nth-child(4) td:nth-child(5) a').click();
+        cy.get('#showThamKham').click();
+        common.enterSelectBoxNormal('cboBenhChinhThamKham','A02.0');
+        common.enterSelectBoxElas('cboCapDoChamSocThamKham','C2');
+        cy.get('#txtDienBienYLenhThamKham').type('Mới bị');
+        cy.get('#btnKeDon').click();
+        // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
+        // cy.get('span.select2-search').find('input.select2-search__field').type('20.14036');
+        // cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
+        common.enterSelectBoxUlLi('cboThuoc','27');
+        cy.get('#txtSl').type('10000');
+        cy.get('#txtSlN').type('10000');
+        cy.get('#btnChon').click();
+        cy.get('.confirm').click();
+        // cy.wait(2000);
+        // cy.get('body').type('{esc}');
+        cy.viewport(1500,800);
+        cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
+        cy.get('span.select2-search').find('input.select2-search__field').type('.');
+        cy.get('span.select2-results > ul.select2-results__options').find('li').eq(4).click({force:true});
+        // common.enterSelectBoxUlLi('cboThuoc','27');
+        cy.get('#txtSl').type('1.1');
+        cy.get('#txtSlN').type('2');
+        cy.get('#btnChon').click();
+        cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
+        cy.get('span.select2-search').find('input.select2-search__field').type('.');
+        cy.get('span.select2-results > ul.select2-results__options').find('li').eq(5).click({force:true});
+        cy.get('.col-lg-2 > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
+        cy.get('#txtSl').type('3');
+        cy.get('#txtSlN').type('3');
+        cy.get('#btnChon').click();
+        // cy.get('.confirm').click();
+        cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
+        cy.get('span.select2-search').find('input.select2-search__field').type('.');
+        cy.get('span.select2-results > ul.select2-results__options').find('li').eq(6).click({force:true});
+        cy.get('#txtSl').type('4');
+        cy.get('#txtSlN').type('2');
+        cy.get('#btnChon').click();
+        // cy.get('.confirm').click();
+        cy.get('body').type('{esc}');
+        // cy.get('#tblThuoc tbody tr:nth-child(1) td:nth-child(1) a[title="Sửa"]').click();
+        // cy.get('#txtSlUpdate').type('5');
+        // cy.get('div.modal-footer > button:first').click();
+        cy.get('#tblThuoc tbody tr:nth-child(1) td:nth-child(2) a[title="Xóa"]').click({multiple:true});
+        cy.get('.confirm').click();
+        cy.get('#tblThuoc thead tr th:nth-child(1) a[title="Xóa tất cả toa thuốc mới"]').click();
+        cy.get('.confirm').click();
+        cy.wait(2000);
+        // common.enterSelectBoxUlLi('cboThuoc','27');
+        // cy.get('body').type('{enter}');
+        cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
+        cy.get('span.select2-search').find('input.select2-search__field').type('27');
+        cy.get('span.select2-results > ul.select2-results__options').find('li').eq(2).click({multiple:true});
+        cy.get('.col-lg-2 > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
+        cy.get('#txtSl').type('1');
+        cy.get('#txtSlN').type('1');
+        cy.get('#btnChon').click();
+        cy.get('#btnChuyenTH').click();
+        cy.get('#btnPopupHOANTAT').click();
+        cy.get('#divStatusPopup i.badge')
+                .should('have.text', 'Hoàn tất')
+                .then(($badge) => {
+                    const hasBadgeClass = $badge.hasClass('badge');
+                    if (hasBadgeClass) {
+                        cy.log('Đổi trạng thái thực hiện thành công');
+                    } else {
+                        cy.fail('Đổi trạng thái thực hiện thất bại');
+                    }
+                });
 
 
-    // it('Check khi kê VTYT/thuốc', function () {
-    //     // cy.get('#txtTimKiem').type('300520882');
-    //     // cy.get('#select2-drpSelectTrangThai-container > .select2-selection__clear').click();
-    //     common.enterSelectBoxNormal('cbbLoai','Tuần trước');
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#tblNoiTru tbody tr:nth-child(6) td:nth-child(5) a').click();
-    //     cy.get('#showThamKham').click();
-    //     // common.enterSelectBoxNormal('cboBenhChinhThamKham','A02.0');
-    //     // common.enterSelectBoxElas('cboCapDoChamSocThamKham','C2');
-    //     // cy.get('#txtDienBienYLenhThamKham').type('Mới bị');
-    //     cy.get('#btnKeDon').click();
-    //     // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
-    //     // cy.get('span.select2-search').find('input.select2-search__field').type('20.14036');
-    //     // cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
-    //     // common.enterSelectBoxUlLi('cboThuoc','27');
-    //     // cy.get('#txtSl').type('10000');
-    //     // cy.get('#txtSlN').type('10000');
-    //     // cy.get('#btnChon').click();
-    //     // cy.get('.confirm').click();
-    //     // cy.wait(2000);
-    //     // cy.get('body').type('{esc}');
-    //     // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
-    //     // cy.get('span.select2-search').find('input.select2-search__field').type('27');
-    //     // cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
-    //     common.enterSelectBoxUlLi('cboThuoc','27');
-    //     cy.get('#txtSl').type('3.5');
-    //     cy.get('#txtSlN').type('2');
-    //     cy.get('#btnChon').click();
-    //     // common.enterSelectBoxUlLi('cboThuoc','36');
-    //     cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
-    //     cy.get('span.select2-search').find('input.select2-search__field').type('36');
-    //     cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force:true});
-    //     cy.get('.col-lg-2 > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
-    //     cy.get('#txtSl').type('3');
-    //     cy.get('#txtSlN').type('3');
-    //     cy.get('#btnChon').click();
-    //     // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
-    //     // cy.get('span.select2-search').find('input.select2-search__field').type('97');
-    //     // cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force:true});
-    //     // // common.enterSelectBoxUlLi('cboThuoc','97');
-    //     // cy.get('#txtSl').type('4');
-    //     // cy.get('#txtSlN').type('2');
-    //     // cy.get('#btnChon').click();
-    //     // cy.get('body').type('{esc}');
-    //     // cy.get('#tblThuoc tbody tr:nth-child(1) td:nth-child(1) a[title="Sửa"]').click();
-    //     // cy.get('#txtSlUpdate').type('5');
-    //     // cy.get('div.modal-footer > button:first').click();
-    //     cy.get('#tblThuoc tbody tr:nth-child(1) td:nth-child(2) a[title="Xóa"]').click({multiple:true});
-    //     cy.get('.confirm').click();
-    //     cy.get('#tblThuoc thead tr th:nth-child(1) a[title="Xóa tất cả toa thuốc mới"]').click();
-    //     cy.get('.confirm').click();
-    //     cy.wait(2000);
-    //     cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();
-    //     cy.get('span.select2-search').find('input.select2-search__field').type('27');
-    //     cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force:true});
-    //     cy.get('.col-lg-2 > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
-    //     cy.get('#txtSl').type('3');
-    //     cy.get('#txtSlN').type('3');
-    //     cy.get('#btnChon').click();
-    //     cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
-    //     cy.get('span.select2-search').find('input.select2-search__field').type('36');
-    //     cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force:true});
-    //     cy.get('.col-lg-2 > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
-    //     cy.get('#txtSl').type('3');
-    //     cy.get('#txtSlN').type('3');
-    //     cy.get('#btnChon').click();
-    //     // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').focus();
-    //     // cy.get('span.select2-search').find('input.select2-search__field').type('97');
-    //     // cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click({force:true});
-    //     // cy.get('#txtSl').type('4');
-    //     // cy.get('#txtSlN').type('2');
-    //     // cy.get('#btnChon').click();
-    //     cy.get('#btnChuyenTH').click();
-    //     cy.get('#btnPopupHOANTAT').click();
-    //
-    //
-    //
-    // });
+    });
 
 
 });

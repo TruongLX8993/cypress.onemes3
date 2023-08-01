@@ -95,8 +95,23 @@ describe("Tiếp nhận", () => {
 
     it('should ', function () {
         console.log('abc');
-        cy.get ('#txtTenBenhNhan').type ('Tu Test 9') ;
-        cy.get ('#txtNgaySinh').type ('22/01/2015') ;
+        cy.get ('#txtTenBenhNhan').type ('Hang Test NT5') ;
+        cy.get ('#txtNgaySinh').type ('22/01/2008') ;
+        cy.get ('#txtDiaChiSoNha').type ('44') ;
+        common.enterSelectBoxElas('cbbDonViHanhChinh','HG');
+        cy.get ('#txtDienThoai').type ('0123462781') ;
+        cy.get ('#txtSoCMND').type ('0022993849') ;
+        common.enterSelectBoxElas('cboQuocGia','VN');
+        common.enterSelectBoxElas('cbbDanToc','48');
+        common.enterSelectBoxElas('cbbNgheNghiep','09');;
+        common.enterSelectBoxElas('cbbKhoaPhong','LS03');
+        common.enterSelectBoxNormal('cbbHangDoi','tttk.1');
+        cy.get('#btnCHUYENTH').click();
+        cy.wait(10000);
+        cy.get('#btnTaoBnMoi').click();
+        cy.wait(10000);
+        cy.get ('#txtTenBenhNhan').type ('Hang Test NT4') ;
+        cy.get ('#txtNgaySinh').type ('22/01/2000') ;
         cy.get ('#txtDiaChiSoNha').type ('44') ;
         common.enterSelectBoxElas('cbbDonViHanhChinh','HG');
         cy.get ('#txtDienThoai').type ('0123462781') ;
@@ -104,8 +119,6 @@ describe("Tiếp nhận", () => {
         common.enterSelectBoxElas('cboQuocGia','VN');
         common.enterSelectBoxElas('cbbDanToc','48');
         common.enterSelectBoxElas('cbbNgheNghiep','09');
-        //common.enterSelectBoxNormal('cbbDoiTuong','Không BH');
-        //cy.get ('#txtBaoHiemMst').type ('DN4019283733476') ;
         common.enterSelectBoxElas('cbbKhoaPhong','LS03');
         common.enterSelectBoxNormal('cbbHangDoi','tttk.1');
         cy.get('#btnCHUYENTH').click();
