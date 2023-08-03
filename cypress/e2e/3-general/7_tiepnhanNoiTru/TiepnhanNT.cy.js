@@ -12,7 +12,7 @@ describe("Nội trú", () => {
 
     it('Check các bộ lọc trong DS nhập khoa NT ', function () {
         // cy.get('#txtTimKiem').type('test');
-        //common.enterSelectBoxElas('drpSelectKhoaPhong','LS14');
+        //common.enterSelectBoxElasticSearch('drpSelectKhoaPhong','LS14');
         cy.get('#drpSelectTrangThai').select('Mới');
         common.enterSelectBoxNormal('cbbLoai','3');
         cy.get('#btnTimKiem').click();
@@ -41,7 +41,7 @@ describe("Nội trú", () => {
                     cy.fail('Đổi trạng thái thất bại');
                 }
             });
-        common.enterSelectBoxElasticSearch('cboBenhChinh','A00');s
+        common.enterSelectBoxElasticSearch('cboBenhChinh','A00');
 
         cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();

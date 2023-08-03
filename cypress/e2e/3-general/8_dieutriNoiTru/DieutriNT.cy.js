@@ -46,7 +46,7 @@ describe("Nội trú", () => {
         //cy.contains('Chẩn đoán hình ảnh').click();
         cy.get('#using_json  ul li:nth-child(6) a').click();
         // cy.get('.jstree-children  ul li:nth-child(12) a').click();
-        // common.enterSelectBoxElas('cbbHangDoiPopupNhieuNhom','12.9');
+        // common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','12.9');
         // cy.get('#divContentChiDinh ul li:nth-child(12) a');
         // cy.contains('Khám bệnh').click();
         common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom','ls11.7');
@@ -77,7 +77,7 @@ describe("Nội trú", () => {
        // cy.get('#txtNgayMo').clear();('')
        // cy.get('#txtNgayMo').type(`${inputDateTime}`);
         common.setTomorrowToInput('txtNgayMo');
-       // common.enterSelectBoxElas('cboDichVuPT','08111793');
+       // common.enterSelectBoxElasticSearch('cboDichVuPT','08111793');
        //  cy.get('#cboDichVuPT')
        //  cy.get('#cboDichVuPT').parent().find('span.selection span.select2-selection').click();
        //  cy.get('span.select2-search').find('input.select2-search__field').type('08111793{enter}');
@@ -171,7 +171,7 @@ describe("Nội trú", () => {
     //     cy.get('#tblNoiTru tbody tr:nth-child(6) td:nth-child(5) a').click();
     //     cy.get('#showThamKham').click();
     //     // common.enterSelectBoxNormal('cboBenhChinhThamKham','A02.0');
-    //     // common.enterSelectBoxElas('cboCapDoChamSocThamKham','C2');
+    //     // common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham','C2');
     //     // cy.get('#txtDienBienYLenhThamKham').type('Mới bị');
     //     cy.get('#btnKeDon').click();
     //     // cy.get('#cboThuoc').parent().find('span.selection span.select2-selection').click();

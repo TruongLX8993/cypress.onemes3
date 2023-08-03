@@ -14,7 +14,7 @@
 //
 //     it('Them PT', function () {
 //         console.log('abc');
-//         common.enterSelectBoxElas('cboCfHangDoi',"LS12.22");
+//         common.enterSelectBoxElasticSearch('cboCfHangDoi',"LS12.22");
 //         cy.get('.btn-danger').click();
 //         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
 //         common.enterSelectBoxNormal('drpSelectTrangThai',"Chờ thực hiện");

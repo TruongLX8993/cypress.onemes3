@@ -37,12 +37,12 @@ describe("Thủ thuật", () => {
     //     cy.get('#btnTimKiem').click();
     //     cy.get('#divDanhSachThuThuatContent tbody tr:first  td a').eq(4).click();
 
-    //     common.enterSelectBoxElas('cbbTTChinh','1');
-    //     common.enterSelectBoxElas('cbbMauTuongTrinh','1');
+    //     common.enterSelectBoxElasticSearch('cbbTTChinh','1');
+    //     common.enterSelectBoxElasticSearch('cbbMauTuongTrinh','1');
     //     cy.get('#cbbPhuongPhapTT')
     //             .then(($i) => {
     //               if ($i.val() === null) {
-    //                 common.enterSelectBoxElas('cbbPhuongPhapTT','1');
+    //                 common.enterSelectBoxElasticSearch('cbbPhuongPhapTT','1');
     //                 cy.get('.select2-results__option--highlighted > table > tbody > tr > [style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;"]').click();
     //               } 
     //             });

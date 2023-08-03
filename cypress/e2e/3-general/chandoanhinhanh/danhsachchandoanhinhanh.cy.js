@@ -14,7 +14,7 @@ describe("Chẩn đoán hình ảnh", () => {
         common.enterSelectBoxNormal('cbbLoai',testCases[0].cbbLoai);
         cy.get('#txtTimKiem').type(testCases[0].name);
         common.enterSelectBoxElasticSearch('drpSelectKhoaPhong',testCases[0].drpSelectKhoaPhong);
-        //common.enterSelectBoxElas('drpSelectDichVu','');
+        //common.enterSelectBoxElasticSearch('drpSelectDichVu','');
         common.enterSelectBoxElasticSearch('drpSelectHangDoiChiDinh',testCases[0].drpSelectHangDoiChiDinh);
         common.enterSelectBoxElasticSearch('drpSelectLoaiDichVu',testCases[0].drpSelectLoaiDichVu);
         common.enterSelectBoxNormal('drpSelectTrangThai',testCases[0].drpSelectTrangThai);

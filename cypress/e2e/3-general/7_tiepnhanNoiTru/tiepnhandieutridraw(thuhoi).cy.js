@@ -17,7 +17,7 @@ describe("Tiep Nhan NT", () => {
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
         cy.get('#txtThoiGianVaoKhoa').type('09:45 26/07/2023{enter}');
-        //common.enterSelectBoxElas('cboBacSi',"Trần Trung Hiếu");
+        //common.enterSelectBoxElasticSearch('cboBacSi',"Trần Trung Hiếu");
         common.enterSelectBoxElasticSearch('cboBenhChinh',"A01.1");
         cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();
@@ -31,8 +31,8 @@ describe("Tiep Nhan NT", () => {
         cy.get('#btnTimKiem').click();
         cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
         //cy.get('#txtThoiGianVaoKhoa').type('14:59 26/07/2023{enter}');
-        //common.enterSelectBoxElas('cboBacSi',"Trần Trung Hiếu");
-        //common.enterSelectBoxElas('cboBenhChinh',"A01.1");
+        //common.enterSelectBoxElasticSearch('cboBacSi',"Trần Trung Hiếu");
+        //common.enterSelectBoxElasticSearch('cboBenhChinh',"A01.1");
         //cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();
     });

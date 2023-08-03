@@ -14,7 +14,7 @@
 //
 //     it('Vao thuc hien', function () {
 //         console.log('abc');
-//         common.enterSelectBoxElas('cboCfHangDoi',"LS12.22");
+//         common.enterSelectBoxElasticSearch('cboCfHangDoi',"LS12.22");
 //         cy.get('.btn-danger').click();
 //         common.enterSelectBoxNormal('cbbLoai', '3');
 //         common.enterSelectBoxNormal('drpSelectTrangThai',"dang thực hiện");

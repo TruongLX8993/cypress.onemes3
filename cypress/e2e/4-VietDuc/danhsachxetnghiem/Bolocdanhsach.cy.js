@@ -16,9 +16,9 @@ describe("Xét nghiệm", () => {
 
     it('should ', function () {
         cy.get ('#txtTimKiem').type ('test') ;
-        //common.enterSelectBoxElas('drpSelectKhoaPhong','LS20.3');
-       // common.enterSelectBoxElas('drpSelectHangDoiChiDinh','BGD');
-       // common.enterSelectBoxElas('drpSelectLoaiDichVu','0924');
+        //common.enterSelectBoxElasticSearch('drpSelectKhoaPhong','LS20.3');
+       // common.enterSelectBoxElasticSearch('drpSelectHangDoiChiDinh','BGD');
+       // common.enterSelectBoxElasticSearch('drpSelectLoaiDichVu','0924');
         common.enterSelectBoxNormal('drpSelectTrangThai','CHO THUC HIEN');
         common.enterSelectBoxNormal('cbbLoai','3 THANG');
         cy.get ('#btnTimKiem').click()

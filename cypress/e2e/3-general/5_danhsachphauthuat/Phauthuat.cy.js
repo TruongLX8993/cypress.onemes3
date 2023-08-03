@@ -14,7 +14,7 @@ describe("Phẫu thuật", () => {
         common.enterSelectBoxElasticSearch('cboCfHangDoi', 'LS12.22');
         cy.get('.btn-danger').click();
         cy.get('#txtTimKiem').type('test');
-        //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
+        //common.enterSelectBoxElasticSearch('drpSelectHangDoi','LS013');
         common.enterSelectBoxNormal('drpSelectTrangThai', 'HOAN TAT');
         common.enterSelectBoxNormal('cbbLoai', '3 THANG');
         cy.get('#btnTimKiem').click();
@@ -28,10 +28,10 @@ describe("Phẫu thuật", () => {
 
 
         // it('Check tác vụ "kết thúc mổ', function () {
-        //     //common.enterSelectBoxElas('cboCfHangDoi','LS12.22');
+        //     //common.enterSelectBoxElasticSearch('cboCfHangDoi','LS12.22');
         //     cy.get('.btn-danger').click();
         //     //cy.get ('#txtTimKiem').type ('test') ;
-        //     //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
+        //     //common.enterSelectBoxElasticSearch('drpSelectHangDoi','LS013');
         //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
         //     common.enterSelectBoxNormal('drpSelectTrangThai', 'DANG THUC HIEN');
         //     common.enterSelectBoxNormal('cbbLoai', '3 THANG');
@@ -41,23 +41,23 @@ describe("Phẫu thuật", () => {
         //     cy.get ('#txtKetThucPT').type ('09:10 25/07/2023');
         //     cy.get ('#txtGhiChuPT').type ('Nhóm máu hiếm');
         //     common.enterSelectBoxNormal('cbbChiDinhMoPT','08111624');
-        //     common.enterSelectBoxElas('cbbPPGayMePT','12');
+        //     common.enterSelectBoxElasticSearch('cbbPPGayMePT','12');
         //     cy.get ('#txtTuTheMoPT').type ('Nằm');
         //     cy.get ('#txtTTGayMe').type ('Thuốc');
-        //     common.enterSelectBoxElas('cbbPhuongPhapPT','09050004');
-        //     common.enterSelectBoxElas('cbbICD9','45.21');
+        //     common.enterSelectBoxElasticSearch('cbbPhuongPhapPT','09050004');
+        //     common.enterSelectBoxElasticSearch('cbbICD9','45.21');
         //     cy.get ('#txtChuanDoanTruocMoPT').type ('Bệnh nhân 1');
         //     cy.get ('#txtChuanDoanSauMoPT').type ('Khỏi 1');
-        //     common.enterSelectBoxElas('cbbIcdChanDoanTruocPT','N00.5');
-        //     common.enterSelectBoxElas('cbbChuanDoanSauPT','N00.5');
+        //     common.enterSelectBoxElasticSearch('cbbIcdChanDoanTruocPT','N00.5');
+        //     common.enterSelectBoxElasticSearch('cbbChuanDoanSauPT','N00.5');
         //     cy.get ('#txtDanDoSauPT').type ('Ăn nhiều');
-        //     common.enterSelectBoxElas('cbbBacSiPT','4093');
-        //     common.enterSelectBoxElas('cbbBacSiPhuMo1','1893');
-        //     common.enterSelectBoxElas('cbbBacSiPhuMo2','4147');
-        //     common.enterSelectBoxElas('cbbBacSiGayMeChinh','3767');
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPT','4093');
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPhuMo1','1893');
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPhuMo2','4147');
+        //     common.enterSelectBoxElasticSearch('cbbBacSiGayMeChinh','3767');
         //     common.enterSelectBoxNormal('cbbDieuDuongDungCu','02152');
-        //     common.enterSelectBoxElas('cbbDieuDuongChayNgoai','00429');
-        //     common.enterSelectBoxElas('cbbMauTuongTrinh','DLDO');
+        //     common.enterSelectBoxElasticSearch('cbbDieuDuongChayNgoai','00429');
+        //     common.enterSelectBoxElasticSearch('cbbMauTuongTrinh','DLDO');
         //     cy.get ('#btnHOANTAT').click();
         //     cy.get('#btnOKTyLe > strong').click();
         //     cy.get('#aTrangThai i')
@@ -87,7 +87,7 @@ describe("Phẫu thuật", () => {
     //     //cy.wait (3000);
     //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3) a').click();
     //     //cy.get('#lnkVTYT').click();
-    //     //common.enterSelectBoxElas('cbbDonVTYTMauByDichVu', 'MOB22');
+    //     //common.enterSelectBoxElasticSearch('cbbDonVTYTMauByDichVu', 'MOB22');
     //     //cy.get ('#btnTrongGoi').click();
     //     //cy.get('#lnkPTCT').click();
     //     //cy.get('[style="text-align: center;"] > .btn').click();

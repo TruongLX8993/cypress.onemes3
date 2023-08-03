@@ -1,62 +1,33 @@
 const common = require('../../common.cy');
+const enviroment = require('../../../../enviroment.json');
+
 describe("Điều trị nội trú", () => {
 
     beforeEach(() => {
-        common.login();
+        common.visitAndLogin(enviroment.kcb);
         common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
 
 
     });
 
-    // it('Check chức năng kê buồng giường', function () {
-    //
-    //     cy.get('#tblNoiTru > tbody > tr:nth-child(4) > td:nth-child(2) > a > .far').click();
-    //     cy.contains('Buồng giường').click();
-    //     cy.get('#thongTinBuongGiuongBtns > a:first > span').click();
-    //
-    //     cy.get("#select2-cboBuongPG-container").should("have.attr", "title").then((title) => {
-    //         cy.log("Dữ liệu trong thuộc tính title là: ", title);
-    //         cy.get('#cboGiuongPG').parent().find('span.selection span.select2-selection').click();
-    //         cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(2)').click();
-    //         common.btnConfirm();
-    //         cy.get('#txtSoNgayNamPBG').type('5');
-    //         cy.contains('Chấp nhận').click();
-    //
-    //         // chuyen sang man so do buong giuong check benh nhan da co trong so do chua
-    //
-    //         cy.get('#divMenuContent h5:nth-child(4) b').invoke('text').then((Khoaphong) => {
-    //             cy.get('#divMenuContent h5:nth-child(3) b').invoke('text').then((textMaBn) => {
-    //                 const numberOnly = textMaBn.match(/\d+/);
-    //                 const numberWithoutBrackets = numberOnly[0].replace(/\[|\]/g, '');
-    //
-    //                 cy.log(numberOnly);
-    //                 common.goToFunctionFromMenu('sodobuonggiuongdraw');
-    //                 common.btnConfirm();
-    //                 common.enterSelectBoxElas('drpSelectKhoaPhong',Khoaphong);
-    //                 common.enterSelectBoxElas('drpSelectBuong',title);
-    //                 common.btnID('btnTimKiem');
-    //
-    //                 // quay tro lai va ket thuc buong giuong
-    //                 common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
-    //                 cy.get('#txtTimKiem').clear().type(numberWithoutBrackets);
-    //                 common.btnID('btnTimKiem');
-    //                 cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
-    //                 cy.contains('Buồng giường').click();
-    //                 cy.get('#thongTinBuongGiuongBtns > a:nth-child(3) > span').click();
-    //                 common.goToFunctionFromMenu('sodobuonggiuongdraw');
-    //                 common.btnConfirm();
-    //                 common.enterSelectBoxElas('drpSelectKhoaPhong',Khoaphong);
-    //                 common.enterSelectBoxElas('drpSelectBuong',title);
-    //                 common.btnID('btnTimKiem');
-    //
-    //             });
-    //
-    //         });
-    //     });
-    //
-    // });
+    it('Check chức năng kê buồng giường', function () {
+        cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
+        cy.contains('Buồng giường').click();
+        cy.get('#thongTinBuongGiuongBtns > a:first > span').click();
 
-    // cypress lỗi không thể click vào các button Lưu,Hoàn tất..
+            cy.get('#cboGiuongPG').parent().find('span.selection span.select2-selection').click();
+            cy.get(`span.select2-results > ul.select2-results__options `).find('li:nth-child(3)').click();
+            common.clickConfirmBtn();
+            cy.get('#txtSoNgayNamPBG').type('5');
+            cy.contains('Chấp nhận').click();
+
+            // kết thúc buồng giường
+            cy.get('#thongTinBuongGiuongBtns > a:nth-child(3) > span').click();
+        console.log('kết thúc buồng giường thành công');
+
+
+    });
+
     it('Check chức năng thông tin chăm sóc', function () {
         cy.get('#tblNoiTru > tbody > tr:nth-child(9) > td:nth-child(2) > a > .far').click();
         cy.contains('Lập kế hoạch CS').click();
@@ -69,78 +40,105 @@ describe("Điều trị nội trú", () => {
         cy.get('#btnLuu').click({force:true});
         cy.contains('Lịch sử chăm sóc').click();
         cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
-        cy.get('#txtDienBienCS').clear();
-        common.btnID('btnHoanTat');
-        common.btnConfirm();
-        cy.get('#txtDienBienCS').type(' Huyết áp: 00, Nhịp thở: 00');
         common.btnID('btnHoanTat');
         cy.contains('Lịch sử chăm sóc').click();
         cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
         common.btnID('btnSaoChep');
-        cy.get('#txtDHSTMach').type('77');
-        cy.get('#txtDHSTHuyetAp').type('100001');
-        cy.get('#txtDHSTNhietDo').type('35');
-        cy.get('#txtDHSTNhipTho').type('60');
+        cy.get('#txtDHSTMach').clear().type('77');
+        cy.get('#txtDHSTHuyetAp').clear().type('111111');
+        cy.get('#txtDHSTNhietDo').clear().type('35');
+        cy.get('#txtDHSTNhipTho').clear().type('60');
         cy.get('#txtDienBienCS').clear().type(' Huyết áp: 00, Nhịp thở: 00');
         common.btnID('btnLuu');
         cy.contains('Lịch sử chăm sóc').click();
         cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
         common.btnID('btnThuHoi');
+        cy.get('#txtDHSTMach').clear().type('77');
+        cy.get('#txtDHSTHuyetAp').clear().type('111111');
+        cy.get('#txtDHSTNhietDo').clear().type('35');
+        cy.get('#txtDHSTNhipTho').clear().type('60');
+        cy.get('#txtDienBienCS').clear().type(' Huyết áp: 00, Nhịp thở: 00');
+        common.btnID('btnHoanTat');
+        cy.contains('Lịch sử chăm sóc').click();
 
+    });
 
+    it('Check chức năng nhập thuốc/VT', function () {
+        cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
+        cy.contains(' Nhập thuốc, VTYT').click();
+        common.btnID('DD_KeNhapThuocSuDung');
+        // common.enterSelectBoxElasticSearch('cbbGoiVTYT','bang')
+        cy.get('#cbbGoiVTYT').parent().find('span.selection span.select2-selection').click();
+        // cy.get('span.select2-search').find('input.select2-search__field').type('bang');
+        cy.get(`#select2-cbbGoiVTYT-results`).find('tr').eq(3).click({force: true});
 
+        common.clickConfirmBtn();
+        cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
+        // common.enterSelectBoxElasticSearch('txtHang','0203600001');
 
+       // common.enterSelectBoxUlLi('txtHang','0203600001');
 
+        cy.get('#txtHang').parent().find('span.selection span.select2-selection').click();
+        // cy.get('span.select2-search').find('input.select2-search__field').type('bang');
+        cy.get(`#select2-txtHang-results`).find('tr').eq(3).click({force: true});
 
+        cy.get('#txtSoLuong').type('1');
+        common.btnID('btnThemVatTuThuong');
+        cy.get('body').type('{esc}');
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
+        cy.get('.form-group > .table-responsive > table > thead > tr:first > th > button:nth-child(2)').click();
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(2)').click();
+        cy.get('#divDSVTYTThuong > tr:nth-child(3) > td:nth-child(4)> input.updatethuocvt').clear().type('3');
+        cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
 
-        //
-        // cy.get('.ibox-title > button:first').click();
+    });
+
+    it('Check chức năng kết thúc điều trị và thu hồi', function () {
+        cy.get('#txtTimKiem').clear().type('2300516872');
+        common.btnID('btnTimKiem');
+        cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(5) > a').click();
+        cy.get('#divMenuContent h5:nth-child(3) b').invoke('text').then((textMaBn) =>{
+            const result = textMaBn.split(' | ')[1];
+            cy.log(result);
+
+            if(result == "Không BH"){
+                cy.get(':nth-child(3) > .accordion-btn-wrap').click();
+                cy.get('.active > ul > :nth-child(4) > a').click();
+                cy.get('#txtThoiGianRa').clear();
+                common.btnID('btnHOANTAT');
+                common.clickConfirmBtn();
+                cy.get('#txtThoiGianRa').click();
+                common.enterSelectBoxElasticSearch('cboBacsi','s');
+                common.btnID('btnHOANTAT');
+                common.clickConfirmBtn();
+            }else{
+                cy.get(':nth-child(3) > .accordion-btn-wrap').click();
+                cy.get('.active > ul > :nth-child(4) > a').click();
+                cy.get('#txtThoiGianRa').clear();
+                common.btnID('btnHOANTAT');
+                common.clickConfirmBtn();
+                cy.get('#txtThoiGianRa').click();
+                common.enterSelectBoxElasticSearch('cboBacsi','s');
+                common.btnID('btnHOANTAT');
+            }
+
+            // chức năng thu hồi
+            common.btnID('btnTHUHOI');
+            cy.get('a#aTrangThai i.badge')
+                .should('have.text', 'Đang thực hiện')
+                .then(($badge) => {
+                    const hasBadgeClass = $badge.hasClass('badge');
+                    if (hasBadgeClass) {
+                        cy.log('Đổi trạng thái về Đang thực hiện thành công');
+                    } else {
+                        cy.fail('Đổi trạng thái về Đang thực hiện thất bại');
+                    }
+                });
+
+        });
+
 
 
     });
 
-    // it('Check chức năng nhập thuốc/VT', function () {
-    //     cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
-    //     cy.contains(' Nhập thuốc, VTYT').click();
-    //     common.btnID('DD_KeNhapThuocSuDung');
-    //     // common.enterSelectBoxElas('cbbGoiVTYT','bang')
-    //     cy.get('#cbbGoiVTYT').parent().find('span.selection span.select2-selection').click();
-    //     cy.get('span.select2-search').find('input.select2-search__field').type('bang');
-    //     cy.get(`#select2-cbbGoiVTYT-results`).find('tr:first').click({force: true});
-    //
-    //     common.btnConfirm();
-    //     cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
-    //     // common.enterSelectBoxElas('txtHang','0203600001');
-    //
-    //    common.enterSelectBoxUlLi('txtHang','0203600001');
-    //     cy.get('#txtSoLuong').type('1');
-    //     common.btnID('btnThemVatTuThuong');
-    //     cy.get('body').type('{esc}');
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
-    //     cy.get('.form-group > .table-responsive > table > thead > tr:first > th > button:nth-child(2)').click();
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(2)').click();
-    //     cy.get('#divDSVTYTThuong > tr:nth-child(3) > td:nth-child(4)> input.updatethuocvt').clear().type('3');
-    //     cy.get('#tabVTYT > :nth-child(1) > .ibox-content > :nth-child(3) > .form-group > :nth-child(1) > .col-sm-12 > button:nth-child(1)').click();
-    //
-    // });
-
-    // it('Check chức năng kết thúc điều trị', function () {
-    //
-    //     cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
-    //     cy.get(':nth-child(3) > .accordion-btn-wrap').click();
-    //     cy.get(':nth-child(4) > #btnCBTM').click();
-    //     cy.viewport(1500,800);
-    //
-    //
-    // });
-    //
-    // it('Check chức năng thu hồi điều trị', function () {
-    //
-    //     cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
-    //     cy.get(':nth-child(3) > .accordion-btn-wrap').click();
-    //     cy.get(':nth-child(4) > #btnCBTM').click();
-    //     cy.viewport(1500,800);
-    //
-    //
-    // });
 });
