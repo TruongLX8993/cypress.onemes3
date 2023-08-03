@@ -25,10 +25,9 @@ describe("Nội trú", () => {
 
     it('Check tác vụ "hủy nhập khoa"', function () {
         cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
-        //cy.get('#txtTimKiem').type('2300520880');
-        common.enterSelectBoxNormal('cbbLoai','Trong ngày');
+        common.enterSelectBoxNormal('cbbLoai','3');
         cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachContent tbody tr:nth-child(1) td:nth-child(3) a').click();
+        cy.get('#divDanhSachContent tbody tr:nth-child(2) td:nth-child(3) a').click();
         cy.get('#btnNHAPKHOA').click();
         cy.get('#btnTHUHOI').click();
         cy.get('#aTrangThai i')
