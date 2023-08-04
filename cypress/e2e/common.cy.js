@@ -24,15 +24,28 @@ function enterSelectBoxElasticSearch(selectTagId, value) {
     cy.get(`#select2-${selectTagId}-results`).find('tr:first').click();
 }
 
-function compareValueOfInputElement(sourceElementSelector, detinationSelector) {
+function compareValueOfInputElementDescending(sourceElementSelector, detinationSelector) {
     cy.get(sourceElementSelector).invoke('text').then((text1) => {
         cy.get(detinationSelector).invoke('text').then((text2) => {
             if (text1 >= text2) {
-                return true;
+                cy.log('Danh sách được sắp xếp theo thứ tự giảm dần');
+            }else{
+                cy.fail('Danh sách không được sắp xếp theo thứ tự giảm dần');
             }
         });
     });
-    return false;
+}
+
+function compareValueOfInputElementAscending(sourceElementSelector, detinationSelector) {
+    cy.get(sourceElementSelector).invoke('text').then((text1) => {
+        cy.get(detinationSelector).invoke('text').then((text2) => {
+            if (text1 < text2) {
+                cy.log('Danh sách được sắp xếp theo thứ tự tăng dần');
+            }else{
+                cy.fail('Danh sách không được sắp xếp theo thứ tự tăng dần');
+            }
+        });
+    });
 }
 
 
@@ -73,7 +86,8 @@ module.exports = {
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectNormalBox,
     enterSelectBoxElasticSearch: enterSelectBoxElasticSearch,
-    compareValue: compareValueOfInputElement,
+    compareValueDescending: compareValueOfInputElementDescending,
+    compareValueAscending: compareValueOfInputElementAscending,
     enterSelectBoxFocus: enterSelectBoxFocus,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,

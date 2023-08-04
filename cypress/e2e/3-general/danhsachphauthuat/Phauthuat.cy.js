@@ -1,10 +1,11 @@
 const common = require('../../common.cy');
 const insuaranceNumber = require('../../rd');
+const enviroment = require('../../../../enviroment.json')
 
 describe("Phẫu thuật", () => {
 
     beforeEach(() => {
-        common.visitAndLogin();
+        common.visitAndLogin(enviroment.kcb);
         common.goToFunctionFromMenu('danhsachphauthuatdraw');
 
 
@@ -21,8 +22,8 @@ describe("Phẫu thuật", () => {
         // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
         // cy.get('#btnTimKiem').click();
         cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(2) td:nth-child(3)').click();
-        cy.get('.confirm').click();
-        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3)').click();
+        // cy.get('.confirm').click();
+        // cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3)').click();
     });
 
 

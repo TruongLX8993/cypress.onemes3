@@ -2,7 +2,11 @@
   {
     "txtSlKD": "1",
     "txtSlNKD" : "2",
-    "txtTimKiem": "2300519410"
+    "txtTimKiem": "2300519336",
+    "cbbLoai": "3",
+    "txtChanDoanTheoTen": "Nhiễm khuẩn",
+    "txtDienBienBenh": "Ngoại trú",
+    "cboCheDoChamSoc": "c2",
 
   }
 ]

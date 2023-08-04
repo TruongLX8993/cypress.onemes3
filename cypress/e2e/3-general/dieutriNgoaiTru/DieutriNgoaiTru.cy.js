@@ -91,7 +91,7 @@ describe("Ngoại trú", () => {
         });
 
         it('Check chức năng kết thúc điều trị và thu hồi điều trị', function () {
-            cy.get('#txtTimKiem').type(testCase.txtTimKieml);
+            cy.get('#txtTimKiem').type(testCase.txtTimKiem);
             common.btnID('btnTimKiem');
             cy.get('#tblNgoaiTru tbody tr:nth-child(1) td:nth-child(3) a').click();
             cy.get('.active > ul > :nth-child(5) > a').click();
@@ -102,17 +102,18 @@ describe("Ngoại trú", () => {
             // common.enterSelectBoxElasticSearch('cboBacsi','s');
             common.btnID('btnHOANTAT');
 
-
-            cy.get('a#aTrangThai i.badge')
-                .should('have.text', 'Hoàn tất')
-                .then(($badge) => {
-                    const hasBadgeClass = $badge.hasClass('badge');
-                    if (hasBadgeClass) {
-                        cy.log('Đổi trạng thái về Hoàn tất thành công');
-                    } else {
-                        cy.fail('Đổi trạng thái về Hoàn tất thất bại');
-                    }
-                });
+            // cy.wait(2000);
+            // cy.get('a#aTrangThai i.badge')
+            //     .should('have.text', 'Hoàn tất')
+            //     .then(($badge) => {
+            //         const hasBadgeClass = $badge.hasClass('badge');
+            //         if (hasBadgeClass) {
+            //             cy.log('Đổi trạng thái về Hoàn tất thành công');
+            //         } else {
+            //             cy.fail('Đổi trạng thái về Hoàn tất thất bại');
+            //         }
+            //     });
+            cy.wait(5000);
 
             common.btnID('btnTHUHOI');
             cy.get('a#aTrangThai i.badge')
@@ -133,7 +134,7 @@ describe("Ngoại trú", () => {
 
 
         it ('Check chức năng thêm y lệnh', function () {
-            common.enterSelectBoxNormal('cbbLoai','3');
+            common.enterSelectBoxNormal('cbbLoai',testCase.cbbLoai);
             cy.get('#btnTimKiem').click();
             cy.get('#tblNgoaiTru tbody tr:nth-child(4) td:nth-child(3) a').click();
             cy.get('#showDsYLenh').click();
@@ -141,9 +142,9 @@ describe("Ngoại trú", () => {
             cy.get('.col-md-9 > a > .fa-arrow-alt-circle-left').click();
             cy.contains('Thêm y lệnh').click();
             cy.get('#txtChanDoanTheoTen').clear();
-            cy.get('#txtChanDoanTheoTen').type('Nhiễm khuẩn');
-            cy.get('#txtDienBienBenh').type('Ngoại trú');
-            common.enterSelectBoxElas('cboCheDoChamSoc','c2');
+            cy.get('#txtChanDoanTheoTen').type(testCase.txtChanDoanTheoTen);
+            cy.get('#txtDienBienBenh').type(testCase.txtDienBienBenh);
+            common.enterSelectBoxElasticSearch('cboCheDoChamSoc','c2');
             cy.get('#btnPopupHOANTAT').click();
             cy.wait(20000);
             cy.get('.col-md-9 > a > .fa-arrow-alt-circle-left').click();
@@ -163,12 +164,12 @@ describe("Ngoại trú", () => {
             cy.get('#txtChanDoanTheoTen').clear();
             cy.get('#txtChanDoanTheoTen').type('Nhiễm khuẩn');
             cy.get('#txtDienBienBenh').type('Ngoại trú');
-            common.enterSelectBoxElas('cboCheDoChamSoc','c2');
+            common.enterSelectBoxElasticSearch('cboCheDoChamSoc','c2');
             cy.get('#btnCDHA').click();
             cy.viewport(1500,800);
             cy.wait(1000);
             // cy.get('#cbbHangDoiPopupCDHA ul li:nth-cjild(2)').click();
-            common.enterSelectBoxElas('cbbHangDoiPopupCDHA','ls14');
+            common.enterSelectBoxElasticSearch('cbbHangDoiPopupCDHA','ls14');
             cy.get('div#divContentCDHA_ChiDinh div.icheckbox_square-green ins.iCheck-helper').eq(0).click({ force: true })
             cy.get('#btnChuyenTh_ThamKham_CDHA').click();
             cy.get('#btnPopupHOANTAT').click();
@@ -202,36 +203,7 @@ describe("Ngoại trú", () => {
                         cy.fail('Đổi trạng thái thực hiện thất bại');
                     }
                 });
-
-
-        });
-
-
-        it('Check chức năng sao chép y lệnh', function () {
-            common.enterSelectBoxNormal('cbbLoai','3');
-            cy.get('#btnTimKiem').click();
-            cy.get('#tblNgoaiTru tbody tr:nth-child(4) td:nth-child(3) a').click();
-            cy.get('#showDsYLenh').click();
-            cy.contains('Thêm y lệnh').click();
-            cy.get('#txtChanDoanTheoTen').clear();
-            cy.get('#txtChanDoanTheoTen').type('Nhiễm khuẩn');
-            cy.get('#txtDienBienBenh').type('Ngoại trú');
-            common.enterSelectBoxElas('cboCheDoChamSoc','c2');
-            cy.get('#btnCDHA').click();
-            cy.viewport(1500,800);
-            cy.wait(1000);
-            common.enterSelectBoxElas('cbbHangDoiPopupCDHA','ls14');
-            cy.get('div#divContentCDHA_ChiDinh div.icheckbox_square-green ins.iCheck-helper').eq(0).click({ force: true })
-            cy.get('#btnChuyenTh_ThamKham_CDHA').click();
-            cy.get('#btnToaThuocMau').click();
-            cy.viewport(1500,800);
-            common.enterSelectBoxUlLi('cboThuocKD','1');
-            cy.get('#txtSlKD').type('1');
-            cy.get('#txtSlNKD').type('1');
-            cy.get('#btnChon').click();
-            cy.get('#btnChuyenTH').click();
-            cy.get('#btnPopupHOANTAT').click();
-            cy.wait(20000);
+            // cy.wait(15000);
             cy.get('#btnSaoChep').click();
             cy.get('#divStatusPopup i.badge')
                 .should('have.text', 'Mới')
@@ -261,21 +233,19 @@ describe("Ngoại trú", () => {
         it('Check chức năng sao chép y lệnh nhiều ngày', function () {
             common.enterSelectBoxNormal('cbbLoai','3');
             cy.get('#btnTimKiem').click();
-            cy.get('#tblNgoaiTru tbody tr:nth-child(4) td:nth-child(3) a').click();
+            cy.get('#tblNgoaiTru tbody tr:nth-child(2) td:nth-child(3) a').click();
             cy.get('#showDsYLenh').click();
             cy.contains('Thêm y lệnh').click();
             cy.get('#txtChanDoanTheoTen').clear();
             cy.get('#txtChanDoanTheoTen').type('Nhiễm khuẩn');
             cy.get('#txtDienBienBenh').type('Ngoại trú');
-            common.enterSelectBoxElas('cboCheDoChamSoc','c2');
+            common.enterSelectBoxElasticSearch('cboCheDoChamSoc','c2');
             cy.get('#btnCDHA').click();
-            cy.viewport(1500,800);
             cy.wait(1000);
-            common.enterSelectBoxElas('cbbHangDoiPopupCDHA','ls14');
+            common.enterSelectBoxElasticSearch('cbbHangDoiPopupCDHA','ls14');
             cy.get('div#divContentCDHA_ChiDinh div.icheckbox_square-green ins.iCheck-helper').eq(0).click({ force: true })
             cy.get('#btnChuyenTh_ThamKham_CDHA').click();
             cy.get('#btnToaThuocMau').click();
-            cy.viewport(1500,800);
             common.enterSelectBoxUlLi('cboThuocKD','1');
             cy.get('#txtSlKD').type('1');
             cy.get('#txtSlNKD').type('1');

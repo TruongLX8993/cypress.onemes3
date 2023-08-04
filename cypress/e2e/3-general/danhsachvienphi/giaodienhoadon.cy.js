@@ -1,10 +1,10 @@
 const common = require('../../common.cy');
-
+const enviroment = require('../../../../enviroment.json');
 
 describe("Giao diện hóa đơn", () => {
 
     beforeEach(() => {
-        common.visitAndLogin();
+        common.visitAndLogin(enviroment.kcb);
         common.goToFunctionFromMenu('vienphidanhsachdraw');
         common.enterSelectBoxNormal('cbbLoai','3 tháng');   
     });
@@ -154,6 +154,8 @@ describe("Giao diện hóa đơn", () => {
         common.enterSelectBoxNormal('drpSelectTrangThai','Hoàn tất');
         cy.get('#btnTimKiem').click();
         cy.get('#divVienPhiDanhSachContent tbody tr:first  td a').eq(4).click();
+        common.enterSelectBoxElasticSearch('cboHangDoiCauHinh','hc');
+        cy.get('.form-group > .btn').click();
         cy.get("#btnTHUHOI").click();
         cy.get('#aTrangThai i')
         .should('have.text', 'Chờ tất toán')
