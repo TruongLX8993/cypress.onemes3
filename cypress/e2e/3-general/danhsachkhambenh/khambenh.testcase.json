@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Khám bệnh chờ thực hiện",
+    "txtTimKiem": "2300520635",
+    "drpSelectTrangThai": "trong tháng",
+    "drpSelectDoiTuong": "tp",
+    "drpSelectHangDoi": "ls29.3",
+    "drpSelectQuocGia": "vie",
+    "drpSelectTrangThai": "dang thuc hien",
+    "cbbLoai": "3"
+  },
+  {
+    "name": "Khám bệnh chờ thực hiện 2",
+    "cbbLoai": "trong tháng"
+  }
+]
+

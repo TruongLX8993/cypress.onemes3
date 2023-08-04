@@ -1,5 +1,6 @@
 const common = require('../../common.cy');
 const enviroment = require('../../../../enviroment.json');
+const testCases = require('./dieuduong.testcase.json');
 
 describe("Điều trị nội trú", () => {
 
@@ -9,6 +10,9 @@ describe("Điều trị nội trú", () => {
 
 
     });
+
+    for (let i = 0; i < testCases.length; i++) {
+        let testCase = testCases[0];
 
     it('Check chức năng kê buồng giường', function () {
         cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(2) > a > .far').click();
@@ -35,7 +39,7 @@ describe("Điều trị nội trú", () => {
         cy.get('#txtDHSTHuyetAp').clear();
         cy.get('#txtDHSTNhietDo').clear();
         cy.get('#txtDHSTNhipTho').clear();
-        cy.get('#txtDienBienCS').clear().type(' Huyết áp: 00, Nhịp thở: 00');
+        cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
         // common.btnID('btnLuu');
         cy.get('#btnLuu').click({force:true});
         cy.contains('Lịch sử chăm sóc').click();
@@ -44,20 +48,20 @@ describe("Điều trị nội trú", () => {
         cy.contains('Lịch sử chăm sóc').click();
         cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
         common.btnID('btnSaoChep');
-        cy.get('#txtDHSTMach').clear().type('77');
-        cy.get('#txtDHSTHuyetAp').clear().type('111111');
-        cy.get('#txtDHSTNhietDo').clear().type('35');
-        cy.get('#txtDHSTNhipTho').clear().type('60');
-        cy.get('#txtDienBienCS').clear().type(' Huyết áp: 00, Nhịp thở: 00');
+        cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
+        cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
+        cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
+        cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
+        cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
         common.btnID('btnLuu');
         cy.contains('Lịch sử chăm sóc').click();
         cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
         common.btnID('btnThuHoi');
-        cy.get('#txtDHSTMach').clear().type('77');
-        cy.get('#txtDHSTHuyetAp').clear().type('111111');
-        cy.get('#txtDHSTNhietDo').clear().type('35');
-        cy.get('#txtDHSTNhipTho').clear().type('60');
-        cy.get('#txtDienBienCS').clear().type(' Huyết áp: 00, Nhịp thở: 00');
+        cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
+        cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
+        cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
+        cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
+        cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
         common.btnID('btnHoanTat');
         cy.contains('Lịch sử chăm sóc').click();
 
@@ -94,7 +98,7 @@ describe("Điều trị nội trú", () => {
     });
 
     it('Check chức năng kết thúc điều trị và thu hồi', function () {
-        cy.get('#txtTimKiem').clear().type('2300516872');
+        cy.get('#txtTimKiem').clear().type(testCase.txtTimKiem);
         common.btnID('btnTimKiem');
         cy.get('#tblNoiTru > tbody > tr:nth-child(2) > td:nth-child(5) > a').click();
         cy.get('#divMenuContent h5:nth-child(3) b').invoke('text').then((textMaBn) =>{
@@ -140,5 +144,7 @@ describe("Điều trị nội trú", () => {
 
 
     });
+
+    }
 
 });

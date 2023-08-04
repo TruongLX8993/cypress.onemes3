@@ -1,16 +1,13 @@
 const common = require('../../common.cy');
+const enviroment = require('../../../../enviroment.json');
 
-describe("Xét nghiệm", () => {
+describe("Danh sách xét nghiệm", () => {
+
 
     beforeEach(() => {
-        // common.login();
-        // common.goToFunctionFromMenu('chandoanhinhanhdanhsachdraw');
+        common.visitAndLogin(enviroment.kcb);
+        common.goToFunctionFromMenu('chandoanhinhanhdanhsachdraw');
 
-        cy.visit('http://192.168.1.11:2025/login.aspx')
-        cy.get('#txtLoginName').type("sys.admin.hieutt")
-        cy.get("#txtPassword").type("1")
-        cy.get("#btnLogin").click();
-        cy.get(`#side-menu a[href*='chandoanhinhanhdanhsachdraw']:first`).click({force: true});
 
     });
 
@@ -23,6 +20,7 @@ describe("Xét nghiệm", () => {
         common.enterSelectBoxNormal('cbbLoai','3 THANG');
         cy.get ('#btnTimKiem').click()
         cy.get('#divChanDoanHinhAnhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
+        cy.get('.btn-danger');
     });
 
 });
