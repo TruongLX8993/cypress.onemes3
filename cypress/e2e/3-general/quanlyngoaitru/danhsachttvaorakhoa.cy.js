@@ -16,22 +16,27 @@ describe("Quản lý ngoại trú", () => {
         cy.get('#drpSelectTrangThai').select(testCases[0].drpSelectTrangThai);
         common.enterSelectBoxNormal('drpSelectHinhThuc',testCases[0].drpSelectHinhThuc);
         cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachContent tbody')
-            .then(($tbody) => {
-                if ($tbody.find('tr').length > 0) {
-                    cy.get('#divDanhSachContent tbody tr').then(($tr)=>{
-                        if ($tr.length >= 2) {
-                            if(common.compareValue(
-                                '#divDanhSachContent tbody tr:first  td:nth-child(2) a',
-                                '#divDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a'
-                            )){
-                                cy.fail('Thời gian không sắp xếp tăng dần');
-                            }
-                          }
-                    })
-                    cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
-                } 
-         });
+        // cy.get('#divDanhSachContent tbody')
+        //     .then(($tbody) => {
+        //         if ($tbody.find('tr').length > 0) {
+        //             cy.get('#divDanhSachContent tbody tr').then(($tr)=>{
+        //                 if ($tr.length >= 2) {
+        //                     if(common.compareValue(
+        //                         '#divDanhSachContent tbody tr:first  td:nth-child(2) a',
+        //                         '#divDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a'
+        //                     )){
+        //                         cy.fail('Thời gian không sắp xếp tăng dần');
+        //                     }
+        //                   }
+        //             })
+        //             cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
+        //         }
+        //  });
+
+        common.compareValueAscending('#divDanhSachContent tbody tr:first  td:nth-child(2) a',
+            '#divDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a');
         });
+    cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
+
         
 });
