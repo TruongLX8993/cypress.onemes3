@@ -29,7 +29,7 @@ function compareValueOfInputElementDescending(sourceElementSelector, detinationS
         cy.get(detinationSelector).invoke('text').then((text2) => {
             if (text1 >= text2) {
                 cy.log('Danh sách được sắp xếp theo thứ tự giảm dần');
-            }else{
+            } else {
                 cy.fail('Danh sách không được sắp xếp theo thứ tự giảm dần');
             }
         });
@@ -41,7 +41,7 @@ function compareValueOfInputElementAscending(sourceElementSelector, detinationSe
         cy.get(detinationSelector).invoke('text').then((text2) => {
             if (text1 < text2) {
                 cy.log('Danh sách được sắp xếp theo thứ tự tăng dần');
-            }else{
+            } else {
                 cy.fail('Danh sách không được sắp xếp theo thứ tự tăng dần');
             }
         });
@@ -80,8 +80,26 @@ function setTomorrowToInput(selectTagId) {
 
 }
 
+async function getHtml(selection) {
+    return new Cypress.Promise((resolve) => {
+        cy.get(selection)
+            .invoke('prop', 'outerHTML')
+            .then((txt) => resolve(txt.toString()))
+    });
+}
+
+
+async function getCurrentUrl() {
+    return new Cypress.Promise((resolve) => {
+        cy.url()
+            .then((txt) => resolve(txt.toString()))
+    });
+}
+
 
 module.exports = {
+    getCurrentUrl: getCurrentUrl,
+    getHtml: getHtml,
     visitAndLogin: visitAndLogin,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectNormalBox,
