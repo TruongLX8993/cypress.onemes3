@@ -67,7 +67,7 @@ function btnID(selectTagId) {
 }
 
 function clickConfirmBtn() {
-    cy.get('.confirm').click();
+    cy.get('.confirm').should('be.visible').click();
 }
 
 function setTomorrowToInput(selectTagId) {
