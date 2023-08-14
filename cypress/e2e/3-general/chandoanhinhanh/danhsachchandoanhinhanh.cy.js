@@ -19,24 +19,6 @@ describe("Chẩn đoán hình ảnh", () => {
         // common.enterSelectBoxElasticSearch('drpSelectLoaiDichVu', testCases[0].drpSelectLoaiDichVu);
         common.enterSelectBoxNormal('drpSelectTrangThai', testCases[0].drpSelectTrangThai);
         cy.get('#btnTimKiem').click();
-        // cy.get('#divChanDoanHinhAnhDanhSachContent tbody')
-        //     .then(($tbody) => {
-        //         if ($tbody.find('tr').length > 0) {
-        //             cy.get('#divChanDoanHinhAnhDanhSachContent tbody tr').then(($tr)=>{
-        //                 if ($tr.length >= 2) {
-        //                     if(common.compareValue(
-        //                         '#divChanDoanHinhAnhDanhSachContent tbody tr:first  td:nth-child(2) a',
-        //                         '#divChanDoanHinhAnhDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a'
-        //                     )){
-        //                         cy.fail('Thời gian không sắp xếp tăng dần');
-        //                     }
-        //                   }
-        //             })
-        //             cy.get('#divChanDoanHinhAnhDanhSachContent tbody tr:first  td a').eq(4).click();
-        //             cy.get('#divPopupQuickConfig a').click();
-        //         }
-        //  });
-
         common.compareValueAscending('#divChanDoanHinhAnhDanhSachContent tbody tr:first  td:nth-child(2) a',
             '#divChanDoanHinhAnhDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a');
         cy.get('#divChanDoanHinhAnhDanhSachContent tbody tr:first  td a').eq(4).click();

@@ -19,23 +19,6 @@ describe("Viện phí", () => {
         // common.enterSelectBoxNormal('drpSelectLoaiDieuTri',testCases[0].drpSelectLoaiDieuTri);
         common.enterSelectBoxNormal('drpSelectTrangThai',testCases[0].drpSelectTrangThai);
         cy.get('#btnTimKiem').click();
-
-        // cy.get('#divVienPhiDanhSachContent tbody')
-        // .then(($tbody) => {
-        //     if ($tbody.find('tr').length > 0) {
-        //         cy.get('#divVienPhiDanhSachContent tbody tr').then(($tr)=>{
-        //             if ($tr.length >= 2) {
-        //                 if(common.compareValue(
-        //                     '#divVienPhiDanhSachContent tbody tr:first  td:nth-child(2) a',
-        //                     '#divVienPhiDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a'
-        //                 )){
-        //                     cy.fail('Thời gian không sắp xếp tăng dần');
-        //                 }
-        //               }
-        //         })
-        //         cy.get('#divVienPhiDanhSachContent tbody tr:first  td a').eq(4).click();
-        //     }
-        // });
         common.compareValueDescending('#divVienPhiDanhSachContent tbody tr:first  td:nth-child(2) a', '#divVienPhiDanhSachContent tbody tr:nth-child(2)  td:nth-child(2) a');
         cy.get('#divVienPhiDanhSachContent tbody tr:first  td a').eq(4).click();
     });

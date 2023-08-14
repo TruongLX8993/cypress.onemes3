@@ -79,14 +79,15 @@ describe("Xét nghiệm", () => {
     });
 
     it('Check tác vụ "Không thực hiện" ', function () {
-        common.enterSelectBoxNormal('drpSelectTrangThai','DANG THUC HIEN');
-        common.enterSelectBoxNormal('cbbLoai','3 THANG');
-        cy.get ('#btnTimKiem').click()
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'DANG THUC HIEN');
+        common.enterSelectBoxNormal('cbbLoai', '3 THANG');
+        cy.get('#btnTimKiem').click()
         cy.get('#divXetNghiemDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
         //cy.get ('#btnVAOTH').click();
-        cy.get ('#btnHUY').click();
-        cy.wait(3000);
-        cy.get('.confirm').click();
+        cy.get('#btnHUY').click();
+        // cy.wait(3000);
+        // cy.get('.confirm').click();
+        common.clickConfirmBtn();
         cy.get('#aTrangThai i')
             .should('have.text', 'Hủy')
             .then(($i) => {

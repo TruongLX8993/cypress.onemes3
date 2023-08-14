@@ -21,9 +21,6 @@ describe("Khám bệnh", () => {
             common.enterSelectBoxNormal('drpSelectTrangThai', testCase.drpSelectTrangThai);
             common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
             cy.get('#btnTimKiem').click();
-            // cy.get('#divKhamBenhDanhSachContent tbody tr').its('length').should('be.greaterThan', 5);
-            // cy.get('#divKhamBenhDanhSachContent tbody tr:first  td a').eq(4).click();
-
             common.compareValueDescending('#divKhamBenhDanhSachContent tbody tr:first  td:nth-child(3) a',
                 '#divKhamBenhDanhSachContent tbody tr:nth-child(2) td:nth-child(3) a');
             cy.get('#divKhamBenhDanhSachContent tbody tr:first  td a').eq(4).click();

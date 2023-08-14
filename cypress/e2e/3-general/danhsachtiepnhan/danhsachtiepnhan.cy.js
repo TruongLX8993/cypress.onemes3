@@ -22,32 +22,6 @@ describe("Tiếp nhận", () => {
         common.enterSelectBoxElasticSearch('cbbNguoiTiepNhan', testCases[0].cbbNguoiTiepNhan);
         common.enterSelectBoxNormal('cbbLoai', testCases[0].cbbLoai);
         cy.get('#btnTimKiem').click();
-
-
-        // cy.get('#divTiepNhanDanhSachContent tbody tr:first  td:nth-child(3) a').invoke('text').then((time) =>{
-        //     cy.log(time);
-        //     cy.get('#divTiepNhanDanhSachContent tbody tr:nth-child(2)  td:nth-child(3) a').invoke('text').then((time2) =>{
-        //         cy.log(time2);
-        //     })
-        // })
-        // cy.get('#divTiepNhanDanhSachContent tbody')
-        // .then(($tbody) => {
-        //     if ($tbody.find('tr').length > 0) {
-        //         cy.get('#divTiepNhanDanhSachContent tbody tr').then(($tr)=>{
-        //             if ($tr.length >= 2) {
-        //                 if(common.compareValue(
-        //                     '#divTiepNhanDanhSachContent tbody tr:first  td:nth-child(3) a',
-        //                     '#divTiepNhanDanhSachContent tbody tr:nth-child(2)  td:nth-child(3) a'
-        //                 )){
-        //                     cy.fail('Thời gian không sắp xếp giảm dần');
-        //                 }
-        //               }
-        //         })
-        //         cy.get('#divTiepNhanDanhSachContent tbody tr:first  td a').eq(4).click();
-        //         cy.get('.confirm').click();
-        //     }
-        // });
-
         common.compareValueDescending('#divTiepNhanDanhSachContent tbody tr:first  td:nth-child(3) a', '#divTiepNhanDanhSachContent tbody tr:nth-child(2)  td:nth-child(3) a');
         cy.get('#divTiepNhanDanhSachContent tbody tr:first  td a').eq(4).click();
         cy.get('.confirm').click();
