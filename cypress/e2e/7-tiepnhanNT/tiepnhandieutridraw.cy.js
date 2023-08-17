@@ -25,8 +25,6 @@ describe("Tiep Nhan NT", () => {
 
 
 
-
-
     it('Thu hoi', function () {
         console.log('abc');
         cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
