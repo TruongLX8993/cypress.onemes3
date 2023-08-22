@@ -1,7 +1,7 @@
 function login() {
     cy.visit("/login.aspx");
-    cy.get('#txtLoginName').type("sys.admin.hieutt")
-    cy.get("#txtPassword").type("1")
+    cy.get('#txtLoginName').type("sys.admin.hieutt");
+    cy.get("#txtPassword").type("1");
     cy.get("#btnLogin").click();
 }
 
@@ -43,8 +43,26 @@ function inputDateTime(selectTagId){
 
 }
 
+async function getHtml(selection) {
+    return new Cypress.Promise((resolve) => {
+        cy.get(selection)
+            .invoke('prop', 'outerHTML')
+            .then((txt) => resolve(txt.toString()))
+    });
+}
+
+
+async function getCurrentUrl() {
+    return new Cypress.Promise((resolve) => {
+        cy.url()
+            .then((txt) => resolve(txt.toString()))
+    });
+}
+
 module.exports = {
     login: login,
+    getHtml: getHtml,
+    getCurrentUrl: getCurrentUrl,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectBoxNormal,
     enterSelectBoxElas: enterSelectBoxElas,

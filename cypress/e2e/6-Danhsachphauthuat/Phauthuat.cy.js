@@ -1,141 +1,262 @@
-const common = require('../common.cy');
-const insuaranceNumber = require('../rd');
+const common = require('../../e2e/common.cy');
+const {getHtml, getAttribute, getCurrentUrl} = require("../../e2e/common.cy");
+const testCases = require('./phauthuat.testcase.json');
 
-describe("Phẫu thuật", () => {
+
+describe("Phau Thuat", async () => {
 
     beforeEach(() => {
         common.login();
         common.goToFunctionFromMenu('danhsachphauthuatdraw');
-
-
     });
 
-    it('Check các bộ lọc trong DS PT ', function () {
-        common.enterSelectBoxElas('cboCfHangDoi', 'LS12.22');
-        cy.get('.btn-danger').click();
-        // cy.get('#txtTimKiem').type('test');
-        //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
-        // common.enterSelectBoxNormal('drpSelectTrangThai', 'Chờ thực hiện');
-        common.enterSelectBoxNormal('cbbLoai', '3 THANG');
-        cy.get('#btnTimKiem').click();
-        // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-        // cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(2) td:nth-child(3)').click();
-        cy.get('.confirm').click();
-        cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3)').click();
-    });
+    // for (let i = 0; i < testCases.length; i++) {
+    //     let testcase = testCases[i];
+        it('Check chức năng kê thuốc/VT"', function () {
+            // common.enterSelectBoxElas('cboCfHangDoi', testcase.cboCfHangDoi);
+            // cy.get('.btn-danger').click();
+            // common.enterSelectBoxNormal('cbbLoai', testcase.cbbLoai);
+            // common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
+            // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+            cy.contains('Đóng').click();
+            // common.enterSelectBoxElas('drpSelectTrangThai','Đang thực hiện');
+            cy.get('#txtTimKiem').type('2300521032');
+            common.enterSelectBoxNormal('cbbLoai','3{enter}');
+            cy.get('#btnTimKiem').click();
+            getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a')
+                .then(text => {
+                    const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
+                    let phauThuatId = re.exec(text);
+                    getCurrentUrl()
+                        .then(currentUrl => {
+                            currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
+                            currentUrl += `&phauthuatid=${phauThuatId}`;
+                            cy.visit(currentUrl);
+                            cy.get('#btnVAOTH').click();
+                            cy.get('#aTrangThai i')
+                                .should('have.text', 'Đang thực hiện')
+                                .then(($i) => {
+                                    const text = $i.text().trim();
+                                    if (text === 'Đang thực hiện') {
+                                        cy.log('Đổi trạng thái thành công');
+                                    } else {
+                                        cy.fail('Đổi trạng thái thất bại');
+                                    }
+                                });
+                            cy.get('#lnkVTYT').click();
+                            cy.get('div.col-sm-2 > div.icheckbox_square-green > ckboxTrongGoi').click();
+                            // cy.get('span.select2-container > .select2-dropdown > .select2-results > ul.select2-results__options > li').eq(2).click();
+                            common.enterSelectBoxUlLi('cbbVTYT','0');
+                            cy.get('#txtSoLuongVTYT').type('15');
+                            cy.get('.confirm').click();
+                            cy.get('#txtSoLuongVTYT').clear().type('1.5');
+                            cy.get('#btnAddVTYTThongThuong').click();
+                            cy.get('div.col-sm-2 > div.icheckbox_square-green > ckboxNgoaiGoi').click();
+                            common.enterSelectBoxUlLi('cbbVTYT','3');
+                            cy.get('#txtSoLuongVTYT').type(2);
+                            cy.get('#btnAddVTYTThongThuong').click();
+                            cy.get('div.col-sm-3 > div.icheckbox_square-green > ckboxNguoiBenhTT').click();
+                            common.enterSelectBoxUlLi('cbbVTYT','03');
+                            cy.get('#txtSoLuongVTYT').type(1);
+                            cy.get('#btnAddVTYTThongThuong').click();
+                            cy.get('#divVTYT tr:nth-child(1) td:nth-child(5) input.divslThuong').clear().type('3');
+                            cy.get('#divVTYT tr:nth-child(1) td:nth-child(9) div.icheckbox_square-green ins.iCheck-helper').click();
+                            cy.contains('Xóa').click();
+                            cy.get('.confirm');
 
 
 
+                        });
+
+                })
+        });
 
 
-        // it('Check tác vụ "kết thúc mổ', function () {
-        //     //common.enterSelectBoxElas('cboCfHangDoi','LS12.22');
+        // it('Check tác vụ "kết thúc mổ"', function () {
+        //     common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
         //     cy.get('.btn-danger').click();
-        //     //cy.get ('#txtTimKiem').type ('test') ;
-        //     //common.enterSelectBoxElas('drpSelectHangDoi','LS013');
+        //     common.enterSelectBoxNormal('cbbLoai', testcase.cbbLoai);
+        //     common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
         //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-        //     common.enterSelectBoxNormal('drpSelectTrangThai', 'DANG THUC HIEN');
-        //     common.enterSelectBoxNormal('cbbLoai', '3 THANG');
         //     cy.get('#btnTimKiem').click();
-        //     //cy.get('#btnTimKiem').click();
-        //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(1) td:nth-child(3)').click();
-        //     cy.get ('#txtKetThucPT').type ('09:10 25/07/2023');
-        //     cy.get ('#txtGhiChuPT').type ('Nhóm máu hiếm');
-        //     common.enterSelectBoxNormal('cbbChiDinhMoPT','08111624');
-        //     common.enterSelectBoxElas('cbbPPGayMePT','12');
-        //     cy.get ('#txtTuTheMoPT').type ('Nằm');
-        //     cy.get ('#txtTTGayMe').type ('Thuốc');
-        //     common.enterSelectBoxElas('cbbPhuongPhapPT','09050004');
-        //     common.enterSelectBoxElas('cbbICD9','45.21');
-        //     cy.get ('#txtChuanDoanTruocMoPT').type ('Bệnh nhân 1');
-        //     cy.get ('#txtChuanDoanSauMoPT').type ('Khỏi 1');
-        //     common.enterSelectBoxElas('cbbIcdChanDoanTruocPT','N00.5');
-        //     common.enterSelectBoxElas('cbbChuanDoanSauPT','N00.5');
-        //     cy.get ('#txtDanDoSauPT').type ('Ăn nhiều');
-        //     common.enterSelectBoxElas('cbbBacSiPT','4093');
-        //     common.enterSelectBoxElas('cbbBacSiPhuMo1','1893');
-        //     common.enterSelectBoxElas('cbbBacSiPhuMo2','4147');
-        //     common.enterSelectBoxElas('cbbBacSiGayMeChinh','3767');
-        //     common.enterSelectBoxNormal('cbbDieuDuongDungCu','02152');
-        //     common.enterSelectBoxElas('cbbDieuDuongChayNgoai','00429');
-        //     common.enterSelectBoxElas('cbbMauTuongTrinh','DLDO');
-        //     cy.get ('#btnHOANTAT').click();
-        //     cy.get('#btnOKTyLe > strong').click();
+        //     getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(4) a')
+        //         .then(text => {
+        //             const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
+        //             let phauThuatId = re.exec(text)[1];
+        //             getCurrentUrl().then(currentUrl => {
+        //                 currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
+        //                 currentUrl += `&phauthuatid=${phauThuatId}`;
+        //                 cy.visit(currentUrl);
+        //                 common.btnID('btnVAOTH');
+        //                 common.btnID('txtKetThucPT');
+        //                 cy.get('#txtChuanDoanTruocMoPT').type(testcase.txtChuanDoanTruocMoPT);
+        //                 cy.get('#txtChuanDoanSauMoPT').type(testcase.txtChuanDoanSauMoPT);
+        //                 common.btnID('btnHOANTAT');
+        //                 common.clickConfirmBtn();
+        //                 common.enterSelectBoxElasticSearch('cbbPPGayMePT', testcase.cbbPPGayMePT);
+        //                 common.enterSelectBoxElasticSearch('cbbBacSiPT', testcase.cbbBacSiPT);
+        //                 common.enterSelectBoxUlLi('cbbChiDinhMoPT', testcase.cbbChiDinhMoPT);
+        //                 common.btnID('btnHOANTAT');
+        //
+        //                 cy.get('#aTrangThai i')
+        //                     .should('have.text', 'Hoàn tất')
+        //                     .then(($i) => {
+        //                         const text = $i.text().trim();
+        //                         if (text === 'Hoàn tất') {
+        //                             cy.log('Đổi trạng thái thành công');
+        //                         } else {
+        //                             cy.fail('Đổi trạng thái thất bại');
+        //                         }
+        //                     });
+        //             });
+        //         });
+        // });
+
+        // it('Check tác vụ "thu hồi"', async function () {
+        //     common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
+        //     cy.get('.btn-danger').click();
+        //     common.enterSelectBoxNormal('cbbLoai', testcase.cbbLoai);
+        //     common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
+        //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+        //     cy.get('#btnTimKiem').click();
+        //     const text = await getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(4) a');
+        //     const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
+        //     let phauThuatId = re.exec(text)[1];
+        //     let currentUrl = await getCurrentUrl();
+        //     currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
+        //     currentUrl += `&phauthuatid=${phauThuatId}`;
+        //     cy.visit(currentUrl);
+        //     common.btnID('btnVAOTH');
+        //     common.btnID('txtKetThucPT');
+        //     cy.get('#txtChuanDoanTruocMoPT').type(testcase.txtChuanDoanTruocMoPT);
+        //     cy.get('#txtChuanDoanSauMoPT').type(testcase.txtChuanDoanSauMoPT);
+        //     common.btnID('btnHOANTAT');
+        //     common.clickConfirmBtn();
+        //     common.enterSelectBoxElasticSearch('cbbPPGayMePT', testcase.cbbPPGayMePT);
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPT', testcase.cbbBacSiPT);
+        //     common.enterSelectBoxUlLi('cbbChiDinhMoPT', testcase.cbbChiDinhMoPT);
+        //     common.btnID('btnHOANTAT');
+        //
+        //     common.btnID('btnTHUHOI');
         //     cy.get('#aTrangThai i')
-        //         .should('have.text', 'Hoàn tất')
+        //         .should('have.text', 'Đang thực hiện')
         //         .then(($i) => {
         //             const text = $i.text().trim();
-        //             if (text === 'Hoàn tất') {
+        //             if (text === 'Đang thực hiện') {
         //                 cy.log('Đổi trạng thái thành công');
         //             } else {
         //                 cy.fail('Đổi trạng thái thất bại');
         //             }
         //         });
         //
+        //     cy.get('#txtChuanDoanTruocMoPT').type(testcase.txtChuanDoanTruocMoPT);
+        //     common.btnID('btnHOANTAT');
+        //
         // });
 
+        // it('Check tác vụ "không mổ"', async function () {
+        //     common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
+        //     cy.get('.btn-danger').click();
+        //     common.enterSelectBoxNormal('cbbLoai', testcase.cbbLoai);
+        //     common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
+        //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+        //     cy.get('#btnTimKiem').click();
+        //     const text = await getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(4) a');
+        //     const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
+        //     let phauThuatId = re.exec(text)[1];
+        //     let currentUrl = await getCurrentUrl();
+        //     currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
+        //     currentUrl += `&phauthuatid=${phauThuatId}`;
+        //     cy.visit(currentUrl);
+        //     common.btnID('btnVAOTH');
+        //     common.btnID('btnHUY');
+        //     cy.get('#txtLyDoHoanTraUpdate').type(testcase.txtLyDoHoanTraUpdate);
+        //     cy.get('.form-group > button:first').click();
+        //
+        //     cy.get('#aTrangThai i')
+        //         .should('have.text', 'Hủy')
+        //         .then(($i) => {
+        //             const text = $i.text().trim();
+        //             if (text === 'Hủy') {
+        //                 cy.log('Đổi trạng thái thành công');
+        //             } else {
+        //                 cy.fail('Đổi trạng thái thất bại');
+        //             }
+        //         });
+        //
+        //
+        // });
+        //
+        // it('Check tác vụ "thêm phẫu thuật"', async function () {
+        //     common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
+        //     cy.get('.btn-danger').click();
+        //     // common.enterSelectBoxNormal('cbbLoai', '3');
+        //     // cy.get('#dtTuNgay').clear().type('00:00 10/08/2022');
+        //     common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
+        //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
+        //     // cy.get('#txtTimKiem').type('2200113440');
+        //     cy.get('#btnTimKiem').click();
+        //     const text = await getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a');
+        //     const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
+        //     let phauThuatId = re.exec(text)[1];
+        //     let currentUrl = await getCurrentUrl();
+        //     currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
+        //     currentUrl += `&phauthuatid=${phauThuatId}`;
+        //     cy.visit(currentUrl);
+        //
+        //     // cy.wait(3000);
+        //     // common.btnID('btnVAOTH');
+        //     cy.get('#btnVAOTH').should('be.visible').click();
+        //     common.enterSelectBoxUlLi('cbbChiDinhMoPT', testcase.cbbChiDinhMoPT);
+        //     cy.contains('Thêm phẫu thuật').click();
+        //     cy.wait(1500);
+        //     common.enterSelectBoxUlLi('cbbChiDinhMoPopup', testcase.cbbChiDinhMoPopup);
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPopup', testcase.cbbBacSiPopup);
+        //     cy.get('#txtTyLeTTPopup').select('80%');
+        //     cy.get('form > :nth-child(2) > .ibox-content > .row > .col-sm-12 > .btn').click();
+        //     cy.get('#divPhauThuatCon table tbody tr:first td:nth-child(3) a').click();
+        //     // cy.wait(5000);
+        //     // common.btnID('btnVAOTH');
+        //     cy.get('#btnVAOTH').should('be.visible').click();
+        //
+        //
+        //     // nhập thông tin phẫu thuật phụ
+        //     common.btnID('txtKetThucPT');
+        //     cy.get('#txtChuanDoanTruocMoPT').type(testcase.txtChuanDoanTruocMoPT);
+        //     cy.get('#txtChuanDoanSauMoPT').type(testcase.txtChuanDoanSauMoPT);
+        //     common.enterSelectBoxElasticSearch('cbbPPGayMePT', testcase.cbbPPGayMePT);
+        //     common.enterSelectBoxElasticSearch('cbbBacSiPT', testcase.cbbBacSiPT);
+        //     common.enterSelectBoxUlLi('cbbChiDinhMoPT', testcase.cbbChiDinhMoPT);
+        //
+        //     // nhập DV,VTYT
+        //     common.btnID('showKHCS');
+        //     common.enterSelectBoxUlLi('cbbDichVu', testcase.cbbDichVu);
+        //     cy.get('#txtDichVuChiTiet').type(testcase.txtDichVuChiTiet);
+        //     common.enterSelectBoxElasticSearch('cbbHangDoi', testcase.cbbHangDoi);
+        //     common.btnID('btnAddDichVu');
+        //     cy.get('[onclick="clickChonTTDV();"]').click();
+        //     common.btnID('lnkVTYT');
+        //     cy.get('#cbbDonVTYTMauByDichVu').parent().find('span.selection span.select2-selection').click();
+        //     cy.get('span.select2-results > ul.select2-results__options').find('li:first').invoke('text').then((tenVTYT) => {
+        //         if (tenVTYT === 'Không có kết quả') {
+        //             cy.log('Trong phẫu thuật này không thể kê thêm VTYT');
+        //         }else{
+        //             cy.get(`#select2-cbbDonVTYTMauByDichVu-results`).find('li').eq(2).click();
+        //         }
+        //
+        //     })
+        //
+        //     cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
+        //     cy.get('#cbbVTYT').parent().find('span.selection span.select2-selection').click();
+        //     cy.get('span.select2-search').find('input.select2-search__field').type('03');
+        //     cy.get('span.select2-results > ul.select2-results__options').find('li').eq(1).click({timeout:7500});
+        //     cy.get('#txtSoLuongVTYT').type(testcase.txtSoLuongVTYT);
+        //     common.btnID('btnAddVTYTThongThuong');
+        //
+        //
+        // });
+
+    // }
 
 
-
-
-    // it('Check tác vụ "Không mổ" ', function () {
-    //     cy.get('.btn-danger').click();
-    //     //cy.get('#txtTimKiem').type('2300516895');
-    //     common.enterSelectBoxNormal('drpSelectTrangThai', 'ĐANG THUC HIEN');
-    //     common.enterSelectBoxNormal('cbbLoai', '3 THANG');
-    //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-    //     cy.get('#btnTimKiem').click();
-    //     //cy.wait (3000);
-    //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(3) td:nth-child(3) a').click();
-    //     //cy.get('#lnkVTYT').click();
-    //     //common.enterSelectBoxElas('cbbDonVTYTMauByDichVu', 'MOB22');
-    //     //cy.get ('#btnTrongGoi').click();
-    //     //cy.get('#lnkPTCT').click();
-    //     //cy.get('[style="text-align: center;"] > .btn').click();
-    //     cy.get('#btnHUY').click();
-    //     //cy.get('.confirm').click();
-    //     cy.get('#txtLyDoHoanTraUpdate').type('Yếu')
-    //     cy.get('.mr-5px > strong').click();
-    //     cy.get('#aTrangThai i')
-    //         .should('have.text', 'Hủy')
-    //         .then(($i) => {
-    //             const text = $i.text().trim();
-    //             if (text === 'Hủy') {
-    //                 cy.log('Đổi trạng thái thành công');
-    //             } else {
-    //                 cy.fail('Đổi trạng thái thất bại');
-    //             }
-    //         });
-    //
-    //
-    // });
-
-
-
-
-    // it('Check tác vụ "Vào thực hiện"', function () {
-    //     cy.get('.btn-danger').click();
-    //     cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-    //     common.enterSelectBoxNormal('drpSelectTrangThai', 'CHO THUC HIEN');
-    //     // cy.get('#txtTimKiem').type('2200113775');
-    //     common.enterSelectBoxNormal('cbbLoai', '3');
-    //     // cy.get('#dtTuNgay').type('25/07/2022{enter}');
-    //     // cy.get('#dtTuNgay').type(insuaranceNumber.generate());
-    //     cy.get('#btnTimKiem').click();
-    //     cy.get('#divDanhSachPhauThuatContent tbody tr:nth-child(1) td:nth-child(3) a').click();
-    //     cy.wait(20000);
-    //     cy.get('#btnVAOTH').click();
-    //     // common.goToFunctionFromMenu('phauthuatdraw');
-    //     //cy.get('.confirm').click();
-
-
-
-
-
-
-
-
-
-
-    });
+});
