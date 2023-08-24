@@ -10,12 +10,12 @@ describe("Quản lý ngoại trú", () => {
     });
 
 
-    it('Tiếp nhận ngoại trú tác vụ nhập khoa', () => {
+    it('Check tác vụ nhập khoa', () => {
         cy.get('#drpSelectTrangThai').select('1');
         cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachContent tbody tr:first  td:nth-child(3) a').invoke('text').then((maBN) =>{
+        cy.get('#divDanhSachContent tbody tr:first  td:nth-child(3) a').invoke('text').then((maBN) => {
             cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
-            common.enterSelectBoxElasticSearch('cboBacSi','1');
+            common.enterSelectBoxElasticSearch('cboBacSi', '1');
             common.btnID('btnNHAPKHOA');
 
             cy.get('#aTrangThai i')
@@ -29,30 +29,27 @@ describe("Quản lý ngoại trú", () => {
                     }
                 });
 
-        common.goToFunctionFromMenu('danhsachdieutringoaitrudraw');
-        cy.get('#txtTimKiem').clear().type(maBN);
-        common.enterSelectBoxNormal('cbbLoai', '3');
-        // cy.get('#drpSelectTrangThai').select(testCases[0].drpSelectTrangThai);
-        common.enterSelectBoxNormal('drpSelectTrangThai','dang thuc hien');
-        common.btnID('btnTimKiem');
-        cy.get('#tblNgoaiTru tbody tr:first  td:nth-child(3) a').invoke('text').then((mabn) => {
-            cy.get('#tblNgoaiTru tbody tr:first  td:nth-child(10) a').invoke('text').then((trangthai) => {
-                if (mabn === maBN && trangthai === 'Đang thực hiện') {
-                    cy.log('Sau khi nhập khoa,bệnh nhân đã xuất hiện ở danh sách điều trị ngoại trú');
-                } else {
-                    cy.fail('Sau khi nhập khoa,bệnh nhân không xuất hiện ở danh sách điều trị ngoại trú');
+            common.goToFunctionFromMenu('danhsachdieutringoaitrudraw');
+            cy.get('#txtTimKiem').clear().type(maBN);
+            common.enterSelectBoxNormal('cbbLoai', '3');
+            // cy.get('#drpSelectTrangThai').select(testCases[0].drpSelectTrangThai);
+            common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc hien');
+            common.btnID('btnTimKiem');
+            cy.get('#tblNgoaiTru tbody tr:first  td:nth-child(3) a').invoke('text').then((mabn) => {
+                cy.get('#tblNgoaiTru tbody tr:first  td:nth-child(10) a').invoke('text').then((trangthai) => {
+                    if (mabn === maBN && trangthai === 'Đang thực hiện') {
+                        cy.log('Sau khi nhập khoa,bệnh nhân đã xuất hiện ở danh sách điều trị ngoại trú');
+                    } else {
+                        cy.fail('Sau khi nhập khoa,bệnh nhân không xuất hiện ở danh sách điều trị ngoại trú');
 
-                }
+                    }
+                });
             });
-            });
-
         });
-
-
     });
 
 
-    it('Tiếp nhận ngoại trú tác vụ thu hồi', () => {
+    it('Check tác vụ thu hồi', () => {
         // tìm bênh nhân
         cy.get('#drpSelectTrangThai').select('2');
         cy.get('#btnTimKiem').click();
@@ -112,23 +109,37 @@ describe("Quản lý ngoại trú", () => {
 
     });
 
-    it('Tiếp nhận ngoại trú tác vụ nhập khoa', () => {
+    it('Check tác vụ hủy nhập khoa', () => {
         cy.get('#drpSelectTrangThai').select('1');
         cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
-        cy.get('#btnHUYNHAPKHOA').click();
-        // cy.wait(5000);
-        cy.get('.confirm').should('be.visible').click();
-        cy.get('#aTrangThai i')
-            .should('have.text', 'Hủy')
-            .then(($i) => {
-                const text = $i.text().trim();
-                if (text === 'Hủy') {
-                    cy.log('Hủy thành công');
-                } else {
-                    cy.fail('Hủy thất bại');
-                }
-            });
+
+        cy.get('#divDanhSachContent tbody tr:first td:nth-child(3) a').invoke('text').then(maBN=>{
+            cy.get('#divDanhSachContent tbody tr:first  td a').eq(4).click();
+            cy.get('#btnHUYNHAPKHOA').click();
+            cy.wait(1000);
+            cy.get('.confirm').should('be.visible').click();
+            cy.get('#aTrangThai i.badge')
+                .invoke('text')
+                .then(($i) => {
+                    const text = $i.trim();
+                    if (text === 'Hủy') {
+                        cy.log('Hủy thành công');
+                    } else {
+                        cy.fail('Hủy thất bại');
+                    }
+                });
+
+            common.goToFunctionFromMenu('khambenhdanhsachdraw');
+            cy.get('txtTimKiem').clear().type(maBN);
+            common.enterSelectBoxNormal('cbbLoai','3');
+            common.btnID('btnTimKiem');
+            cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(3)  td a').eq(4).click();
+            common.btnID('btnTHUHOI');
+            cy.get('#txtChanDoanSoBo').clear().type('đang cho bệnh nhân đi kiểm tra');
+            common.btnID('btnHOANTAT');
+        });
+
+
     });
 
 });

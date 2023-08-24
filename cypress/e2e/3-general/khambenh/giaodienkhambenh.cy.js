@@ -249,41 +249,79 @@ describe("Khám bệnh", () => {
         });
 
         it('Check chức năng khám phối hợp', function () {
-            common.enterSelectBoxNormal('drpSelectTrangThai', testCase.drpSelectTrangThai);
+            cy.get('#txtTimKiem').type('2300521089');
+            // common.enterSelectBoxNormal('drpSelectTrangThai', testCase.drpSelectTrangThai);
+            // common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
             // cy.get('#txtTimKiem').type('2300520842');
             common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
             cy.get('#btnTimKiem').click();
-            cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(4) td:nth-child(4) a').click();
-            common.btnID('btnVAOKHAM');
+            cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
+            // common.btnID('btnVAOKHAM');
             cy.get('#txtChanDoanSoBo').type(testCase.txtChanDoanSoBo);
             common.enterSelectBoxElasticSearch('cbbBacSi', testCase.cbbBacSi);
             common.enterSelectBoxElasticSearch('cbbCDBChinh', testCase.cbbCDBChinh);
             cy.get('#fromchidinh > .ibox-title > .ibox-tools > a:nth-child(6)').click();
-            common.enterSelectBoxElasticSearch('cbbHangDoiPopupTDCN', testCase.cbbHangDoiPopupTDCN);
+            // common.enterSelectBoxElasticSearch('cbbHangDoiPopupTDCN', testCase.cbbHangDoiPopupTDCN);
+            common.enterSelectBoxElasticSearch('cbbHangDoiPopupTDCN', 'l');
             cy.get('div#divContentTDCN_ChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({force: true})
             common.btnID('previewPDFXN');
-            // cy.wait(3000);
-            // cy.get('body').type('{esc}',{timeout:8000});
+            cy.wait(1500);
 
-            cy.get('#modalReportPdf > .modal-dialog').should('be.visible').then(() =>{
-                cy.get('body').type('{esc}');
+            cy.get('#aTrangThai').invoke('text').then((text)=>{
+              if (text === 'Đang thực hiện' && cy.get('.sweet-alert').should('be.visible')){
+                  common.clickConfirmBtn();
+                  cy.get('#modalReportPdf > .modal-dialog').should('be.visible').then(() =>{
+                      cy.get('body').type('{esc}');
+                  })
+
+                  cy.get('#divMenuContent h5 #textMaBn').invoke('text').then((textMaBn) => {
+                      cy.log(textMaBn);
+
+                      //lập tạm thu để khám phối
+                      common.goToFunctionFromMenu('dongtamung');
+                      cy.get('#txtTimKiem').type(textMaBn);
+                      common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
+                      cy.get('#btnTimKiem').click();
+                      cy.get('#divVienPhiDanhSachContent tbody tr:first td:nth-child(4) a').click();
+                      cy.get('#txtTienTamUng').type('111111111111');
+                      common.btnID('btnHoanTatTamUng');
+
+                      //thực hiện khám phối hợp
+                      common.goToFunctionFromMenu('khambenhdanhsachdraw');
+                      cy.get('#txtTimKiem').type(textMaBn);
+                      common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
+                      cy.get('#btnTimKiem').click();
+                      cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
+                      common.btnID('btnVAOKHAM');
+                      cy.get('#txtChanDoanSoBo').type(testCase.txtChanDoanSoBo);
+                      common.enterSelectBoxElasticSearch('cbbBacSi', testCase.cbbBacSi);
+                      common.enterSelectBoxElasticSearch('cbbCDBChinh', testCase.cbbCDBChinh);
+                      cy.get(':nth-child(5) > .col-md-12 > .select2-container > .selection > .select2-selection > ul > li > .select2-search__field').type('bệnh tả');
+                      cy.get('#select2-cbbCDBKemTheo-results').find('tr:first').click();
+                      common.btnID('btnHOANTAT');
+                  });
+              }else{
+                  cy.get('#modalReportPdf > .modal-dialog').should('be.visible').then(() =>{
+                      cy.get('body').type('{esc}');
+                  })
+
+                  cy.get('#divMenuContent h5 #textMaBn').invoke('text').then((textMaBn) => {
+                      cy.log(textMaBn);
+                      common.goToFunctionFromMenu('khambenhdanhsachdraw');
+                      cy.get('#txtTimKiem').type(textMaBn);
+                      common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
+                      cy.get('#btnTimKiem').click();
+                      cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
+                      common.btnID('btnVAOKHAM');
+                      cy.get('#txtChanDoanSoBo').type(testCase.txtChanDoanSoBo);
+                      common.enterSelectBoxElasticSearch('cbbBacSi', testCase.cbbBacSi);
+                      common.enterSelectBoxElasticSearch('cbbCDBChinh', testCase.cbbCDBChinh);
+                      cy.get(':nth-child(5) > .col-md-12 > .select2-container > .selection > .select2-selection > ul > li > .select2-search__field').type('bệnh tả');
+                      cy.get('#select2-cbbCDBKemTheo-results').find('tr:first').click();
+                      common.btnID('btnHOANTAT');
+                  });
+              }
             })
-
-            cy.get('#divMenuContent h5 #textMaBn').invoke('text').then((textMaBn) => {
-                cy.log(textMaBn);
-                common.goToFunctionFromMenu('khambenhdanhsachdraw');
-                cy.get('#txtTimKiem').type(textMaBn);
-                common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
-                cy.get('#btnTimKiem').click();
-                cy.get('#divKhamBenhDanhSachContent tbody tr:nth-child(1) td:nth-child(4) a').click();
-                common.btnID('btnVAOKHAM');
-                cy.get('#txtChanDoanSoBo').type(testCase.txtChanDoanSoBo);
-                common.enterSelectBoxElasticSearch('cbbBacSi', testCase.cbbBacSi);
-                common.enterSelectBoxElasticSearch('cbbCDBChinh', testCase.cbbCDBChinh);
-                cy.get(':nth-child(5) > .col-md-12 > .select2-container > .selection > .select2-selection > ul > li > .select2-search__field').type('bệnh tả');
-                cy.get('#select2-cbbCDBKemTheo-results').find('tr:first').click();
-                common.btnID('btnHOANTAT');
-            });
 
         });
 

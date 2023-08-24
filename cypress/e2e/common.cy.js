@@ -7,6 +7,15 @@ function visitAndLogin(baseUrl) {
     cy.get("#btnLogin").click();
 }
 
+function visitAndLoginOther(baseUrl) {
+
+    if (baseUrl === undefined) baseUrl = '';
+    cy.visit(`${baseUrl}/login.aspx`);
+    cy.get('#txtLoginName').type("sys.admin")
+    cy.get("#txtPassword").type("1111")
+    cy.get("#btnLogin").click();
+}
+
 function goToFunctionFromMenu(wpid) {
 
     cy.get(`#side-menu a[href*='${wpid}']:first`).click({force: true});
@@ -70,6 +79,10 @@ function clickConfirmBtn() {
     cy.get('.confirm').should('be.visible').click();
 }
 
+function checkDialogNotVisible(){
+    cy.get('.sweet-alert').should('not.be.visible')
+}
+
 function setTomorrowToInput(selectTagId) {
     const today = new Date();
     const tomorrow = new Date(today);
@@ -97,10 +110,13 @@ async function getCurrentUrl() {
 }
 
 
+
+
 module.exports = {
     getCurrentUrl: getCurrentUrl,
     getHtml: getHtml,
     visitAndLogin: visitAndLogin,
+    visitAndLoginOther: visitAndLoginOther,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectNormalBox,
     enterSelectBoxElasticSearch: enterSelectBoxElasticSearch,
@@ -110,5 +126,6 @@ module.exports = {
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
     clickConfirmBtn: clickConfirmBtn,
+    checkDialogNotVisible: checkDialogNotVisible,
     setTomorrowToInput: setTomorrowToInput
 }

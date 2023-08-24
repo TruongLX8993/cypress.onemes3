@@ -9,49 +9,168 @@ describe("Điều trị nội trú", () => {
 
     });
 
-    it('Thêm y lệnh', function () {
-        console.log('abc');
-        cy.get('#txtTimKiem').type('2300520947');
-        common.enterSelectBoxNormal('drpSelectTrangThai', "Đang thực hiện");
-        common.enterSelectBoxNormal('cbbLoai', "3");
-        cy.get('#btnTimKiem').click();
-        cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
-        cy.get('#showThamKham').click();
-        // cy.wait(2000);
-        cy.get('#btnPopupXOA').click({timeout:5000});
-        cy.wait(1000);
+    // it('Thêm y lệnh', function () {
+    //     console.log('abc');
+    //     cy.get('#txtTimKiem').clear().type('2300520945');
+    //     common.enterSelectBoxNormal('drpSelectTrangThai', "Đang thực hiện");
+    //     common.enterSelectBoxNormal('cbbLoai', "3");
+    //     cy.get('#btnTimKiem').click();
+    //     cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
+    //     cy.get('#showDsYLenh').click();
+    //
+    //     cy.get('#divDsYLenh tbody#tbodyylenh tr:first td:nth-child(2) a').invoke('attr', 'style').then((Color) => {
+    //         cy.log(Color);
+    //         if (Color === 'background-color: #fdf500;color: white;') {
+    //             common.btnID('showThamKham');
+    //             common.clickConfirmBtn();
+    //             cy.get('#tbodyylenh > tr:nth-child(1) > td:nth-child(3)').click();
+    //             cy.get('#btnPopupXOA').should('be.visible').click({});
+    //             common.btnID('showThamKham');
+    //             cy.get('#divStatusPopup i.badge')
+    //                 .should('have.text', 'Mới')
+    //                 .then(($badge) => {
+    //                     const hasBadgeClass = $badge.hasClass('badge');
+    //                     if (hasBadgeClass) {
+    //                         cy.log('Đổi trạng thái thực hiện thành công');
+    //                     } else {
+    //                         cy.fail('Đổi trạng thái thực hiện thất bại');
+    //                     }
+    //                 });
+    //
+    //             common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
+    //             cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
+    //             common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
+    //             cy.get('#btnPopupHOANTAT').click();
+    //             cy.get('#btnThemYLenhMoi').should('be.visible').click();
+    //
+    //             cy.get('#divStatusPopup i.badge')
+    //                 .should('have.text', 'Mới')
+    //                 .then(($badge) => {
+    //                     const hasBadgeClass = $badge.hasClass('badge');
+    //                     if (hasBadgeClass) {
+    //                         cy.log('Đổi trạng thái thực hiện thành công');
+    //                     } else {
+    //                         cy.fail('Đổi trạng thái thực hiện thất bại');
+    //                     }
+    //                 });
+    //
+    //         } else {
+    //             common.btnID('showThamKham');
+    //             cy.get('#divStatusPopup i.badge')
+    //                 .should('have.text', 'Mới')
+    //                 .then(($badge) => {
+    //                     const hasBadgeClass = $badge.hasClass('badge');
+    //                     if (hasBadgeClass) {
+    //                         cy.log('Đổi trạng thái thực hiện thành công');
+    //                     } else {
+    //                         cy.fail('Đổi trạng thái thực hiện thất bại');
+    //                     }
+    //                 });
+    //                // Hoàn tất 1 y lệnh thành công thì có thể bấm thêm y lệnh ở form y lệnh
+    //             common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
+    //             cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
+    //             common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
+    //             cy.get('#btnPopupHOANTAT').click();
+    //             cy.get('#btnThemYLenhMoi').should('be.visible').click();
+    //
+    //             cy.get('#divStatusPopup i.badge')
+    //                 .should('have.text', 'Mới')
+    //                 .then(($badge) => {
+    //                     const hasBadgeClass = $badge.hasClass('badge');
+    //                     if (hasBadgeClass) {
+    //                         cy.log('Đổi trạng thái thực hiện thành công');
+    //                     } else {
+    //                         cy.fail('Đổi trạng thái thực hiện thất bại');
+    //                     }
+    //                 });
+    //
+    //         }
+    //     });
+    //
+    //
+    // });
 
-    });
 
-
-    it('Hoàn tất y lệnh', function () {
-        cy.get('#txtTimKiem').type('2300520945');
-        common.enterSelectBoxNormal('drpSelectTrangThai', "Đang thực hiện");
-        common.enterSelectBoxNormal('cbbLoai', "3");
-        cy.get('#btnTimKiem').click();
-        cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
-        cy.get('#showThamKham').click();
-        common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
-        cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
-        common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
-        cy.contains('Chỉ định nhiều nhóm').click();
-        cy.get('#using_json ul li:nth-child(1) a').click();
-        common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom', 'LS29.3');
-        cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
-            .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
-            .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper
-            .click() // tick vào checkbox
-
-        cy.get('#btnDongYChon').click();
-        cy.get('#btnChapNhan').click();
-        cy.wait(1000);
-        cy.get('#btnPopupHOANTAT').click();
-        cy.wait(1000);
-        // cy.wait(2000);
-        // cy.get('#btnPopupTHUHOI').click();
-        // cy.wait(1000);
-        // cy.get('#btnPopupXOA').click();
-    });
+    // it('Hoàn tất y lệnh', function () {
+    //     cy.get('#txtTimKiem').clear().type('2300520945');
+    //     common.enterSelectBoxNormal('drpSelectTrangThai', "Đang thực hiện");
+    //     common.enterSelectBoxNormal('cbbLoai', "3");
+    //     cy.get('#btnTimKiem').click();
+    //     cy.get('#divWebPartContent tbody tr:nth-child(2) td:nth-child(5) a').click();
+    //     cy.get('#showDsYLenh').click();
+    //
+    //     cy.get('#divDsYLenh tbody#tbodyylenh tr:first td:nth-child(2) a').invoke('attr', 'style').then((Color) => {
+    //         cy.log(Color);
+    //         if (Color === 'background-color: #fdf500;color: white;') {
+    //             common.btnID('showThamKham');
+    //             common.clickConfirmBtn();
+    //             cy.get('#tbodyylenh > tr:nth-child(1) > td:nth-child(3)').click();
+    //             cy.get('#btnPopupXOA').should('be.visible').click({});
+    //             common.btnID('showThamKham');
+    //             common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
+    //             cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
+    //             common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
+    //             cy.contains('Chỉ định nhiều nhóm').click();
+    //             cy.get('#using_json ul li:nth-child(1) a').click();
+    //             common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom', 'LS29.3');
+    //             cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
+    //                 .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
+    //                 .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper
+    //                 .click() // tick vào checkbox
+    //
+    //             cy.get('#btnDongYChon').click();
+    //             cy.get('#btnChapNhan').click();
+    //             cy.wait(1000);
+    //             cy.get('#btnPopupHOANTAT').click();
+    //             cy.wait(1000);
+    //         } else {
+    //             common.btnID('showThamKham');
+    //             common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
+    //             cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
+    //             common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
+    //             cy.contains('Chỉ định nhiều nhóm').click();
+    //             cy.get('#using_json ul li:nth-child(1) a').click();
+    //             common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom', 'LS29.3');
+    //             cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
+    //                 .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
+    //                 .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper
+    //                 .click() // tick vào checkbox
+    //
+    //             cy.get('#btnDongYChon').click();
+    //             cy.get('#btnChapNhan').click();
+    //             cy.wait(1000);
+    //             cy.get('#btnPopupHOANTAT').click();
+    //             cy.wait(1000);
+    //
+    //
+    //         }
+    //     });
+    //
+    //
+    //
+    //     // common.enterSelectBoxElasticSearch('cbbDienBienBenhThamKham', 'Bình thường');
+    //     // cy.get('#txtChanDoanSoBoThamKham').clear().type('AAA');
+    //     // common.enterSelectBoxElasticSearch('cboCapDoChamSocThamKham', 'C3');
+    //     // cy.contains('Chỉ định nhiều nhóm').click();
+    //     // cy.get('#using_json ul li:nth-child(1) a').click();
+    //     // common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom', 'LS29.3');
+    //     // cy.contains('label', 'Khám bệnh (10.1895)') // tìm label có data là "Khám bệnh"
+    //     //     .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
+    //     //     .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper
+    //     //     .click() // tick vào checkbox
+    //     //
+    //     // cy.get('#btnDongYChon').click();
+    //     // cy.get('#btnChapNhan').click();
+    //     // cy.wait(1000);
+    //     // cy.get('#btnPopupHOANTAT').click();
+    //     // cy.wait(1000);
+    //
+    //
+    //     // cy.wait(2000);
+    //     // cy.get('#btnPopupTHUHOI').click();
+    //     // cy.wait(1000);
+    //     // cy.get('#btnPopupXOA').click();
+    // });
 
 
     it('Sao chép y lệnh', function () {

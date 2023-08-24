@@ -44,21 +44,30 @@ describe("Thủ thuật", () => {
                     cy.get('.select2-results__option--highlighted > table > tbody > tr > [style="color:maroon;font-weight:bold; width:20%;padding:4px; text-align: left;"]').click();
                 }
             });
-
         cy.get('#btnHOANTAT').click();
 
-        cy.get('#aTrangThai i')
-            .should('have.text', 'Hoàn tất')
-            .then(($i) => {
-                const text = $i.text().trim();
-                if (text === 'Hoàn tất') {
-                    cy.log('Hoàn tất thành công');
-                } else {
-                    cy.fail('Hoàn tất thất bại');
-                }
-            });
-    });
+        cy.document().then(doc=>{
+            const alert = doc.querySelectorAll('.sweet-alert');
+            if(alert.length > 0){
+                cy.get('.sweet-alert p').invoke('text').then(error => {
+                    cy.fail(error)
+                })
+            }else{
+                cy.get('#aTrangThai i.badge')
+                    .invoke('text')
+                    .then((text) => {
+                        if (text === 'Hoàn tất') {
+                            cy.log('Hoàn tất thành công');
+                        } else {
+                            cy.fail('Hoàn tất không thành công');
+                        }
+                    });
+            }
+        })
 
+
+
+    });
 
     it('Tác vụ thu hồi', () => {
         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
@@ -77,7 +86,6 @@ describe("Thủ thuật", () => {
                 }
             });
     });
-
 
     it('Tác vụ hủy', () => {
         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
@@ -123,7 +131,6 @@ describe("Thủ thuật", () => {
 
     });
 
-
     it('Chức năng kê thuốc', () => {
         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
         common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện');
@@ -152,7 +159,6 @@ describe("Thủ thuật", () => {
 
     });
 
-
     it('Chức năng kê khai VTYT', () => {
         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
         common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện');
@@ -177,83 +183,180 @@ describe("Thủ thuật", () => {
     });
 
     it('Check chức năng kê DVKT', function () {
+        cy.get('#txtTimKiem').type('2300520592');
         common.enterSelectBoxNormal('cbbLoai', '3 tháng');
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thực hiện');
         cy.get('#btnTimKiem').click();
-        cy.get('#divDanhSachThuThuatContent tbody tr:nth-child(3)  td a').eq(4).click();
-        cy.get('#lnkChiDinhDVKT').click();
-        common.enterSelectBoxElasticSearch('cbbHangDoi', 'cls06.1');
-        // common.enterSelectBoxFocus('cbbDichVu','01010001');
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('span.select2-search').find('input.select2-search__field').type('01010001');
-        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
-        cy.get('#txtDichVuChiTiet').type('cho đi khám');
-        common.btnID('btnAddDichVu');
 
-        cy.get('span.badge').each(($badge) => {
-            cy.wrap($badge)
-                .should('have.text', 'Mới')
-                .then(() => {
-                    cy.log('Đổi trạng thái thực hiện thành công');
-                    const hasBadgeClass = $badge.hasClass('badge');
-                    if (!hasBadgeClass) {
-                        throw new Error('Đổi trạng thái thực hiện thất bại');
+        cy.get('#divDanhSachThuThuatContent tbody tr:nth-child(1) td:nth-child(7) a').invoke('text').then((doituong) => {
+            cy.get('#divDanhSachThuThuatContent tbody tr:nth-child(1)  td a').eq(4).click();
+            // cy.get('#btnVAOTH').should('be.visible').click();
+            // cy.wait(1000);
+            cy.get('#lnkChiDinhDVKT').click();
+            common.enterSelectBoxElasticSearch('cbbHangDoi', 'cls06.1');
+            // common.enterSelectBoxFocus('cbbDichVu','01010001');
+            cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
+            cy.get('span.select2-search').find('input.select2-search__field').type('01');
+            cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+            cy.get('#txtDichVuChiTiet').type('cho đi khám');
+            common.btnID('btnAddDichVu');
+
+            cy.get('span.badge').each(($badge) => {
+                cy.wrap($badge)
+                    .should('have.text', 'Mới')
+                    .then(() => {
+                        cy.log('Đổi trạng thái thực hiện thành công');
+                        const hasBadgeClass = $badge.hasClass('badge');
+                        if (!hasBadgeClass) {
+                            throw new Error('Đổi trạng thái thực hiện thất bại');
+                        }
+                    });
+            });
+
+            // common.enterSelectBoxUlLi('cbbDichVu','01010017');
+            cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
+            cy.get('span.select2-search').find('input.select2-search__field').type('01');
+            cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+            cy.get('#txtDichVuChiTiet').type('aaaa');
+            common.btnID('btnAddDichVu');
+
+            // common.enterSelectBoxUlLi('cbbDichVu','01010010');
+            cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
+            cy.get('span.select2-search').find('input.select2-search__field').type('01');
+            cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+            cy.get('#txtDichVuChiTiet').type('bbbb');
+            common.btnID('btnAddDichVu');
+            common.btnID('btnChuyenDVKT');
+
+            // check đối tượng bảo hiểm,thu phí,yêu cầu
+            if (doituong === 'Bảo hiểm') {
+                cy.wait(500);
+
+                cy.get('span.badge').invoke('text').then((listbadge) => {
+                    if (listbadge === 'Chờ thực hiện') {
+                        cy.log('Đổi trạng thái thực hiện thành công')
+                        common.btnID('btnThuHoiDVKT');
+                        cy.get('span.badge').each(($badge) => {
+                            cy.wrap($badge)
+                                .should('have.text', 'Mới')
+                                .then(() => {
+                                    cy.log('Đổi trạng thái thực hiện thành công');
+                                    const hasBadgeClass = $badge.hasClass('badge');
+                                    if (!hasBadgeClass) {
+                                        throw new Error('Đổi trạng thái thực hiện thất bại');
+                                    }
+                                });
+                        });
+
+                        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:nth-child(2) > .fas').click();
+                        cy.wait(1000);
+                        common.clickConfirmBtn();
+                        cy.get('#tblDichVu > thead > tr:first > th:nth-child(9) > a:nth-child(2) > .fa').click();
+                        cy.wait(1000);
+                        common.clickConfirmBtn();
+                        // common.enterSelectBoxUlLi('cbbDichVu','01010001');
+                        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
+                        cy.get('span.select2-search').find('input.select2-search__field').type('01010001');
+                        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+                        cy.get('#txtDichVuChiTiet').type('cho đi khám');
+                        common.btnID('btnAddDichVu');
+                        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:first > .fa').click();
+                        common.enterSelectBoxElasticSearch('cboHangdoiUpdate', 'bướu');
+                        cy.get('.modal-footer > button:first').click();
+                    } else if (listbadge === 'Mới' && common.checkDialogNotVisible()) {
+                        cy.fail('Đổi trạng thái thực hiện thất bại')
+                    } else {
+                        common.clickConfirmBtn();
+
+                        cy.get('span.badge').each(($badge) => {
+                            cy.wrap($badge)
+                                .should('have.text', 'Chờ thanh toán')
+                                .then(() => {
+                                    cy.log('Đổi trạng thái thực hiện thành công');
+                                    const hasBadgeClass = $badge.hasClass('badge');
+                                    if (!hasBadgeClass) {
+                                        throw new Error('Đổi trạng thái thực hiện thất bại');
+                                    }
+                                });
+                        });
+                        common.btnID('btnThuHoiDVKT');
+                        cy.get('span.badge').each(($badge) => {
+                            cy.wrap($badge)
+                                .should('have.text', 'Mới')
+                                .then(() => {
+                                    cy.log('Đổi trạng thái thực hiện thành công');
+                                    const hasBadgeClass = $badge.hasClass('badge');
+                                    if (!hasBadgeClass) {
+                                        throw new Error('Đổi trạng thái thực hiện thất bại');
+                                    }
+                                });
+                        });
+
+                        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:nth-child(2) > .fas').click();
+                        common.clickConfirmBtn();
+                        cy.get('#tblDichVu > thead > tr:first > th:nth-child(9) > a:nth-child(2) > .fa').click();
+                        common.clickConfirmBtn();
+                        // common.enterSelectBoxUlLi('cbbDichVu','01010001');
+                        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
+                        cy.get('span.select2-search').find('input.select2-search__field').type('01010001');
+                        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+                        cy.get('#txtDichVuChiTiet').type('cho đi khám');
+                        common.btnID('btnAddDichVu');
+                        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:first > .fa').click();
+                        common.enterSelectBoxElasticSearch('cboHangdoiUpdate', 'bướu');
+                        cy.get('.modal-footer > button:first').click();
                     }
                 });
-        });
 
-        // common.enterSelectBoxUlLi('cbbDichVu','01010017');
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
-        cy.get('span.select2-search').find('input.select2-search__field').type('01010017');
-        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
-        cy.get('#txtDichVuChiTiet').type('aaaa');
-        common.btnID('btnAddDichVu');
-
-        // common.enterSelectBoxUlLi('cbbDichVu','01010010');
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
-        cy.get('span.select2-search').find('input.select2-search__field').type('01010010');
-        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
-        cy.get('#txtDichVuChiTiet').type('bbbb');
-        common.btnID('btnAddDichVu');
-
-        common.btnID('btnChuyenDVKT');
-        cy.get('span.badge').each(($badge) => {
-            cy.wrap($badge)
-                .should('have.text', 'Chờ thực hiện')
-                .then(() => {
-                    cy.log('Đổi trạng thái thực hiện thành công');
-                    const hasBadgeClass = $badge.hasClass('badge');
-                    if (!hasBadgeClass) {
-                        throw new Error('Đổi trạng thái thực hiện thất bại');
-                    }
+            }
+            else {
+                cy.wait(500);
+                common.clickConfirmBtn();
+                cy.get('span.badge').each(($badge) => {
+                    cy.wrap($badge)
+                        .should('have.text', 'Chờ thanh toán')
+                        .then(() => {
+                            cy.log('Đổi trạng thái thực hiện thành công');
+                            const hasBadgeClass = $badge.hasClass('badge');
+                            if (!hasBadgeClass) {
+                                throw new Error('Đổi trạng thái thực hiện thất bại');
+                            }
+                        });
                 });
-        });
-        common.btnID('btnThuHoiDVKT');
-        cy.get('span.badge').each(($badge) => {
-            cy.wrap($badge)
-                .should('have.text', 'Mới')
-                .then(() => {
-                    cy.log('Đổi trạng thái thực hiện thành công');
-                    const hasBadgeClass = $badge.hasClass('badge');
-                    if (!hasBadgeClass) {
-                        throw new Error('Đổi trạng thái thực hiện thất bại');
-                    }
+
+                common.btnID('btnThuHoiDVKT');
+                cy.get('span.badge').each(($badge) => {
+                    cy.wrap($badge)
+                        .should('have.text', 'Mới')
+                        .then(() => {
+                            cy.log('Đổi trạng thái thực hiện thành công');
+                            const hasBadgeClass = $badge.hasClass('badge');
+                            if (!hasBadgeClass) {
+                                throw new Error('Đổi trạng thái thực hiện thất bại');
+                            }
+                        });
                 });
+
+                cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:nth-child(2) > .fas').click();
+                common.clickConfirmBtn();
+                cy.get('#tblDichVu > thead > tr:first > th:nth-child(9) > a:nth-child(2) > .fa').click();
+                common.clickConfirmBtn();
+                // common.enterSelectBoxUlLi('cbbDichVu','01010001');
+                cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
+                cy.get('span.select2-search').find('input.select2-search__field').type('01010001');
+                cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
+                cy.get('#txtDichVuChiTiet').type('cho đi khám');
+                common.btnID('btnAddDichVu');
+                cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:first > .fa').click();
+                common.enterSelectBoxElasticSearch('cboHangdoiUpdate', 'bướu');
+                cy.get('.modal-footer > button:first').click();
+            }
         });
 
-        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:nth-child(2) > .fas').click();
-        common.clickConfirmBtn();
-        cy.get('#tblDichVu > thead > tr:first > th:nth-child(9) > a:nth-child(2) > .fa').click();
-        common.clickConfirmBtn();
-        // common.enterSelectBoxUlLi('cbbDichVu','01010001');
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').click();
-        cy.get('span.select2-search').find('input.select2-search__field').type('01010001');
-        cy.get('#select2-cbbDichVu-results').find('tr').eq(1).click();
-        cy.get('#txtDichVuChiTiet').type('cho đi khám');
-        common.btnID('btnAddDichVu');
-        cy.get('#tblDichVu > tbody > tr:first > td:nth-child(11) > a:first > .fa').click();
-        common.enterSelectBoxElasticSearch('cboHangdoiUpdate', 'bướu');
-        cy.get('.modal-footer > button:first').click();
+
+        // cy.wait(1000);
+        // common.goToFunctionFromMenu('khambenhdanhsachdraw');
+
 
     });
 
