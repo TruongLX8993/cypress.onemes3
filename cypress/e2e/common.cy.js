@@ -79,11 +79,7 @@ function clickConfirmBtn() {
     cy.get('.confirm').should('be.visible').click();
 }
 
-function checkDialogNotVisible(){
-    cy.get('.sweet-alert').should('not.be.visible')
-}
-
-function setTomorrowToInput(selectTagId) {
+function inputDateTime(selectTagId){
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
