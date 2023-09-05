@@ -78,8 +78,6 @@ describe("Khám bệnh", () => {
                         common.enterSelectBoxElasticSearch('cboHangdoiUpdate', testCase.cboHangdoiUpdate);
                         cy.contains('Cập nhập').click();
                         cy.get('table#tblDichVu tbody tr.dichvu td:nth-child(1) > [title="Xóa"]').click();
-                        cy.get('.confirm').click();
-                        common.btnID('btnDILAMDV');
 
                         //bo sung them chi dinh nhieu nhom
                         cy.contains('Chỉ định theo nhiều nhóm').click();

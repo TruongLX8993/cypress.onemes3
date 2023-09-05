@@ -4,7 +4,7 @@
     "cbbLoai": "3",
     "cboHangDoiKhamBenh": "ls",
     "txtChanDoanSoBo": "viêm",
-    "cbbHangDoiPopupNhieuNhom": "cls01.1",
+    "cbbHangDoiPopupNhieuNhom": "cls",
     "cboDoiTuongUpdate": "Không BH",
     "cboHangdoiUpdate": "LS01.2",
     "cboKhoVTYT": "ls02.14.01",
@@ -14,6 +14,6 @@
     "cbbCDBChinh": "m07",
     "cbbChuyenKhoa": "10.3",
     "cbbXuTri": "cho ve",
-    "cbbHangDoiPopupTDCN": "cls01.1"
+    "cbbHangDoiPopupTDCN": "cls"
   }
 ]

@@ -1,0 +1,14 @@
+[
+    {
+      "name": "2300520705",
+      "drpSelectKhoaPhong": "LS18",
+      "drpSelectHangDoi": "Thanh toán 1C",
+      "cbbLoai": "3 tháng" ,
+      "drpSelectNguoiLap": "sys.admin.hieutt",
+      "drpSelectDoiTuong": "Bảo Hiểm",
+      "drpSelectHopDong": "01/HĐCG",
+      "drpSelectLoaiDieuTri" : "Khám bệnh",
+      "drpSelectTrangThai": "Hoàn tất"
+    }
+  ]
+  

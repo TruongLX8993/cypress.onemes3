@@ -1,0 +1,19 @@
+[
+  {
+    "drpSelectTrangThai": "cho thuc hien",
+    "cbbLoai": "3",
+    "cboHangDoiKhamBenh": "ls",
+    "txtChanDoanSoBo": "viêm",
+    "cbbHangDoiPopupNhieuNhom": "cls",
+    "cboDoiTuongUpdate": "Không BH",
+    "cboHangdoiUpdate": "LS01.2",
+    "cboKhoVTYT": "ls02.14.01",
+    "cboThuocVTYT": "32062b.201",
+    "cboKhoTuTruc": "ls02.14.01",
+    "cbbBacSi": "bm006",
+    "cbbCDBChinh": "m07",
+    "cbbChuyenKhoa": "10.3",
+    "cbbXuTri": "cho ve",
+    "cbbHangDoiPopupTDCN": "cls"
+  }
+]

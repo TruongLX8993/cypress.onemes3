@@ -20,7 +20,7 @@ describe("Phẫu thuật", () => {
         common.enterSelectBoxNormal('drpSelectTrangThai', 'Chờ thực hiện');
         common.enterSelectBoxNormal('cbbLoai', 'khoảng');
         cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
-        cy.get('#dtTuNgay').clear().type('00:00 18/08/2023');
+        cy.get('#dtTuNgay').clear().type('00:00 18/08/2022');
         cy.get('#btnTimKiem').click();
         // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
         // cy.get('#btnTimKiem').click();

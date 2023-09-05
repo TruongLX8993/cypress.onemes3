@@ -121,7 +121,5 @@ module.exports = {
     enterSelectBoxFocus: enterSelectBoxFocus,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
-    clickConfirmBtn: clickConfirmBtn,
-    checkDialogNotVisible: checkDialogNotVisible,
-    setTomorrowToInput: setTomorrowToInput
+    clickConfirmBtn: clickConfirmBtn
 }

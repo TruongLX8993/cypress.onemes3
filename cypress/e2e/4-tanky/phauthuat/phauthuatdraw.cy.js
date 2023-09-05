@@ -7,7 +7,7 @@ const testCases = require('./phauthuat.testcase.json');
 describe("Phau Thuat", async () => {
 
     beforeEach(() => {
-        common.visitAndLoginOther(enviroment.tanky);
+        common.visitAndLoginOther(enviroment.natk);
         common.goToFunctionFromMenu('danhsachphauthuatdraw');
     });
 

@@ -5,7 +5,7 @@ const {getHtml, getCurrentUrl} = require("../../common.cy");
 describe("Thủ thuật", () => {
 
     beforeEach(() => {
-        common.visitAndLoginOther(enviroment.tanky);
+        common.visitAndLoginOther(enviroment.natk);
         common.goToFunctionFromMenu('danhsachthuthuatdraw');
 
     });
