@@ -35,20 +35,26 @@ describe("Cận lâm sàng chung", () => {
         cy.get('#divCanLamSangChungDanhSachContent tbody tr:first  td a').eq(3).click();
         cy.get('#txtKetLuan').clear().type('aa');
         cy.get('#btnHOANTAT').click();
-
         cy.wait(1000);
-        cy.get('#aTrangThai i').invoke('text').then(($i) => {
-            cy.log($i);
-            const text = $i.trim();
-            cy.log(text);
-            if (text === 'Hoàn tất') {
-                cy.log('Hoàn tất thành công');
-            } else if (text === 'Đang thực hiện' && cy.get('.sweet-alert').should('be.visible')) {
-                cy.log('thời gian hoàn tất vượt thời gian xử trí KB/NT/NGT');
-            } else {
-                cy.fail('Thay đổi trạng thái thất bại')
-            }
+
+        cy.document().then(doc=>{
+           const alert = doc.querySelectorAll('.sweet-alert');
+           if(alert.length > 0){
+               cy.log('thời gian hoàn tất vượt thời gian xử trí KB/NT/NGT');
+           }else{
+               cy.get('#aTrangThai i').invoke('text').then(($i) => {
+                   cy.log($i);
+                   const text = $i.trim();
+                   cy.log(text);
+                   if (text === 'Hoàn tất') {
+                       cy.log('Hoàn tất thành công');
+                   }else {
+                       cy.fail('Thay đổi trạng thái thất bại')
+                   }
+               });
+           }
         });
+
     });
 
     it('Tác vụ thu hồi', () => {

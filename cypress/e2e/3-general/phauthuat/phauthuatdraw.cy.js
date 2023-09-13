@@ -56,7 +56,6 @@ describe("Phau Thuat", async () => {
                 })
         });
 
-
         it('Check tác vụ "kết thúc mổ"', function () {
             common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
             cy.get('.btn-danger').click();
@@ -114,7 +113,6 @@ describe("Phau Thuat", async () => {
                 });
         });
 
-
         it('Check tác vụ "thu hồi"', async function () {
             common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
             cy.get('.btn-danger').click();
@@ -151,7 +149,6 @@ describe("Phau Thuat", async () => {
 
 
         });
-
 
         it('Check tác vụ "không mổ"', async function () {
             common.enterSelectBoxElasticSearch('cboCfHangDoi', testcase.cboCfHangDoi);
@@ -281,52 +278,18 @@ describe("Phau Thuat", async () => {
 
         });
 
-
         it('Check chức năng kê thuốc/VT"', function () {
-            // common.enterSelectBoxElas('cboCfHangDoi', testcase.cboCfHangDoi);
-            // cy.get('.btn-danger').click();
-            // common.enterSelectBoxNormal('cbbLoai', testcase.cbbLoai);
-            // common.enterSelectBoxNormal('drpSelectTrangThai', testcase.drpSelectTrangThai);
-            // cy.get('#select2-drpSelectHangDoi-container > .select2-selection__clear').click();
             cy.contains('Đóng').click();
             common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện{enter}');
             common.enterSelectBoxNormal('cbbLoai', '3{enter}');
             cy.get('#btnTimKiem').click();
-            // getHtml('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a')
-            //     .then(text => {
-            //         const re = new RegExp("checkBanGiaoPT\\('(.*)'\\)");
-            //         let phauThuatId = re.exec(text);
-            //         getCurrentUrl()
-            //             .then(currentUrl => {
-            //                 currentUrl = currentUrl.replace('wpid=danhsachphauthuatdraw', 'wpid=phauthuatdraw')
-            //                 currentUrl += `&phauthuatid=${phauThuatId}`;
-            //                 cy.visit(currentUrl);
-            //                 cy.get('#btnVAOTH').click();
-            //                 cy.get('#aTrangThai i')
-            //                     .should('have.text', 'Đang thực hiện')
-            //                     .then(($i) => {
-            //                         const text = $i.text().trim();
-            //                         if (text === 'Đang thực hiện') {
-            //                             cy.log('Đổi trạng thái thành công');
-            //                         } else {
-            //                             cy.fail('Đổi trạng thái thất bại');
-            //                         }
-            //                     });
-            //
-            //
-            //
-            //
-            //             });
             cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
             cy.get('#lnkVTYT').click();
-            // cy.get('div.col-sm-12 > div.row > div.col-sm-2 > div.icheckbox_square-green > ins..iCheck-helper').click();
             cy.viewport(1500, 800);
             cy.contains('label', 'Trong phẫu thuật')
-                .prev() // lấy phần tử trước đó (thẻ div chứa input và ins)
-                .find('ins.iCheck-helper') // tìm thẻ ins có class là iCheck-helper
-                .click() // tick vào checkbox
-// cy.get(':nth-child(2) > .icheckbox_square-green > .iCheck-helper').click();
-            // common.enterSelectBoxNormal('cbbVTYT','0{enter}');
+                .prev()
+                .find('ins.iCheck-helper')
+                .click();
             cy.get('#cbbVTYT').parent().find('span.selection span.select2-selection').click();
             cy.get('span.select2-search').find('input.select2-search__field').type('0').wait(1000);
             cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(2)').click();
@@ -461,7 +424,6 @@ describe("Phau Thuat", async () => {
 
 
         })
-
 
         it('"Check chức năng kê DVKT"', function () {
             cy.contains('Đóng').click();
@@ -604,7 +566,6 @@ describe("Phau Thuat", async () => {
 
         });
 
-
         it('"Check chức năng xử trí sau PT"', function () {
             cy.contains('Đóng').click();
             common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện{enter}');
@@ -657,15 +618,7 @@ describe("Phau Thuat", async () => {
                                     const newTime = new Date(existingTime.getTime() + 60 * 60 * 1000);
                                     const formattedTime = `${String(newTime.getHours())}:${String(newTime.getMinutes() < 10 ? '0' : '')} ${String(newTime.getDate()).padStart(2, '0')}-${String(newTime.getMonth() + 1).padStart(2, '0')}-${newTime.getFullYear()}`;
                                     cy.get('#lnkXuTriPT').click().wait(1000);
-                                    // cy.get('#txtThoiGianRa').type(formattedTime);
-                                    // cy.get('#cbbXuTri').select('Chuyển khoa{force: true}');
-                                    // common.enterSelectBoxNormal('cboKhoanhap','22{enter}');
-                                    // cy.get('#btnSaveXuTri').click().wait(1000);
-                                    // cy.get('.confirm').click();
                                     cy.get('#btnSaveXuTri').should('be.disabled');
-                                    // nội tru
-                                    // vào bn
-                                    // lịch sử y lệnh
                                     common.goToFunctionFromMenu('danhsachdieutrinoitrudraw');
                                     cy.get('#txtTimKiem').clear().type(`${numberWithoutBrackets}`);
                                     cy.get('#btnTimKiem').click()

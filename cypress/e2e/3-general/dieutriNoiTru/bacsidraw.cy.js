@@ -1,5 +1,6 @@
 const common = require('../../common.cy');
 const enviroment = require('../../../../enviroment.json');
+const dieuTriNoiTruTestFunc = require('./test_func');
 
 describe("Điều trị nội trú", () => {
 

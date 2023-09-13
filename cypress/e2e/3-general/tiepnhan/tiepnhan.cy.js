@@ -15,16 +15,17 @@ describe("Tiếp nhận", () => {
     it('Tiếp nhận đối tượng không bảo hiểm', () => {
 
 
-        cy.get('#txtTenBenhNhan').type("CYPRESS TEST11");
+        cy.get('#txtTenBenhNhan').type("Nguyen Van Anh");
         cy.get('#txtNgaySinh').type("26/11/2020");
 
         cy.get('#cbbDonViHanhChinh').parent().find('span.selection span.select2-selection').focus();
         cy.get('input.select2-search__field').eq(1).type('BK{downArrow}{enter}');
         cy.get('.select2-results tr:first').click();
 
-        cy.get('#txtDiaChiSoNha').type("Số nhà test");
-        cy.get('#txtDienThoai').type("0123456789");
-        cy.get('#txtSoCMND').type("038092256");
+        cy.get('#txtDiaChiSoNha').type('My Dinh');
+        // cy.get('#divFormModalChung > #dialogChung > .modal-content > .panel-heading > .close').click();
+        cy.get('#txtDienThoai').type("082324242");
+        cy.get('#txtSoCMND').type("1902425212");
 
         cy.get('#cboQuocGia').parent().find('span.selection span.select2-selection').focus();
         cy.get('input.select2-search__field').eq(1).type('VN{downArrow}{enter}');
@@ -43,15 +44,18 @@ describe("Tiếp nhận", () => {
         cy.get('input.select2-search__field').eq(1).type('1C{downArrow}{enter}');
         cy.get('.select2-results tr:first').click();
 
-        cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('10017{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
+        // cy.get('#cbbDichVu').parent().find('span.selection span.select2-selection').focus();
+        // cy.get('input.select2-search__field').eq(1).type('01010001');
+        // cy.get('.select2-results tr:first').click().wait(1000);
+
+        common.enterSelectBoxUlLi('cbbDichVu','01010001');
 
         cy.get('#cbbHangDoi').parent().find('span.selection span.select2-selection').focus();
-        cy.get('input.select2-search__field').eq(1).type('khám bệnh{downArrow}{enter}');
-        cy.get('.select2-results tr:first').click();
+        cy.get('input.select2-search__field').eq(1).type('tttk.1').wait(1000);
+        cy.get('.select2-results ul li:first').click();
 
         cy.get('#btnCHUYENTH').click();
+        cy.wait(1000);
     });
 
     it('Tiếp nhận đối tượng bảo hiểm', () => {

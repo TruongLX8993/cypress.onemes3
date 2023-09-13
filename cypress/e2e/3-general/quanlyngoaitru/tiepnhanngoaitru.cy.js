@@ -32,7 +32,6 @@ describe("Quản lý ngoại trú", () => {
             common.goToFunctionFromMenu('danhsachdieutringoaitrudraw');
             cy.get('#txtTimKiem').clear().type(maBN);
             common.enterSelectBoxNormal('cbbLoai', '3');
-            // cy.get('#drpSelectTrangThai').select(testCases[0].drpSelectTrangThai);
             common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc hien');
             common.btnID('btnTimKiem');
             cy.get('#tblNgoaiTru tbody tr:first  td:nth-child(3) a').invoke('text').then((mabn) => {
@@ -47,7 +46,6 @@ describe("Quản lý ngoại trú", () => {
             });
         });
     });
-
 
     it('Check tác vụ thu hồi', () => {
         // tìm bênh nhân

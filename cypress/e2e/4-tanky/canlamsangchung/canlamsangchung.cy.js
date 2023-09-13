@@ -28,7 +28,6 @@ describe("Cận lâm sàng chung", () => {
 
     });
 
-
     it('Tác vụ hoàn tất', () => {
         common.enterSelectBoxNormal('drpSelectTrangThai', 'Đang thực hiện');
         cy.get('#btnTimKiem').click();
@@ -84,41 +83,24 @@ describe("Cận lâm sàng chung", () => {
 
     });
 
-
     it('Tác vụ hủy', () => {
-        common.enterSelectBoxNormal('drpSelectTrangThai', 'dang thuc hien');
+        common.enterSelectBoxNormal('drpSelectTrangThai', 'cho thuc hien');
         common.enterSelectBoxNormal('cbbLoai', 'khoang');
         cy.get('#dtTuNgay').clear().type('00:00 28/08/2022');
         cy.get('#btnTimKiem').click();
-        cy.get('#divCanLamSangChungDanhSachContent tbody tr:first  td a').eq(3).click();
-
-        //kiem tra vtyt,dv, thuốc
-        let statusHuy = true;
-        cy.get("#btnShowVatTuTieuHao").click();
-        cy.get('#divVTYT')
-            .then(($tbody) => {
-                if ($tbody.find('tr').length > 0) {
-                    statusHuy = false;
-                }
-            });
-
-        cy.get("#btnDangThucHienHuy").click();
-        // cy.wait(5000);
-        // cy.get(".confirm").click();
-        common.clickConfirmBtn();
+        cy.get('#divWebPartContent tbody tr:first  td a').eq(3).click();
+        common.btnID('btnVAOTH')
+        common.btnID('btnHOANTRA');
+        cy.get('#txtLyDoHoanTraUpdate').type('huy');
+        cy.get('#form-group button:first').click();
         cy.wait(1000);
-        cy.get('#aTrangThai')
-            .then(($i) => {
-                cy.wrap(null).then(() => {
-                    if (statusHuy) {
-                        if ($i.text() === 'Hủy') {
-                            cy.log('Hủy thành công');
-                        } else {
-                            cy.fail('Hủy thất bại');
-                        }
-                    }
-                });
-            });
+        cy.get('#aTrangThai i').invoke('text').then(status=>{
+            if(status.trim() === 'Hoàn trả'){
+                cy.log('Hoàn trả thành công');
+            }else{
+                throw  new Error('Hoàn trả thất bại');
+            }
+        })
 
 
     });

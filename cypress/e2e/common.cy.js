@@ -36,7 +36,9 @@ function enterSelectBoxElasticSearch(selectTagId, value) {
 function compareValueOfInputElementDescending(sourceElementSelector, detinationSelector) {
     cy.get(sourceElementSelector).invoke('text').then((text1) => {
         cy.get(detinationSelector).invoke('text').then((text2) => {
-            if (text1 >= text2) {
+            const time1 = new Date(text1);
+            const time2 = new Date(text2);
+            if (time1 >= time2) {
                 cy.log('Danh sách được sắp xếp theo thứ tự giảm dần');
             } else {
                 cy.fail('Danh sách không được sắp xếp theo thứ tự giảm dần');
@@ -48,7 +50,9 @@ function compareValueOfInputElementDescending(sourceElementSelector, detinationS
 function compareValueOfInputElementAscending(sourceElementSelector, detinationSelector) {
     cy.get(sourceElementSelector).invoke('text').then((text1) => {
         cy.get(detinationSelector).invoke('text').then((text2) => {
-            if (text1 < text2) {
+            const time1 = new Date(text1);
+            const time2 = new Date(text2);
+            if (time1 < time2) {
                 cy.log('Danh sách được sắp xếp theo thứ tự tăng dần');
             } else {
                 cy.fail('Danh sách không được sắp xếp theo thứ tự tăng dần');
@@ -79,14 +83,15 @@ function clickConfirmBtn() {
     cy.get('.confirm').should('be.visible').click();
 }
 
-function inputDateTime(selectTagId){
-    const today = new Date();
+function inputDateTimeTomorrow(selectTagTime){
+    const [time, date] = selectTagTime.split(' ');
+    const [hour, minute] = time.split(':');
+    const [day, month, year] = date.split('/');
+    const today = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    const formattedDate = `${String(tomorrow.getDate()).padStart(2, '0')}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${tomorrow.getFullYear()}`;
-    cy.get(`#${selectTagId}`).clear();
-    cy.get(`#${selectTagId}`).type(`${formattedDate}`);
-
+    const formattedDate = `${String(tomorrow.getHours()).padStart(2, '0')}:${String(tomorrow.getMinutes()).padStart(2, '0')} ${String(tomorrow.getDate()).padStart(2, '0')}/${String(tomorrow.getMonth() + 1).padStart(2, '0')}/${tomorrow.getFullYear()}`;
+    return formattedDate;
 }
 
 async function getHtml(selection) {
@@ -119,6 +124,7 @@ module.exports = {
     compareValueDescending: compareValueOfInputElementDescending,
     compareValueAscending: compareValueOfInputElementAscending,
     enterSelectBoxFocus: enterSelectBoxFocus,
+    inputDateTimeTomorrow: inputDateTimeTomorrow,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
     clickConfirmBtn: clickConfirmBtn

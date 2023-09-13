@@ -354,9 +354,6 @@ describe("Thủ thuật", () => {
         });
 
 
-        // cy.wait(1000);
-        // common.goToFunctionFromMenu('khambenhdanhsachdraw');
-
 
     });
 

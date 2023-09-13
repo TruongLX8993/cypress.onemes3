@@ -19,55 +19,39 @@ describe("Ngoại trú", () => {
             cy.get('#btnToaThuocMau').click();
 
             // Xóa toàn bộ thuốc/ VTYT trong popup
-            // common.enterSelectBoxUlLi('cboThuocKD', '20');
             cy.get('#cboThuocKD').parent().find('span.selection span.select2-selection').click();
             cy.get('span.select2-search').find('input.select2-search__field').type('20');
             cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(3)').click();
-
             cy.get('#txtSlKD').type(testCase.txtSlKD);
             cy.get('#txtSlNKD').type(testCase.txtSlNKD);
             cy.get(':nth-child(4) > .checkbox-inline > .icheckbox_square-green > .iCheck-helper').click();
             cy.get(':nth-child(1) > :nth-child(8) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             cy.get(':nth-child(2) > :nth-child(7) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             common.btnID('btnChon');
-            // cy.get('body').type('{esc}');
-            // common.enterSelectBoxUlLi('cboThuocKD','20.01100{enter}');
-
-            // cy.get('#cboThuocKD').parent().find('span.selection span.select2-selection').click();
             cy.get('span.select2-search').find('input.select2-search__field').type('20');
             cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(3)').click();
-
             cy.get('#txtSlKD').type('1');
             cy.get('#txtSlNKD').type('2');
-            // cy.get(':nth-child(4) > .checkbox-inline > .icheckbox_square-green > .iCheck-helper').click();
             cy.get(':nth-child(1) > :nth-child(8) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             cy.get(':nth-child(2) > :nth-child(7) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             common.btnID('btnChon');
-            // cy.wait(1000);
             common.clickConfirmBtn({timeout: 4000})
-
             cy.get('table#tblThuoc > thead > tr > th:nth-child(10) > .ylenh-a > .fa').click();
             common.clickConfirmBtn();
 
             // xóa từng loại thuốc/ VTYT trong popup
-            // common.enterSelectBoxUlLi('cboThuocKD', '20.13126');
             cy.get('#cboThuocKD').parent().find('span.selection span.select2-selection').click();
             cy.get('span.select2-search').find('input.select2-search__field').type('20');
             cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(3)').click();
-
-
             cy.get('#txtSlKD').type(testCase.txtSlKD);
             cy.get('#txtSlNKD').type(testCase.txtSlNKD);
             cy.get(':nth-child(1) > :nth-child(8) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             cy.get(':nth-child(2) > :nth-child(7) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
             common.btnID('btnChon');
             cy.get('body').type('{esc}');
-            // common.enterSelectBoxUlLi('cboThuocKD','20.01100{enter}');
-
             cy.get('#cboThuocKD').parent().find('span.selection span.select2-selection').click();
             cy.get('span.select2-search').find('input.select2-search__field').type('20');
             cy.get('span.select2-results > ul.select2-results__options').find('li:nth-child(3)').click();
-
             cy.get('#txtSlKD').type(testCase.txtSlKD);
             cy.get('#txtSlNKD').type(testCase.txtSlNKD);
             cy.get(':nth-child(1) > :nth-child(8) > .i-checks > label > .icheckbox_square-green > .iCheck-helper').click();
@@ -85,13 +69,11 @@ describe("Ngoại trú", () => {
             cy.get('#txtSNUpdate').clear().type('2');
             cy.get('#txtSlUpdate').clear().type('2');
             cy.get('.modal-footer button:first').click();
-
             cy.get('#YLMainContentCdThuoc > #divThuocVTYT > .table-responsive > #tblThuoc > thead > tr > th:nth-child(11) > .ylenh-a > .fa').click();
             common.clickConfirmBtn();
         });
 
         it('Check chức năng kết thúc điều trị và thu hồi điều trị', function () {
-            // cy.get('#txtTimKiem').type(testCase.txtTimKiem);
             common.btnID('btnTimKiem');
             cy.get('#tblNgoaiTru tbody tr:nth-child(10) td:nth-child(3) a').click();
             cy.get('.active > ul > :nth-child(5) > a').click();
@@ -130,7 +112,6 @@ describe("Ngoại trú", () => {
 
 
         });
-
 
         it('Check chức năng thêm y lệnh', function () {
             common.enterSelectBoxNormal('cbbLoai', testCase.cbbLoai);
@@ -237,7 +218,6 @@ describe("Ngoại trú", () => {
             cy.get('#cboSoLanSaoYLenh').select('2');
             cy.get('#cboLoaiSao').select('Sao thuốc dự trù và dịch vụ');
             cy.get('#btnPopupHOANTAT').click();
-            // cy.wait(20000);
             cy.get('.confirm').click({timeout: 5000});
             cy.get('#divStatusPopup i.badge')
                 .should('have.text', 'Hoàn tất')

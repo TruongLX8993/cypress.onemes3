@@ -14,7 +14,7 @@ describe("Tiep Nhan NT", () => {
         cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
         common.enterSelectBoxNormal('cbbLoai', "3 tháng");
         cy.get('#btnTimKiem').click();
-        cy.get('#divListFormDsTTVRK tbody tr:nth-child(1) td:nth-child(3) a').invoke('text').then(maBN=>{
+        cy.get('#divListFormDsTTVRK tbody tr:nth-child(1) td:nth-child(3) a').invoke('text').then(maBN => {
             cy.get('#divListFormDsTTVRK tbody tr:nth-child(1) td:nth-child(3) a').click();
             cy.get('#cboBuong').parent().find('span.selection span.select2-selection').click();
             cy.get(`#select2-cboBuong-results`).find('tr:first').click();
@@ -79,88 +79,86 @@ describe("Tiep Nhan NT", () => {
 
     });
 
+    it('Thu hồi', function () {
+        console.log('abc');
+        cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
+        common.enterSelectBoxNormal('cbbLoai', '3');
+        cy.get('#btnTimKiem').click();
+        cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
+        cy.get('#btnNHAPKHOA').click();
+        cy.get('#btnTHUHOI').click();
 
-// it('Thu hồi', function () {
-//     console.log('abc');
-//     cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
-//     common.enterSelectBoxNormal('cbbLoai','3');
-//     cy.get('#btnTimKiem').click();
-//     cy.get('#divWebPartContent tbody tr:nth-child(1) td:nth-child(3) a').click();
-//     cy.get('#btnNHAPKHOA').click();
-//     cy.get('#btnTHUHOI').click();
-//
-//     cy.wait(1000);
-//     cy.document().then(doc=>{
-//        const alert = doc.querySelectorAll('.sweet-alert');
-//        if(alert.length > 0){
-//            cy.get('.sweet-alert p').invoke('text').then(error=>{
-//                cy.log(error);
-//            });
-//        }else{
-//            cy.get('#aTrangThai i').invoke('text').then(status=>{
-//               if(status.trim() === 'Chờ nhập khoa'){
-//                   cy.get('#txtThoiGianVaoKhoa').type('09:45 26/07/2023{enter}');
-//                   //common.enterSelectBoxElas('cboBacSi',"Trần Trung Hiếu");
-//                   common.enterSelectBoxElasticSearch('cboBenhChinh',"A01.1");
-//                   cy.get('#btnNHAPKHOA').click();
-//               } else{
-//                   throw new Error('Thu hồi thất bại');
-//               }
-//            });
-//        }
-//     });
-//
-//
-// });
-//
-// it('Check tác vụ "hủy nhập khoa"', function () {
-//     cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
-//     common.enterSelectBoxNormal('cbbLoai','3');
-//     cy.get('#btnTimKiem').click();
-//     cy.get('#divDanhSachContent tbody tr:nth-child(2) td:nth-child(3) a').click();
-//     cy.get('#btnNHAPKHOA').click();
-//     cy.get('#btnTHUHOI').click();
-//     cy.get('#aTrangThai i')
-//         .should('have.text', 'Chờ nhập khoa')
-//         .then(($i) => {
-//             const text = $i.text().trim();
-//             if (text === 'Chờ nhập khoa') {
-//                 cy.log('Đổi trạng thái thành công');
-//             } else {
-//                 cy.fail('Đổi trạng thái thất bại');
-//             }
-//         });
-//     common.enterSelectBoxElasticSearch('cboBenhChinh','A00');
-//
-//     cy.get('#btnNHAPKHOA').click();
-//     cy.get('#btnTHUHOI').click();
-//     cy.get('#btnHUYNHAPKHOA').click();
-//     cy.get('#txtGhiChu').type('Khỏi');
-//     cy.get('#btnHuyNhapKhoa > strong').click();
-//     cy.get('#aTrangThai i')
-//         .should('have.text', 'Hủy')
-//         .then(($i) => {
-//             const text = $i.text().trim();
-//             if (text === 'Hủy') {
-//                 cy.log('Đổi trạng thái thành công');
-//                 common.goToFunctionFromMenu('khambenhdanhsachdraw');
-//                 cy.get('#txtTimKiem').clear().type(maBN);
-//                 common.enterSelectBoxNormal('drpSelectTrangThai','hoan tat');
-//                 common.enterSelectBoxNormal('cbbLoai','3');
-//                 common.btnID('btnTimKiem');
-//                 cy.wait(500);
-//                 common.btnID('btnTHUHOI');
-//                 common.enterSelectBoxElasticSearch('cbbBacSi','a');
-//                 cy.get('#txtChanDoanSoBo').clear().type('viêm họng cấp');
-//                 common.btnID('btnHOANTAT');
-//             } else {
-//                 cy.fail('Đổi trạng thái thất bại');
-//             }
-//         });
-//
-//
-// })
+        cy.wait(1000);
+        cy.document().then(doc => {
+            const alert = doc.querySelectorAll('.sweet-alert');
+            if (alert.length > 0) {
+                cy.get('.sweet-alert p').invoke('text').then(error => {
+                    cy.log(error);
+                });
+            } else {
+                cy.get('#aTrangThai i').invoke('text').then(status => {
+                    if (status.trim() === 'Chờ nhập khoa') {
+                        cy.get('#txtThoiGianVaoKhoa').type('09:45 26/07/2023{enter}');
+                        //common.enterSelectBoxElas('cboBacSi',"Trần Trung Hiếu");
+                        common.enterSelectBoxElasticSearch('cboBenhChinh', "A01.1");
+                        cy.get('#btnNHAPKHOA').click();
+                    } else {
+                        throw new Error('Thu hồi thất bại');
+                    }
+                });
+            }
+        });
 
 
-})
-;
+    });
+
+    it('Check tác vụ "hủy nhập khoa"', function () {
+        cy.get('#drpSelectTrangThai').select('Chờ nhập khoa');
+        common.enterSelectBoxNormal('cbbLoai', '3');
+        cy.get('#btnTimKiem').click();
+        cy.get('#divDanhSachContent tbody tr:nth-child(2) td:nth-child(3) a').click();
+        cy.get('#btnNHAPKHOA').click();
+        cy.get('#btnTHUHOI').click();
+        cy.get('#aTrangThai i')
+            .should('have.text', 'Chờ nhập khoa')
+            .then(($i) => {
+                const text = $i.text().trim();
+                if (text === 'Chờ nhập khoa') {
+                    cy.log('Đổi trạng thái thành công');
+                } else {
+                    cy.fail('Đổi trạng thái thất bại');
+                }
+            });
+        common.enterSelectBoxElasticSearch('cboBenhChinh', 'A00');
+
+        cy.get('#btnNHAPKHOA').click();
+        cy.get('#btnTHUHOI').click();
+        cy.get('#btnHUYNHAPKHOA').click();
+        cy.get('#txtGhiChu').type('Khỏi');
+        cy.get('#btnHuyNhapKhoa > strong').click();
+        cy.get('#aTrangThai i')
+            .should('have.text', 'Hủy')
+            .then(($i) => {
+                const text = $i.text().trim();
+                if (text === 'Hủy') {
+                    cy.log('Đổi trạng thái thành công');
+                    common.goToFunctionFromMenu('khambenhdanhsachdraw');
+                    cy.get('#txtTimKiem').clear().type(maBN);
+                    common.enterSelectBoxNormal('drpSelectTrangThai', 'hoan tat');
+                    common.enterSelectBoxNormal('cbbLoai', '3');
+                    common.btnID('btnTimKiem');
+                    cy.wait(500);
+                    common.btnID('btnTHUHOI');
+                    common.enterSelectBoxElasticSearch('cbbBacSi', 'a');
+                    cy.get('#txtChanDoanSoBo').clear().type('viêm họng cấp');
+                    common.btnID('btnHOANTAT');
+                } else {
+                    cy.fail('Đổi trạng thái thất bại');
+                }
+            });
+
+
+    })
+
+
+});

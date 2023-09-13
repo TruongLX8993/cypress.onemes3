@@ -50,50 +50,53 @@ describe("Điều trị nội trú", () => {
 
         });
 
-        // it('Check chức năng thông tin chăm sóc', function () {
-        //     cy.get('#tblNoiTru > tbody > tr:nth-child(9) > td:nth-child(2) > a > .far').click();
-        //     cy.contains('Lập kế hoạch CS').click();
-        //     cy.get('#txtDHSTMach').clear();
-        //     cy.get('#txtDHSTHuyetAp').clear();
-        //     cy.get('#txtDHSTNhietDo').clear();
-        //     cy.get('#txtDHSTNhipTho').clear();
-        //     cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
-        //     // common.btnID('btnLuu');
-        //     cy.get('#btnLuu').click({force: true});
-        //     cy.contains('Lịch sử chăm sóc').click();
-        //     cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
-        //     common.btnID('btnHoanTat');
-        //
-        //     cy.document().then(doc=>{
-        //        const alert = doc.querySelectorAll('.sweet-alert');
-        //        if(alert.length > 0){
-        //            cy.get('.sweet-alert p').invoke('text').then(error=>{
-        //               cy.log(error);
-        //            });
-        //        }else{
-        //            cy.contains('Lịch sử chăm sóc').click();
-        //            cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
-        //            common.btnID('btnSaoChep');
-        //            cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
-        //            cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
-        //            cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
-        //            cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
-        //            cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
-        //            common.btnID('btnLuu');
-        //            cy.contains('Lịch sử chăm sóc').click();
-        //            cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
-        //            common.btnID('btnThuHoi');
-        //            cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
-        //            cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
-        //            cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
-        //            cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
-        //            cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
-        //            common.btnID('btnHoanTat');
-        //            cy.contains('Lịch sử chăm sóc').click();
-        //        }
-        //     });
-        //
-        // });
+        it('Check chức năng thông tin chăm sóc', function () {
+            cy.get('#tblNoiTru > tbody > tr:nth-child(9) > td:nth-child(2) > a > .far').click();
+            cy.contains('Lập kế hoạch CS').click();
+            cy.get('#txtDHSTMach').clear();
+            cy.get('#txtDHSTHuyetAp').clear();
+            cy.get('#txtDHSTNhietDo').clear();
+            cy.get('#txtDHSTNhipTho').clear();
+            cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
+            // common.btnID('btnLuu');
+            cy.get('#btnLuu').click({force: true});
+            cy.contains('Lịch sử chăm sóc').click();
+            cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
+            common.btnID('btnHoanTat');
+
+            cy.document().then(doc=>{
+               const alert = doc.querySelectorAll('.sweet-alert');
+               if(alert.length > 0){
+                   cy.get('.sweet-alert p').invoke('text').then(error=>{
+                      cy.log(error);
+                   });
+               }else{
+                   cy.contains('Lịch sử chăm sóc').click();
+                   cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
+                   common.btnID('btnSaoChep');
+                   cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
+                   cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
+                   cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
+                   cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
+                   cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
+                   common.btnID('btnLuu');
+                   cy.contains('Lịch sử chăm sóc').click();
+                   cy.get('#BodyChiTietDraw > tr:nth-child(2) > td:nth-child(3) > a').click();
+                   common.btnID('btnThuHoi');
+                   cy.get('#txtDHSTMach').clear().type(testCase.txtDHSTMach);
+                   cy.get('#txtDHSTHuyetAp').clear().type(testCase.txtDHSTHuyetAp);
+                   cy.get('#txtDHSTNhietDo').clear().type(testCase.txtDHSTNhietDo);
+                   cy.get('#txtDHSTNhipTho').clear().type(testCase.txtDHSTNhipTho);
+                   cy.get('#txtDienBienCS').clear().type(testCase.txtDienBienCS);
+                   common.btnID('btnHoanTat');
+                   cy.contains('Lịch sử chăm sóc').click();
+               }
+            });
+
+
+
+
+        });
 
         //
         // it('Check chức năng nhập thuốc/VT', function () {
