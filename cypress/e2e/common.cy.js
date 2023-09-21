@@ -94,6 +94,19 @@ function inputDateTimeTomorrow(selectTagTime){
     return formattedDate;
 }
 
+function inputDateTimeSevenMinutes(selectTagTime) {
+    const [time, date] = selectTagTime.split(' ');
+    const [hour, minute] = time.split(':');
+    const [day, month, year] = date.split('/');
+    const inputDate = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute));
+    const newTime = new Date(inputDate.getTime() + 6 * 60 * 1000);
+    const formattedDate = `${String(newTime.getHours()).padStart(2, '0')}:${String(newTime.getMinutes()).padStart(2, '0')} ${String(newTime.getDate()).padStart(2, '0')}/${String(newTime.getMonth() + 1).padStart(2, '0')}/${newTime.getFullYear()}`;
+    return formattedDate;
+}
+
+
+
+
 async function getHtml(selection) {
     return new Cypress.Promise((resolve) => {
         cy.get(selection)
@@ -125,6 +138,7 @@ module.exports = {
     compareValueAscending: compareValueOfInputElementAscending,
     enterSelectBoxFocus: enterSelectBoxFocus,
     inputDateTimeTomorrow: inputDateTimeTomorrow,
+    inputDateTimeSevenMinutes: inputDateTimeSevenMinutes,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
     btnID: btnID,
     clickConfirmBtn: clickConfirmBtn

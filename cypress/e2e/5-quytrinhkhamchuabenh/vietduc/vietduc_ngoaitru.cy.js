@@ -1,5 +1,5 @@
-const common = require('../common.cy');
-const enviroment = require('../../../enviroment.json');
+const common = require('../../common.cy');
+const enviroment = require('../../../../enviroment.json');
 const testCases = require('./vietduc.testcase.json');
 
 describe("Quy trình khám chữa bệnh - ngoại trú", () => {
@@ -15,6 +15,21 @@ describe("Quy trình khám chữa bệnh - ngoại trú", () => {
             cy.get('#txtTenBenhNhan').type('Cypress Ngoai Tru');
             cy.get('#txtNgaySinh').type('22/01/2008');
             cy.get('#txtDiaChiSoNha').type('44');
+            cy.document().then(doc => {
+                const dialog = doc.querySelectorAll('#divFormModalChung');
+                if (dialog.length > 0) {
+                    // style = "overflow: hidden; display: block; padding-left: 17px;"
+                    cy.get('#divFormModalChung').invoke('attr', 'style').then(status => {
+                        if (status.trim().includes('display: block;')) {
+                            cy.get('#divFormModalChung > #dialogChung > .modal-content > .panel-heading > .close').click();
+                        } else {
+                            cy.log('dialog khong xuat hien');
+                        }
+                    });
+                } else {
+                    cy.log('dialog khong xuat hien');
+                }
+            })
             common.enterSelectBoxElasticSearch('cbbDonViHanhChinh', 'HG');
             cy.get('#txtDienThoai').type('0123462781');
             cy.get('#txtSoCMND').type('0022993849');
@@ -320,8 +335,15 @@ describe("Quy trình khám chữa bệnh - ngoại trú", () => {
             common.clickConfirmBtn();
             cy.wait(1000);
             cy.get('body').type('{esc}');
-            cy.get('body').type('{esc}');
+            cy.wait(1000);
 
+            cy.get('#aTrangThai i.badge').invoke('text').then(status=>{
+                if(status.trim() === 'Hoàn tất'){
+                    cy.log('Hoàn tất tất toán thành công');
+                } else{
+                    throw new Error('Hoàn tất tất toán không thành công')
+                }
+            });
         });
 
 

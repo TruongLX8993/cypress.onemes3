@@ -1,7 +1,7 @@
-const common = require('../common.cy');
-const enviroment = require('../../../enviroment.json');
+const common = require('../../common.cy');
+const enviroment = require('../../../../enviroment.json');
 const testCases = require('./vietduc.testcase.json');
-const {getHtml, getCurrentUrl} = require("../common.cy");
+const {getHtml, getCurrentUrl} = require("../../common.cy");
 
 describe("Quy trình khám chữa bệnh - nội trú", () => {
 
@@ -17,6 +17,21 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
             cy.get('#txtTenBenhNhan').type('Cypress Noi Tru1');
             cy.get('#txtNgaySinh').type('22/01/2008');
             cy.get('#txtDiaChiSoNha').type('44');
+            cy.document().then(doc => {
+                const dialog = doc.querySelectorAll('#divFormModalChung');
+                if (dialog.length > 0) {
+                    // style = "overflow: hidden; display: block; padding-left: 17px;"
+                    cy.get('#divFormModalChung').invoke('attr', 'style').then(status => {
+                        if (status.trim().includes('display: block;')) {
+                            cy.get('#divFormModalChung > #dialogChung > .modal-content > .panel-heading > .close').click();
+                        } else {
+                            cy.log('dialog khong xuat hien');
+                        }
+                    });
+                } else {
+                    cy.log('dialog khong xuat hien');
+                }
+            })
             common.enterSelectBoxElasticSearch('cbbDonViHanhChinh', 'HG');
             cy.get('#txtDienThoai').type('0123462781');
             cy.get('#txtSoCMND').type('0022993849');
@@ -36,7 +51,7 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
                 cy.wait(1000);
 
                 cy.document().then(doc => {
-                    const dialog = doc.querySelectorAll('#divModalContentTamUng');
+                    const dialog = doc.querySelectorAll('#divModalContentTamUng form');
                     if (dialog.length > 0) {
                         cy.get('#dialogChung > .modal-content > .panel-heading > .close').click();
                         cy.get('#txtTimKiem').clear().type(mabn);
@@ -46,6 +61,8 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
                         common.btnID('btnTimKiem');
                     }
                 });
+                cy.get('#txtTimKiem').clear().type(mabn);
+                common.btnID('btnTimKiem');
                 cy.get('#divVienPhiDanhSachContent tbody tr:first td a').eq(3).click();
                 cy.get('#txtTienTamUng').type('111111111');
                 common.btnID('btnHoanTatTamUng');
@@ -63,10 +80,12 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
                 common.enterSelectBoxElasticSearch('cbbHangDoiPopupNhieuNhom', testCase.cbbHangDoiPopupNhieuNhom);
                 cy.get('div#divContentChiDinh div.icheckbox_square-green ins.iCheck-helper').first().click({force: true})
                 cy.get('#previewPDFChonDV').click();
-                // cy.wait(7000);
+                cy.wait(500);
                 cy.get('#modalReportPdf > .modal-dialog').should('be.visible').then(() => {
                     cy.get('body').type('{esc}');
-                })
+                });
+                cy.wait(500);
+
                 cy.get('#aTrangThai i')
                     .should('have.text', 'Đang làm DV')
                     .then(($i) => {
@@ -190,13 +209,13 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
                 common.btnID('btnSaoChep');
                 cy.wait(300);
 
-                cy.document().then(doc=>{
-                   const alert = doc.querySelectorAll('.sweet-alert');
-                   if(alert.length > 0){
-                       common.clickConfirmBtn();
-                   }else{
-                       cy.log('Khong co dialog xuat hien')
-                   }
+                cy.document().then(doc => {
+                    const alert = doc.querySelectorAll('.sweet-alert');
+                    if (alert.length > 0) {
+                        common.clickConfirmBtn();
+                    } else {
+                        cy.log('Khong co dialog xuat hien')
+                    }
                 });
 
                 cy.wait(1000);
@@ -351,7 +370,7 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
             cy.wait(500);
             cy.get('.active > ul > :nth-child(4) > a').click();
             cy.get('#txtThoiGianRa').click();
-            common.enterSelectBoxElasticSearch('cboBacsi','duy');
+            common.enterSelectBoxElasticSearch('cboBacsi', 'duy');
             common.btnID('btnHOANTAT');
             cy.wait(1000);
 
@@ -364,19 +383,27 @@ describe("Quy trình khám chữa bệnh - nội trú", () => {
             common.btnID('btnTimKiem');
             cy.get('#divVienPhiDanhSachContent tbody tr:first td a').eq(3).click();
             cy.wait(500);
-            common.enterSelectBoxElasticSearch('cboHangDoiCauHinh','hc10.6');
+            common.enterSelectBoxElasticSearch('cboHangDoiCauHinh', 'hc10.6');
             cy.get('.form-group button:first').click();
             common.btnID('btnCHUYENTHANHTOAN');
             cy.wait(300);
             common.btnID('btnHOANTATTUDANGTT');
-            common.enterSelectBoxUlLi('cboQuyenBienLai','qblt01');
+            common.enterSelectBoxUlLi('cboQuyenBienLai', 'qblt01');
             cy.get('#txtSoDinhDanh').type('12345');
             common.btnID('btnAddBienlai');
             cy.wait(300);
             common.clickConfirmBtn();
             cy.wait(1000);
             cy.get('body').type('{esc}');
-            cy.get('body').type('{esc}');
+            cy.wait(1000);
+
+            cy.get('#aTrangThai i.badge').invoke('text').then(status => {
+                if (status.trim() === 'Hoàn tất') {
+                    cy.log('Hoàn tất tất toán thành công');
+                } else {
+                    throw new Error('Hoàn tất tất toán không thành công')
+                }
+            });
 
         });
 
