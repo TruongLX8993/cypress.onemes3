@@ -29,11 +29,32 @@ function enterSelectBoxUlLi(selectTagId, value){
 
 }
 
+function clickConfirmBtn(){
+    cy.get('.confirm').should('be.visible').click();
+}
+
+function btnID(id){
+    cy.get(`#${id}`).click();
+}
+
+function inputDateTime(selectTagId) {
+    const today = new Date();
+// Thêm 1 ngày
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+// Định dạng ngày tháng năm thành chuỗi 'YYYY-MM-DD'
+    const formattedDate = `${String(tomorrow.getDate()).padStart(2, '0')}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${tomorrow.getFullYear()}`;
+    cy.get(`#${selectTagId}`).clear();
+    cy.get(`#${selectTagId}`).type(`${formattedDate}`);
+}
 
 module.exports = {
     login: login,
+    btnID: btnID,
+    clickConfirmBtn: clickConfirmBtn,
     goToFunctionFromMenu: goToFunctionFromMenu,
     enterSelectBoxNormal: enterSelectBoxNormal,
-    enterSelectBoxElas: enterSelectBoxElas,
+    enterSelectBoxElasticSearch: enterSelectBoxElas,
     enterSelectBoxUlLi: enterSelectBoxUlLi,
+    inputDateTime: inputDateTime,
 }
